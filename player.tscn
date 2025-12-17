@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=4 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://oq383ns5viex" path="res://crosshair.png" id="2_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -15,6 +14,7 @@ mesh = SubResource("CapsuleMesh_sh265")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4flbx")
+debug_fill = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
@@ -22,23 +22,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 far = 1000.0
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="CrossHair" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -271.0
+offset_top = -22.5
+offset_right = 271.0
+offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_onrkg")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HoverMessage" type="Label" parent="CanvasLayer"]
 anchors_preset = 7
@@ -52,6 +57,8 @@ offset_right = 271.0
 offset_bottom = -264.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "[HOVER MESSAGE]"
 horizontal_alignment = 1
