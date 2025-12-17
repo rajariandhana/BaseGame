@@ -38,3 +38,8 @@ func get_prompt():
 
 func interact(body):
 	print("Interacting with " + name)
+
+func hover_enter(body):
+	pass
+func hover_exit(body):
+	pass

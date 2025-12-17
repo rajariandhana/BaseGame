@@ -31,12 +31,15 @@ environment = SubResource("Environment_mwb40")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 4)
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.355034, 1, 1.56765)
+transform = Transform3D(-0.642493, 0, -0.766291, 0, 1, 0, 0.766291, 0, -0.642493, -0.355034, 1, 1.56765)
 
 [node name="Box1" parent="." instance=ExtResource("4_fc0e3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95505, 0.5, 1.74605)
-interact_key = "interact_e"
+transform = Transform3D(0.951525, 0, -0.307573, 0, 1, 0, 0.307573, 0, 0.951525, 1.95505, 0.5, 1.74605)
+color_primary = "#FF0000"
+color_secondary = "#0000FF"
 
 [node name="Box2" parent="." instance=ExtResource("4_fc0e3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95505, 2.02961, 1.74605)
+transform = Transform3D(1.39944, 0, -0.539971, 0, 1.5, 0, 0.539971, 0, 1.39944, 0.959636, 0.75, 3.39986)
+color_primary = "#00FF00"
+color_secondary = "#FFFF00"
 interact_key = "interact_f"
