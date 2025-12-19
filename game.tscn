@@ -43,7 +43,6 @@ color_secondary = "#0000FF"
 transform = Transform3D(1.39944, 0, -0.539971, 0, 1.5, 0, 0.539971, 0, 1.39944, 0.959636, 0.75, 3.39986)
 color_primary = "#00FF00"
 color_secondary = "#FFFF00"
-interact_key = "interact_f"
 
 [node name="Door1" parent="." instance=ExtResource("3_feb5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.101004, 0, -2.34434)

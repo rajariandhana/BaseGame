@@ -10,6 +10,9 @@
 
 [node name="Box" type="StaticBody3D"]
 script = ExtResource("2_oq5cr")
+interactions = Dictionary[String, String]({
+"interact_e": "toggle"
+})
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_oq5cr")

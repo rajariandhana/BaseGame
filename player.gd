@@ -42,12 +42,13 @@ func ray():
 		if collider is Interactable:
 			hover_message.text = collider.get_prompt()
 			collider.hover_enter(owner)
-			if Input.is_action_just_pressed(collider.interact_key):
-				collider.interact(owner)
-			if interacting != collider:
-				if interacting:
-					interacting.hover_exit(owner)
-				interacting = collider
+			for action in collider.interactions.keys():
+				if Input.is_action_just_pressed(action):
+					collider.interact(action, owner)
+				if interacting != collider:
+					if interacting:
+						interacting.hover_exit(owner)
+					interacting = collider
 	else:
 		if interacting:
 			interacting.hover_exit(owner)

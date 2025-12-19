@@ -25,7 +25,7 @@ func set_overlay_color(color: Color):
 	mesh_instance_3d.material_overlay = mat
 	mat.albedo_color = color
 
-func interact(body) -> void:
+func interact(action, body) -> void:
 	toggle = !toggle
 	if toggle:
 		set_overlay_color(color_secondary)

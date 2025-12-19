@@ -2,7 +2,8 @@ extends CollisionObject3D
 class_name Interactable
 
 @export var hover_message: String
-@export var interact_key: String = "interact_e"
+# Key is input map, Value is default description
+@export var interactions: Dictionary[String, String]
 
 func mouse_button_to_text(button: int) -> String:
 	match button:
@@ -19,25 +20,28 @@ func mouse_button_to_text(button: int) -> String:
 		_:
 			return "Mouse %d" % button
 
-func get_prompt():
-	var key_name = ""
-	for event in InputMap.action_get_events(interact_key):
+func get_action_key_name(action) -> String:
+	for event in InputMap.action_get_events(action):
 		if event is InputEventKey:
-			key_name = event.as_text_physical_keycode()
+			return event.as_text_physical_keycode()
 			break
 		elif event is InputEventMouseButton:
-			key_name = mouse_button_to_text(event.button_index)
-			break
-	var result: String = ""
-	if hover_message:
-		result += hover_message
-	else:
-		result += "I am " + name
-	result += "\n[" + key_name + "]"
-	return result
+			return mouse_button_to_text(event.button_index)
+	return ""
 
-func interact(body):
-	print("Interacting with " + name)
+func get_prompt():
+	var lines := []
+	if hover_message:
+		lines.append(hover_message)
+	else:
+		lines.append(name)
+	for action in interactions.keys():
+		var msg = "[" + get_action_key_name(action) + "] " + interactions[action]
+		lines.append(msg)
+	return "\n".join(lines)
+
+func interact(action: String, body):
+	print("Action:", action, "on", name)
 
 func hover_enter(body):
 	pass
