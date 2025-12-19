@@ -46,3 +46,6 @@ color_secondary = "#FFFF00"
 
 [node name="Door1" parent="." instance=ExtResource("3_feb5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.101004, 0, -2.34434)
+
+[node name="Door2" parent="." instance=ExtResource("3_feb5d")]
+transform = Transform3D(0.893136, 0, 0.449787, 0, 1, 0, -0.449787, 0, 0.893136, -2.283, 0, -1.80662)

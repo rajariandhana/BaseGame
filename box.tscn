@@ -10,8 +10,8 @@
 
 [node name="Box" type="StaticBody3D"]
 script = ExtResource("2_oq5cr")
-interactions = Dictionary[String, String]({
-"interact_e": "toggle"
+interactions = Dictionary[int, String]({
+0: "Toggle"
 })
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

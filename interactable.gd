@@ -3,7 +3,7 @@ class_name Interactable
 
 @export var hover_message: String
 # Key is input map, Value is default description
-@export var interactions: Dictionary[String, String]
+@export var interactions: Dictionary[Inputs.Keys, String]
 
 func mouse_button_to_text(button: int) -> String:
 	match button:
@@ -35,13 +35,14 @@ func get_prompt():
 		lines.append(hover_message)
 	else:
 		lines.append(name)
-	for action in interactions.keys():
-		var msg = "[" + get_action_key_name(action) + "] " + interactions[action]
+	for input_key in interactions.keys():
+		var input_value = Utils.input_map_value(input_key)
+		var msg = "[" + get_action_key_name(input_value) + "] " + interactions[input_key]
 		lines.append(msg)
 	return "\n".join(lines)
 
-func interact(action: String, body):
-	print("Action:", action, "on", name)
+func interact(action: Inputs.Keys, body):
+	print(Utils.input_map_value(action), " on ", name)
 
 func hover_enter(body):
 	pass

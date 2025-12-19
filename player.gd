@@ -43,7 +43,7 @@ func ray():
 			hover_message.text = collider.get_prompt()
 			collider.hover_enter(owner)
 			for action in collider.interactions.keys():
-				if Input.is_action_just_pressed(action):
+				if Input.is_action_just_pressed(Utils.input_map_value(action)):
 					collider.interact(action, owner)
 				if interacting != collider:
 					if interacting:
