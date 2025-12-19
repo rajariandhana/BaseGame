@@ -5,11 +5,23 @@ const MOUSE_SPEED_Y: float = 0.3
 
 const SPEED = 5.5 # 5.5 meter/second
 
+const RAY_LENGTH: float = 1000.0
+
+@onready var camera_3d: Camera3D = %Camera3D
+@onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
+@onready var space_state = get_world_3d().direct_space_state
+
+@onready var interact_ray: RayCast3D = $Camera3D/InteractRay
+@onready var hover_message: Label = $CanvasLayer/HoverMessage
+
+var interacting: Interactable = null
+
 func _ready() -> void:
+	#return
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	#print(event)
+	#return
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif event is InputEventMouseMotion:
@@ -21,7 +33,30 @@ func _unhandled_input(event: InputEvent) -> void:
 			60.0
 		)
 
+func ray():
+	hover_message.text = ""
+	
+	if interact_ray.is_colliding():
+		var collider = interact_ray.get_collider()
+
+		if collider is Interactable:
+			hover_message.text = collider.get_prompt()
+			collider.hover_enter(owner)
+			for action in collider.interactions.keys():
+				if Input.is_action_just_pressed(Utils.input_map_value(action)):
+					collider.interact(action, owner)
+				if interacting != collider:
+					if interacting:
+						interacting.hover_exit(owner)
+					interacting = collider
+	else:
+		if interacting:
+			interacting.hover_exit(owner)
+			interacting = null
+
 func _physics_process(delta: float) -> void:
+	ray()
+	
 	var input_direction_2D = Input.get_vector(
 		"move_left",
 		"move_right",
