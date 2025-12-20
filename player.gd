@@ -14,6 +14,8 @@ const RAY_LENGTH: float = 1000.0
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 @onready var hover_message: Label = $CanvasLayer/HoverMessage
 
+@onready var hand: Node3D = $Camera3D/Hand
+
 var interacting: Interactable = null
 
 func _ready() -> void:
@@ -40,6 +42,8 @@ func ray():
 		var collider = interact_ray.get_collider()
 
 		if collider is Interactable:
+			if collider is Item and collider.has_signal("request_pickup"):
+				collider.request_pickup.connect(pickup)
 			hover_message.text = collider.get_prompt()
 			collider.hover_enter(owner)
 			for action in collider.interactions.keys():
@@ -49,6 +53,9 @@ func ray():
 					if interacting:
 						interacting.hover_exit(owner)
 					interacting = collider
+		elif Input.is_action_just_pressed(Utils.input_map_value(Inputs.Keys.DROP)) and collider.is_in_group("ItemZone"):
+			var drop_position: Vector3 = interact_ray.get_collision_point()
+			drop(drop_position)
 	else:
 		if interacting:
 			interacting.hover_exit(owner)
@@ -79,3 +86,30 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 	
 	move_and_slide()
+
+func pickup(item: Node3D):
+	if hand.get_child_count() != 0:
+		return
+	if item is RigidBody3D:
+		item.freeze = true
+	var shape:= item.get_node_or_null("CollisionShape3D")
+	if shape:
+		shape.disabled = true
+	item.reparent(hand)
+	item.transform = Transform3D.IDENTITY
+
+func drop(drop_position: Vector3):
+	if hand.get_child_count() == 0:
+		return
+	print("dropping")
+	var item := hand.get_child(0)
+	var world_items := get_parent()
+	item.reparent(world_items)
+	item.global_position = drop_position + Vector3.UP * 0.2
+	
+	if item is RigidBody3D:
+		item.freeze = false
+	var shape:= item.get_node_or_null("CollisionShape3D")
+	if shape:
+		shape.disabled = false
+	

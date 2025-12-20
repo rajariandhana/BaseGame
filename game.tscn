@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2pq2x2sxwy4l"]
+[gd_scene load_steps=7 format=3 uid="uid://d2pq2x2sxwy4l"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bvk624i8ws6fb" path="res://door.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c3o23yup4gxny" path="res://box.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c26vsn8srl1fp" path="res://ball.tscn" id="5_7jktm"]
 
 [sub_resource type="Environment" id="Environment_mwb40"]
 background_mode = 1
@@ -19,7 +20,7 @@ fog_height_density = 0.15
 
 [node name="Game" type="Node3D"]
 
-[node name="Ground0" type="CSGBox3D" parent="."]
+[node name="Ground0" type="CSGBox3D" parent="." groups=["ItemZone"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(8, 1, 12.519)
@@ -32,7 +33,7 @@ environment = SubResource("Environment_mwb40")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 4)
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
-transform = Transform3D(0.988876, 0, 0.148742, 0, 1, 0, -0.148742, 0, 0.988876, -0.355034, 1, -0.135577)
+transform = Transform3D(-0.643643, 0, 0.765326, 0, 1, 0, -0.765326, 0, -0.643643, -0.355034, 1, -0.135577)
 
 [node name="Box1" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(0.951525, 0, -0.307573, 0, 1, 0, 0.307573, 0, 0.951525, 1.95505, 0.5, 1.74605)
@@ -49,3 +50,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.101004, 0, -2.34434)
 
 [node name="Door2" parent="." instance=ExtResource("3_feb5d")]
 transform = Transform3D(0.893136, 0, 0.449787, 0, 1, 0, -0.449787, 0, 0.893136, -2.283, 0, -1.80662)
+
+[node name="Ball1" parent="." instance=ExtResource("5_7jktm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04229, 0.25, 3.71117)
+color = "#FF0000"
+
+[node name="Ball2" parent="." instance=ExtResource("5_7jktm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01144, 0.25, 3.12054)
+color = "#0000FF"

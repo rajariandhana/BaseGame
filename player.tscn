@@ -24,6 +24,9 @@ far = 1000.0
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -4)
 
+[node name="Hand" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, -1)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CrossHair" type="Label" parent="CanvasLayer"]
