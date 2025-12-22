@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2pq2x2sxwy4l"]
+[gd_scene load_steps=8 format=3 uid="uid://d2pq2x2sxwy4l"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bvk624i8ws6fb" path="res://door.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c3o23yup4gxny" path="res://box.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://c26vsn8srl1fp" path="res://ball.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bny28b7ixxuqp" path="res://axe.tscn" id="6_ryrav"]
 
 [sub_resource type="Environment" id="Environment_mwb40"]
 background_mode = 1
@@ -58,3 +59,6 @@ color = "#FF0000"
 [node name="Ball2" parent="." instance=ExtResource("5_7jktm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01144, 0.25, 3.12054)
 color = "#0000FF"
+
+[node name="Axe1" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34123, 0.6, 1.62924)
