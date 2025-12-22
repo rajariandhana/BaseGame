@@ -86,13 +86,12 @@ func handle_interaction():
 func ray():
 	hover_message.text = ""
 	
-	if is_equipped():
-		handle_equipped()
-		return
 	if interact_ray.is_colliding():
 		handle_interaction()
 	else:
 		clear_hover()
+	if is_equipped():
+		handle_equipped()
 
 func _physics_process(delta: float) -> void:
 	ray()

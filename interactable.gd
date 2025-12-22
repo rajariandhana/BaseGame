@@ -17,9 +17,8 @@ func _init() -> void:
 func _ready() -> void:
 	if my_name == null or my_name == "":
 		my_name = name
-	print(my_name)
+	#print(my_name)
 	setup_ready()
-
 
 func mouse_button_to_text(button: int) -> String:
 	match button:
@@ -50,7 +49,7 @@ func get_prompt():
 	if hover_message:
 		lines.append(hover_message)
 	else:
-		lines.append(name)
+		lines.append(my_name)
 	for input_key in interactions.keys():
 		var input_value = Utils.input_map_value(input_key)
 		var msg = "[" + get_action_key_name(input_value) + "] " + interactions[input_key]
