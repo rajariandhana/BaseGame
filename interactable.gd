@@ -1,9 +1,25 @@
 extends CollisionObject3D
 class_name Interactable
 
+@export var my_name: String
 @export var hover_message: String
 # Key is input map, Value is default description
 @export var interactions: Dictionary[Inputs.Keys, String]
+
+# child must not use built in _ready() and or _init()
+# use setup_ready() setup_init() instead
+func setup_ready() -> void:
+	pass
+func setup_init() -> void:
+	pass
+func _init() -> void:
+	setup_init()
+func _ready() -> void:
+	if my_name == null or my_name == "":
+		my_name = name
+	print(my_name)
+	setup_ready()
+
 
 func mouse_button_to_text(button: int) -> String:
 	match button:

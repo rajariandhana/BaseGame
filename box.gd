@@ -9,7 +9,7 @@ class_name Box
 var toggle: bool = false
 var current_color: String
 
-func _ready() -> void:
+func setup_ready() -> void:
 	current_color = color_primary
 	Utils.set_overlay_color(current_color, mesh_instance_3d)
 	toggle = false

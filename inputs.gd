@@ -7,6 +7,8 @@ enum Keys {
 	Q,
 	EQUIP,
 	DROP,
+	USE_PRIMARY,
+	USE_SECONDARY,
 }
 
 const Mapping := {
@@ -15,4 +17,6 @@ const Mapping := {
 	Keys.Q: "interact_q",
 	Keys.EQUIP: "interact_e",
 	Keys.DROP: "interact_q",
+	Keys.USE_PRIMARY: "mouse_left_click",
+	Keys.USE_SECONDARY: "mouse_right_click",
 }
