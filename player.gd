@@ -42,8 +42,8 @@ func ray():
 		var collider = interact_ray.get_collider()
 
 		if collider is Interactable:
-			if collider is Item and collider.has_signal("request_pickup"):
-				collider.request_pickup.connect(pickup)
+			if collider is Item and collider.has_signal("request_equip"):
+				collider.request_equip.connect(pickup)
 			hover_message.text = collider.get_prompt()
 			collider.hover_enter(owner)
 			for action in collider.interactions.keys():
@@ -90,26 +90,25 @@ func _physics_process(delta: float) -> void:
 func pickup(item: Node3D):
 	if hand.get_child_count() != 0:
 		return
-	if item is RigidBody3D:
-		item.freeze = true
-	var shape:= item.get_node_or_null("CollisionShape3D")
-	if shape:
-		shape.disabled = true
+	set_item(item, true)
 	item.reparent(hand)
 	item.transform = Transform3D.IDENTITY
 
 func drop(drop_position: Vector3):
 	if hand.get_child_count() == 0:
 		return
-	print("dropping")
 	var item := hand.get_child(0)
 	var world_items := get_parent()
 	item.reparent(world_items)
-	item.global_position = drop_position + Vector3.UP * 0.2
-	
+	item.global_position = drop_position
+	#item.rotation_degrees = Vector3.ZERO
+	set_item(item, false)
+
+func set_item(item: Node3D, status: bool):
 	if item is RigidBody3D:
-		item.freeze = false
+		item.freeze = status
 	var shape:= item.get_node_or_null("CollisionShape3D")
 	if shape:
-		shape.disabled = false
-	
+		shape.disabled = status
+
+#func swap(new_item: Node3D, drop_position: Vector3):
