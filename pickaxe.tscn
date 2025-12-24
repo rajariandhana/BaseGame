@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://sbhvw8g321vf"]
+[gd_scene load_steps=9 format=3 uid="uid://c64uegx3k64j3"]
 
-[ext_resource type="Script" uid="uid://b0amvj8bjeyh7" path="res://sword.gd" id="1_74bdg"]
+[ext_resource type="Script" uid="uid://b4brbssk401yt" path="res://pickaxe.gd" id="1_40syq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8xsq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyipo"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_74bdg"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_40syq"]
 
-[sub_resource type="PrismMesh" id="PrismMesh_e4ynd"]
+[sub_resource type="PrismMesh" id="PrismMesh_3j5ja"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_r76a6"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hyipo"]
 
 [sub_resource type="Animation" id="Animation_74bdg"]
 resource_name = "use"
@@ -35,22 +35,21 @@ _data = {
 &"use": SubResource("Animation_74bdg")
 }
 
-[node name="Sword" type="RigidBody3D"]
-script = ExtResource("1_74bdg")
-my_name = "Sword"
+[node name="Pickaxe" type="RigidBody3D"]
+script = ExtResource("1_40syq")
 
 [node name="Stick" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 0, -0.202949, 0)
-material_override = SubResource("StandardMaterial3D_o8xsq")
-mesh = SubResource("CylinderMesh_74bdg")
+transform = Transform3D(0.1, 0, 0, 0, 0.6, 0, 0, 0, 0.1, 0, 0.2, 0)
+material_override = SubResource("StandardMaterial3D_hyipo")
+mesh = SubResource("CylinderMesh_40syq")
 
 [node name="Blade" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 0.497051, 0)
-mesh = SubResource("PrismMesh_e4ynd")
+transform = Transform3D(-4.37114e-08, 0, 0.15, 0, 0.15, 0, -1, 0, -6.55671e-09, 0, 0.66, 0)
+mesh = SubResource("PrismMesh_3j5ja")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0, 0.297051, 0)
-shape = SubResource("CylinderShape3D_r76a6")
+transform = Transform3D(0.2, 0, 0, 0, 0.6, 0, 0, 0, 0.2, 0, 0.2, 0)
+shape = SubResource("CylinderShape3D_hyipo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
