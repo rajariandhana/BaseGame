@@ -1,9 +1,24 @@
 extends CollisionObject3D
 class_name Interactable
 
+@export var my_name: String
 @export var hover_message: String
 # Key is input map, Value is default description
 @export var interactions: Dictionary[Inputs.Keys, String]
+
+# child must not use built in _init() and or _ready()
+# use _init_interactable() _ready_interactable() instead
+func _init() -> void:
+	_init_interactable()
+func _ready() -> void:
+	if my_name == null or my_name == "":
+		my_name = name
+	#print(my_name)
+	_ready_interactable()
+func _init_interactable() -> void:
+	pass
+func _ready_interactable() -> void:
+	pass
 
 func mouse_button_to_text(button: int) -> String:
 	match button:
@@ -34,7 +49,7 @@ func get_prompt():
 	if hover_message:
 		lines.append(hover_message)
 	else:
-		lines.append(name)
+		lines.append(my_name)
 	for input_key in interactions.keys():
 		var input_value = Utils.input_map_value(input_key)
 		var msg = "[" + get_action_key_name(input_value) + "] " + interactions[input_key]

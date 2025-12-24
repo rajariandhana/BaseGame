@@ -54,6 +54,7 @@ data = PackedVector3Array(-1, 0, -0.2, -1, 0, 0.2, -0.8, 0, -0.2, -1, 0, -0.2, -
 [node name="Hinge" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0)
 script = ExtResource("1_ba8gm")
+my_name = "Door"
 interactions = Dictionary[int, String]({
 0: "Open",
 1: "Lock"

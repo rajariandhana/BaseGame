@@ -9,34 +9,23 @@ class_name Box
 var toggle: bool = false
 var current_color: String
 
-func _ready() -> void:
+func _ready_interactable() -> void:
 	current_color = color_primary
-	set_overlay_color(current_color)
+	Utils.set_overlay_color(current_color, mesh_instance_3d)
 	toggle = false
-
-func set_overlay_color(color: Color):
-	var mat := mesh_instance_3d.material_overlay
-
-	if mat == null:
-		mat = StandardMaterial3D.new()
-		mesh_instance_3d.material_overlay = mat
-	else:
-		mat = mat.duplicate()
-	mesh_instance_3d.material_overlay = mat
-	mat.albedo_color = color
 
 func interact(action, body) -> void:
 	toggle = !toggle
 	if toggle:
-		set_overlay_color(color_secondary)
+		Utils.set_overlay_color(color_secondary, mesh_instance_3d)
 		current_color = color_secondary
 	else:
-		set_overlay_color(color_primary)
+		Utils.set_overlay_color(color_primary, mesh_instance_3d)
 		current_color = color_primary
 
 func hover_enter(body) -> void:
 	var dimmed_color = Color(current_color) * 0.5
-	set_overlay_color(dimmed_color)
+	Utils.set_overlay_color(dimmed_color, mesh_instance_3d)
 
 func hover_exit(body) -> void:
-	set_overlay_color(current_color)
+	Utils.set_overlay_color(current_color, mesh_instance_3d)

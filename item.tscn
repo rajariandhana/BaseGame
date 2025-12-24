@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs3w3m6u5ry5q"]
+
+[ext_resource type="Script" uid="uid://b3cfnck5b56mh" path="res://item.gd" id="1_tnite"]
+
+[node name="Item" type="StaticBody3D"]
+script = ExtResource("1_tnite")
+interactions = Dictionary[int, String]({
+0: "Pickup"
+})
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
