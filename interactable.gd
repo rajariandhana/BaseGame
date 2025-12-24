@@ -6,19 +6,19 @@ class_name Interactable
 # Key is input map, Value is default description
 @export var interactions: Dictionary[Inputs.Keys, String]
 
-# child must not use built in _ready() and or _init()
-# use setup_ready() setup_init() instead
-func setup_ready() -> void:
-	pass
-func setup_init() -> void:
-	pass
+# child must not use built in _init() and or _ready()
+# use _init_interactable() _ready_interactable() instead
 func _init() -> void:
-	setup_init()
+	_init_interactable()
 func _ready() -> void:
 	if my_name == null or my_name == "":
 		my_name = name
 	#print(my_name)
-	setup_ready()
+	_ready_interactable()
+func _init_interactable() -> void:
+	pass
+func _ready_interactable() -> void:
+	pass
 
 func mouse_button_to_text(button: int) -> String:
 	match button:

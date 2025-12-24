@@ -3,22 +3,28 @@ class_name Item
 
 signal request_equip(item: Node3D)
 
+# Makes it only set on layer 3
+const ITEM_DEFAULT_COLLISION_LAYER := 1 << (3 - 1)
+
 # Will be filled with whatever rotation has been set
 #var reset_rotation: Vector3
 #@export var equip_rotation: Vector3
 
 var is_equipped: bool = false
 
-func setup_init() -> void:
+# child must not use built in _init() and or _ready()
+# use _init_item() _ready_item() instead
+func _init_interactable() -> void:
 	interactions[Inputs.Keys.EQUIP] = "Equip"
 	#interactions[Inputs.Keys.USE_PRIMARY] = "Use Primary"
-
-func setup_ready() -> void:
-	print("path: ", get_path())
-	print("local: ", rotation_degrees)
-	print("global: ", global_rotation_degrees)
-	#reset_rotation = rotation_degrees
-	#print(reset_rotation)
+	collision_layer = ITEM_DEFAULT_COLLISION_LAYER
+	_init_item()
+func _ready_interactable() -> void:
+	_ready_item()
+func _init_item() -> void:
+	pass
+func _ready_item() -> void:
+	pass
 
 func interact(action: Inputs.Keys, body: Node) -> void:
 	match action:
