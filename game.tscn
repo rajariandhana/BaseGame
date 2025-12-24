@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bvk624i8ws6fb" path="res://door.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c3o23yup4gxny" path="res://box.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://c26vsn8srl1fp" path="res://ball.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://bny28b7ixxuqp" path="res://axe.tscn" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://sbhvw8g321vf" path="res://sword.tscn" id="7_eow3j"]
 
 [sub_resource type="Environment" id="Environment_mwb40"]
 background_mode = 1
@@ -60,5 +60,5 @@ color = "#FF0000"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01144, 0.25, 3.12054)
 color = "#0000FF"
 
-[node name="Axe1" parent="." instance=ExtResource("6_ryrav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34123, 0.6, 1.62924)
+[node name="Sword" parent="." instance=ExtResource("7_eow3j")]
+transform = Transform3D(0.933198, -0.241405, -0.266204, 0.359362, 0.626885, 0.691285, 0, -0.740769, 0.671759, -1.11968, 2.86783, 1.76008)

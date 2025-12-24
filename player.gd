@@ -46,7 +46,9 @@ func handle_equipped() -> void:
 	if item == null:
 		return
 	var target = interact_ray.get_collider()
-	if action_pressed([Inputs.Keys.USE_PRIMARY]):
+	if action_pressed([Inputs.Keys.DROP]):
+		drop()
+	elif action_pressed([Inputs.Keys.USE_PRIMARY]):
 		item.use(Inputs.Keys.USE_PRIMARY, target)
 	elif action_pressed([Inputs.Keys.USE_SECONDARY]):
 		item.use(Inputs.Keys.USE_SECONDARY, target)
@@ -80,8 +82,8 @@ func handle_interaction():
 	if collider is Interactable:
 		handle_interactable(collider)
 		return
-	if action_pressed([Inputs.Keys.DROP]) and collider.is_in_group("ItemZone"):
-		drop(interact_ray.get_collision_point())
+	#if action_pressed([Inputs.Keys.DROP]) and collider.is_in_group("ItemZone"):
+		#drop(interact_ray.get_collision_point())
 
 func ray():
 	hover_message.text = ""
@@ -125,14 +127,17 @@ func pickup(item: Node3D):
 	set_item(item, true)
 	item.reparent(hand)
 	item.transform = Transform3D.IDENTITY
+	#item.position = Vector3.ZERO
+	#print("set to ", item.equip_rotation)
+	#item.rotation_degrees = item.equip_rotation
 
-func drop(drop_position: Vector3):
+func drop():
 	if !is_equipped():
 		return
 	var item := get_equipped()
 	var world_items := get_parent()
 	item.reparent(world_items)
-	item.global_position = drop_position
+	item.global_position = hand.global_position
 	#item.rotation_degrees = Vector3.ZERO
 	set_item(item, false)
 

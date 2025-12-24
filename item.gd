@@ -3,11 +3,22 @@ class_name Item
 
 signal request_equip(item: Node3D)
 
+# Will be filled with whatever rotation has been set
+#var reset_rotation: Vector3
+#@export var equip_rotation: Vector3
+
 var is_equipped: bool = false
 
 func setup_init() -> void:
 	interactions[Inputs.Keys.EQUIP] = "Equip"
 	#interactions[Inputs.Keys.USE_PRIMARY] = "Use Primary"
+
+func setup_ready() -> void:
+	print("path: ", get_path())
+	print("local: ", rotation_degrees)
+	print("global: ", global_rotation_degrees)
+	#reset_rotation = rotation_degrees
+	#print(reset_rotation)
 
 func interact(action: Inputs.Keys, body: Node) -> void:
 	match action:
