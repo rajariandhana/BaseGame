@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c64uegx3k64j3"]
 
-[ext_resource type="Script" uid="uid://b4brbssk401yt" path="res://pickaxe.gd" id="1_40syq"]
+[ext_resource type="Script" uid="uid://b4brbssk401yt" path="res://items/pickaxe/pickaxe.gd" id="1_40syq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyipo"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
@@ -10,6 +10,9 @@ albedo_color = Color(0.588235, 0.294118, 0, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_3j5ja"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hyipo"]
+
+[sub_resource type="Animation" id="Animation_e4ynd"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_74bdg"]
 resource_name = "use"
@@ -25,9 +28,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.349066, 0, 0), Vector3(0, 0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_e4ynd"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r76a6"]
 _data = {

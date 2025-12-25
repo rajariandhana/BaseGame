@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvk624i8ws6fb"]
 
-[ext_resource type="Script" uid="uid://c4p5vc2aip4fk" path="res://door.gd" id="1_ba8gm"]
+[ext_resource type="Script" uid="uid://c4p5vc2aip4fk" path="res://interactables/door/door.gd" id="1_ba8gm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hun61"]
 

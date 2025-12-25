@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://sbhvw8g321vf"]
 
-[ext_resource type="Script" uid="uid://b0amvj8bjeyh7" path="res://sword.gd" id="1_74bdg"]
+[ext_resource type="Script" uid="uid://b0amvj8bjeyh7" path="res://items/sword/sword.gd" id="1_74bdg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8xsq"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
@@ -10,6 +10,9 @@ albedo_color = Color(0.588235, 0.294118, 0, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_e4ynd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_r76a6"]
+
+[sub_resource type="Animation" id="Animation_e4ynd"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_74bdg"]
 resource_name = "use"
@@ -25,9 +28,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.349066, 0, 0), Vector3(0, 0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_e4ynd"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r76a6"]
 _data = {

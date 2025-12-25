@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bs3w3m6u5ry5q"]
 
-[ext_resource type="Script" uid="uid://b3cfnck5b56mh" path="res://item.gd" id="1_tnite"]
+[ext_resource type="Script" uid="uid://b3cfnck5b56mh" path="res://items/item.gd" id="1_tnite"]
 
 [node name="Item" type="StaticBody3D"]
 script = ExtResource("1_tnite")
