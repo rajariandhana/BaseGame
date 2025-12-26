@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1dqsq1asqhie"]
+
+[ext_resource type="Script" uid="uid://dah5p0w1n81on" path="res://storage/item_slot.gd" id="1_m31as"]
+[ext_resource type="Texture2D" uid="uid://bsr7n21q2qyug" path="res://icon.svg" id="1_ogwoe"]
+
+[node name="ItemSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(600, 200)
+offset_right = 600.0
+offset_bottom = 200.0
+script = ExtResource("1_m31as")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(560, 160)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 160)
+layout_mode = 2
+texture = ExtResource("1_ogwoe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Name"
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis pariatur neque perferendis perspiciatis odit rerum quia quo delectus temporibus obcaecati? "
+autowrap_mode = 2
