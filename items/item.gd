@@ -1,6 +1,8 @@
 extends Interactable
 class_name Item
 
+@export var item_ID: String
+
 signal request_equip(item: Node3D)
 
 # Makes it only set on layer 3
@@ -20,6 +22,9 @@ func _init_interactable() -> void:
 	collision_layer = ITEM_DEFAULT_COLLISION_LAYER
 	_init_item()
 func _ready_interactable() -> void:
+	var data: ItemData = ItemDB.get_item(item_ID)
+	if display_name == null or display_name.is_empty():
+		display_name = data.display_name
 	_ready_item()
 func _init_item() -> void:
 	pass
@@ -29,10 +34,10 @@ func _ready_item() -> void:
 func interact(action: Inputs.Keys, body: Node) -> void:
 	match action:
 		Inputs.Keys.EQUIP:
-			print("Equip ", name)
+			print("Equip ", display_name)
 			request_equip.emit(self)
 		#Inputs.Keys.USE_PRIMARY:
-			#print("Use Primary ", my_name)
+			#print("Use Primary ", display_name)
 
 func use(key: Inputs.Keys, target: Node):
 	match key:
@@ -52,13 +57,13 @@ func equip():
 
 # filled with pass so child can override
 func use_primary_on_object(target: Interactable):
-	print(my_name, ": use_primary on ", target.my_name)
+	print(display_name, ": use_primary on ", target.display_name)
 
 func use_primary():
-	print(my_name, ": use_primary")
+	print(display_name, ": use_primary")
 
 func use_secondary_on_object(target: Interactable):
-	print(my_name, ": use_secondary on ", target.my_name)
+	print(display_name, ": use_secondary on ", target.display_name)
 
 func use_secondary():
-	print(my_name, ": use_secondary")
+	print(display_name, ": use_secondary")

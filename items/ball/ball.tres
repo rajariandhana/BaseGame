@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://5luqpce6iub8"]
+
+[ext_resource type="Script" uid="uid://bvay3hvt1o2ui" path="res://items/item_data.gd" id="1_bcjtj"]
+[ext_resource type="PackedScene" uid="uid://c26vsn8srl1fp" path="res://items/ball/ball.tscn" id="2_bvwos"]
+
+[resource]
+script = ExtResource("1_bcjtj")
+id = "ball"
+display_name = "Ball"
+description = "not in minecraft"
+scene = ExtResource("2_bvwos")
+metadata/_custom_type_script = "uid://bvay3hvt1o2ui"
