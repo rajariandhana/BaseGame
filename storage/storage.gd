@@ -1,10 +1,10 @@
-extends CenterContainer
+extends PanelContainer
 
 @export var storage_name: String
 @export var items: Dictionary[String, ItemData]
 @export var MAX_SIZE: int
 
-@onready var item_slots: VBoxContainer = $PanelContainer/VBoxContainer/ScrollContainer/ItemSlots
+@onready var item_slots: VBoxContainer = $VBoxContainer/ScrollContainer/ItemSlots
 @onready var title: Label = $PanelContainer/VBoxContainer/Title
 
 @onready var item_slot_scene: PackedScene = preload("res://storage/item_slot.tscn")

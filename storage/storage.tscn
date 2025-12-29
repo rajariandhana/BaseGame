@@ -2,38 +2,28 @@
 
 [ext_resource type="Script" uid="uid://cubbwxlmkdwa2" path="res://storage/storage.gd" id="1_y68fi"]
 
-[node name="Storage" type="CenterContainer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Storage" type="PanelContainer"]
+offset_right = 600.0
+offset_bottom = 656.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-use_top_left = true
 script = ExtResource("1_y68fi")
 MAX_SIZE = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Storage"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(600, 610)
 layout_mode = 2
 
-[node name="ItemSlots" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="ItemSlots" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

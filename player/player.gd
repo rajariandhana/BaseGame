@@ -20,7 +20,8 @@ const RAY_LENGTH: float = 1000.0
 var interacting: Interactable = null
 
 var input_enabled: bool = true
-@onready var inventory: CenterContainer = $CanvasLayer/Inventory
+@onready var inventory: Inventory = $CanvasLayer/Inventory
+@onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
 
 func _ready() -> void:
 	#return
@@ -111,9 +112,11 @@ func _physics_process(delta: float) -> void:
 		if input_enabled:
 			inventory.open()
 			cross_hair.visible = false
+			dark_layer.visible = true
 		else:
 			inventory.close()
 			cross_hair.visible = true
+			dark_layer.visible = false
 		input_enabled = !input_enabled
 	elif !input_enabled:
 		hover_message.text = ""
@@ -152,9 +155,10 @@ func equip(item: Item):
 	#item.position = Vector3.ZERO
 	#print("set to ", item.equip_rotation)
 	#item.rotation_degrees = item.equip_rotation
+	inventory.equip(item)
 
 func pickup(item: Item):
-	inventory.insert(item)
+	inventory.pickup(item)
 
 func drop():
 	if !is_equipped():
@@ -165,6 +169,7 @@ func drop():
 	item.global_position = hand.global_position
 	#item.rotation_degrees = Vector3.ZERO
 	set_item(item, false)
+	inventory.drop_equipped()
 
 func set_item(item: Node3D, status: bool):
 	if item is RigidBody3D:
