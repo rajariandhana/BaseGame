@@ -4,6 +4,7 @@ class_name Item
 @export var item_ID: String
 
 signal request_equip(item: Node3D)
+signal request_pickup(item: Node3D)
 
 # Makes it only set on layer 3
 const ITEM_DEFAULT_COLLISION_LAYER := 1 << (3 - 1)
@@ -18,6 +19,7 @@ var is_equipped: bool = false
 # use _init_item() _ready_item() instead
 func _init_interactable() -> void:
 	interactions[Inputs.Keys.EQUIP] = "Equip"
+	interactions[Inputs.Keys.PICKUP] = "Pickup"
 	#interactions[Inputs.Keys.USE_PRIMARY] = "Use Primary"
 	collision_layer = ITEM_DEFAULT_COLLISION_LAYER
 	_init_item()
@@ -36,6 +38,9 @@ func interact(action: Inputs.Keys, body: Node) -> void:
 		Inputs.Keys.EQUIP:
 			print("Equip ", display_name)
 			request_equip.emit(self)
+		Inputs.Keys.PICKUP:
+			print("Pickup ", display_name)
+			request_pickup.emit(self)
 		#Inputs.Keys.USE_PRIMARY:
 			#print("Use Primary ", display_name)
 

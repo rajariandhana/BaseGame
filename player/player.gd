@@ -13,10 +13,14 @@ const RAY_LENGTH: float = 1000.0
 
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 @onready var hover_message: Label = $CanvasLayer/HoverMessage
+@onready var cross_hair: Label = $CanvasLayer/CrossHair
 
 @onready var hand: Node3D = $Camera3D/Hand
 
 var interacting: Interactable = null
+
+var input_enabled: bool = true
+@onready var inventory: CenterContainer = $CanvasLayer/Inventory
 
 func _ready() -> void:
 	#return
@@ -24,6 +28,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	#return
+	if !input_enabled:
+		return
+	
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif event is InputEventMouseMotion:
@@ -59,8 +66,11 @@ func switch_hover(new_target: Interactable):
 	interacting = new_target
 	interacting.hover_enter(owner)
 	
-	if interacting is Item and not interacting.request_equip.is_connected(pickup):
-		interacting.request_equip.connect(pickup)
+	if interacting is Item:
+		if not interacting.request_equip.is_connected(equip):
+			interacting.request_equip.connect(equip)
+		if not interacting.request_pickup.is_connected(pickup):
+			interacting.request_pickup.connect(pickup)
 
 func clear_hover():
 	if interacting:
@@ -96,6 +106,18 @@ func ray():
 		handle_equipped()
 
 func _physics_process(delta: float) -> void:
+	
+	if action_pressed([Inputs.Keys.OPEN_INVENTORY]):
+		if input_enabled:
+			inventory.open()
+			cross_hair.visible = false
+		else:
+			inventory.close()
+			cross_hair.visible = true
+		input_enabled = !input_enabled
+	elif !input_enabled:
+		hover_message.text = ""
+		return
 	ray()
 	
 	var input_direction_2D = Input.get_vector(
@@ -121,7 +143,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func pickup(item: Node3D):
+func equip(item: Item):
 	if is_equipped():
 		return
 	set_item(item, true)
@@ -130,6 +152,9 @@ func pickup(item: Node3D):
 	#item.position = Vector3.ZERO
 	#print("set to ", item.equip_rotation)
 	#item.rotation_degrees = item.equip_rotation
+
+func pickup(item: Item):
+	inventory.insert(item)
 
 func drop():
 	if !is_equipped():
