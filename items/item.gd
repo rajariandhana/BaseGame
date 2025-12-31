@@ -36,10 +36,10 @@ func _ready_item() -> void:
 func interact(action: Inputs.Keys, body: Node) -> void:
 	match action:
 		Inputs.Keys.EQUIP:
-			print("Equip ", display_name)
+			#print("Equip ", display_name)
 			request_equip.emit(self)
 		Inputs.Keys.PICKUP:
-			print("Pickup ", display_name)
+			#print("Pickup ", display_name)
 			request_pickup.emit(self)
 		#Inputs.Keys.USE_PRIMARY:
 			#print("Use Primary ", display_name)

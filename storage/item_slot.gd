@@ -1,9 +1,10 @@
 extends Control
 class_name ItemSlot
 
-signal request_equip(item_data: ItemData)
-signal request_drop(item_data: ItemData)
+signal request_equip(slot_ID: int, item_data: ItemData)
+signal request_drop(slot_ID: int, item_data: ItemData)
 
+var slot_ID: int
 var item_data: ItemData
 @onready var item_name: Label = $MarginContainer/HBoxContainer/VBoxContainer/Name
 @onready var item_description: Label = $MarginContainer/HBoxContainer/VBoxContainer/Description
@@ -22,7 +23,9 @@ func equip():
 func drop():
 	pass
 
-func fill(item_data: ItemData):
+func fill(slot_ID: int, item_data: ItemData):
+	#print(item_data.display_name, " on slot ", slot_ID)
+	self.slot_ID = slot_ID
 	self.item_data = item_data
 	item_name.text = item_data.display_name
 	item_description.text = item_data.description
@@ -44,11 +47,11 @@ func _on_mouse_exited() -> void:
 
 func _on_button_equip_pressed() -> void:
 	#print("_on_button_equip_pressed")
-	request_equip.emit(item_data)
+	request_equip.emit(slot_ID, item_data)
 
 func _on_button_drop_pressed() -> void:
 	#print("_on_button_drop_pressed")
-	request_drop.emit(item_data)
+	request_drop.emit(slot_ID, item_data)
 
 func toggle_equip_button(status: bool) -> void:
 	button_equip.visible = status

@@ -58,7 +58,7 @@ func handle_equipped() -> void:
 		return
 	var target = interact_ray.get_collider()
 	if action_pressed([Inputs.Keys.DROP]):
-		drop_equipped(null)
+		drop_equipped(0, null)
 	elif action_pressed([Inputs.Keys.USE_PRIMARY]):
 		item.use(Inputs.Keys.USE_PRIMARY, target)
 	elif action_pressed([Inputs.Keys.USE_SECONDARY]):
@@ -181,7 +181,7 @@ func pickup(item: Item):
 	inventory.pickup(item_data)
 	item.queue_free()
 
-func drop_equipped(item_data: ItemData):
+func drop_equipped(slot_ID: int, item_data: ItemData):
 	var equipped: Item = get_equipped()
 	if !is_equipped():
 		return
@@ -210,16 +210,16 @@ func get_equipped() -> Item:
 		return item
 	return null
 
-func equip_from_storage(item_data: ItemData):
+func equip_from_storage(slot_ID: int, item_data: ItemData):
 	#print("equip_from_storage ", item_data.display_name)
 	var item: Item = item_data.scene.instantiate()
 	add_child(item)
 	equip(item)
-	inventory.remove_from_storage(item_data)
+	inventory.remove_from_storage(slot_ID)
 
-func drop_from_storage(item_data: ItemData):
+func drop_from_storage(slot_ID: int, item_data: ItemData):
 	#print("drop_from_storage ", item_data.display_name)
 	var item: Item = item_data.scene.instantiate()
 	add_child(item)
 	drop_item_to_world(item)
-	inventory.remove_from_storage(item_data)
+	inventory.remove_from_storage(slot_ID)

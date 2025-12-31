@@ -36,7 +36,7 @@ func equip(item_data: ItemData):
 	equipped_data = item_data
 	equipped_slot = item_slot_scene.instantiate()
 	equipped_slots.add_child(equipped_slot)
-	equipped_slot.fill(item_data)
+	equipped_slot.fill(0, item_data)
 	equipped_slot.connect_actions(null, on_drop_equipped)
 	equipped_slot.toggle_equip_button(false)
 
@@ -44,15 +44,15 @@ func drop_equipped():
 	equipped_slot.queue_free()
 
 func drop(item_data: ItemData):
-	print("DROP ", item_data.display_name)
+	#print("DROP ", item_data.display_name)
 	request_drop_equipped.emit()
 
 func remove_equipped():
 	equipped_data = null
 	equipped_slot.queue_free()
 
-func remove_from_storage(item_data: ItemData):
-	storage.remove(item_data)
+func remove_from_storage(slot_ID: int):
+	storage.remove(slot_ID)
 
 var on_drop_equipped: Callable
 var on_equip_storage: Callable
