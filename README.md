@@ -21,6 +21,17 @@ When an Item is equipped (currently at Player's hand) it can be used with differ
 
 Since `target` is also passed to handler we can affect the target as well.
 
+## Inventory
+Maybe create another base scene like storage so have multiple places to store items. For example like in Minecraft there is player's inventory, chest, barrel which all of them can be used to store items.
+ItemSlot is just a control node while Storage is an Interactable that has both collision, mesh for Player to interact and will open the UI.
+Maybe have an ItemData so instead of storing a whole scene just store some data.
+ItemSlot -> stores 1 item
+	- on hover:
+		- equip: if hand not empty swap
+		- drop
+Storage -> has N ItemSlot or dynamically resize, has UI
+Inventory -> explicitly for Player,
+
 ## TODO:
 - equip will unequip currently equipped into inventory (less inputs to press instead of equip + swap + put in inventory inputs), so inputs will just be equip + put in inventory
 

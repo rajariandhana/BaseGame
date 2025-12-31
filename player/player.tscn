@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=6 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://c5fcpueadqbab" path="res://storage/storage.tscn" id="2_rkbax"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -30,6 +32,7 @@ collision_mask = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, -1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="CrossHair" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
@@ -68,3 +71,53 @@ theme_override_font_sizes/font_size = 32
 text = "[HOVER MESSAGE]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DarkLayer" type="ColorRect" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.25098)
+
+[node name="Inventory" type="CenterContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(640, 1080)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("2_g1dw6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory"]
+custom_minimum_size = Vector2(640, 520)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Inventory/MarginContainer"]
+custom_minimum_size = Vector2(600, 890)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Equipped" type="PanelContainer" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer/Equipped"]
+custom_minimum_size = Vector2(600, 230)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Equipped"
+
+[node name="EquippedSlots" type="VBoxContainer" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+
+[node name="Storage" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]
+layout_mode = 2

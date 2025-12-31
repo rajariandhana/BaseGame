@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c0dgawlemqps1"]
+
+[ext_resource type="PackedScene" uid="uid://sbhvw8g321vf" path="res://items/sword/sword.tscn" id="1_d24da"]
+[ext_resource type="Script" uid="uid://bvay3hvt1o2ui" path="res://items/item_data.gd" id="1_t66us"]
+
+[resource]
+script = ExtResource("1_t66us")
+id = "sword"
+display_name = "Sword"
+description = "to kill enemies"
+scene = ExtResource("1_d24da")
+metadata/_custom_type_script = "uid://bvay3hvt1o2ui"
