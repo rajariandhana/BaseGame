@@ -26,6 +26,9 @@ var input_enabled: bool = true
 func _ready() -> void:
 	#return
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if not inventory.request_drop_equipped.is_connected(drop_item_to_world):
+		inventory.request_drop_equipped.connect(drop_item_to_world)
+	inventory.bind_functions(drop_equipped, equip_from_storage, drop_from_storage)
 
 func _unhandled_input(event: InputEvent) -> void:
 	#return
@@ -55,7 +58,7 @@ func handle_equipped() -> void:
 		return
 	var target = interact_ray.get_collider()
 	if action_pressed([Inputs.Keys.DROP]):
-		drop()
+		drop_equipped(null)
 	elif action_pressed([Inputs.Keys.USE_PRIMARY]):
 		item.use(Inputs.Keys.USE_PRIMARY, target)
 	elif action_pressed([Inputs.Keys.USE_SECONDARY]):
@@ -148,6 +151,16 @@ func _physics_process(delta: float) -> void:
 
 func equip(item: Item):
 	if is_equipped():
+		inventory.unequip()
+		set_hand(null)
+	var item_data: ItemData = ItemDB.get_item(item.item_ID)
+	inventory.equip(item_data)
+	set_hand(item)
+
+func set_hand(item: Item):
+	if item == null:
+		var equipped: Item = get_equipped()
+		equipped.queue_free()
 		return
 	set_item(item, true)
 	item.reparent(hand)
@@ -155,21 +168,6 @@ func equip(item: Item):
 	#item.position = Vector3.ZERO
 	#print("set to ", item.equip_rotation)
 	#item.rotation_degrees = item.equip_rotation
-	inventory.equip(item)
-
-func pickup(item: Item):
-	inventory.pickup(item)
-
-func drop():
-	if !is_equipped():
-		return
-	var item := get_equipped()
-	var world_items := get_parent()
-	item.reparent(world_items)
-	item.global_position = hand.global_position
-	#item.rotation_degrees = Vector3.ZERO
-	set_item(item, false)
-	inventory.drop_equipped()
 
 func set_item(item: Node3D, status: bool):
 	if item is RigidBody3D:
@@ -178,7 +176,27 @@ func set_item(item: Node3D, status: bool):
 	if shape:
 		shape.disabled = status
 
-#func swap(new_item: Node3D, drop_position: Vector3):
+func pickup(item: Item):
+	var item_data: ItemData = ItemDB.get_item(item.item_ID)
+	inventory.pickup(item_data)
+	item.queue_free()
+
+func drop_equipped(item_data: ItemData):
+	var equipped: Item = get_equipped()
+	if !is_equipped():
+		return
+	inventory.remove_equipped()
+	drop_item_to_world(equipped)
+	inventory.drop_equipped()
+
+func drop_item_to_world(item: Item):
+	#print("drop_item_to_world")
+	#if !is_equipped():
+		#return
+	item.reparent(get_parent())
+	item.global_position = hand.global_position
+	item.rotation_degrees.x = -45
+	set_item(item, false)
 
 func is_equipped() -> bool:
 	if hand.get_child_count() == 0:
@@ -191,3 +209,17 @@ func get_equipped() -> Item:
 	if item is Item:
 		return item
 	return null
+
+func equip_from_storage(item_data: ItemData):
+	#print("equip_from_storage ", item_data.display_name)
+	var item: Item = item_data.scene.instantiate()
+	add_child(item)
+	equip(item)
+	inventory.remove_from_storage(item_data)
+
+func drop_from_storage(item_data: ItemData):
+	#print("drop_from_storage ", item_data.display_name)
+	var item: Item = item_data.scene.instantiate()
+	add_child(item)
+	drop_item_to_world(item)
+	inventory.remove_from_storage(item_data)
