@@ -1,4 +1,5 @@
 # BaseGame
+Many game developers (including me) produces an unfinished game. I'm a programmer so I'll try to ignore aestethicsm, gameplay, story, audio, and instead focus on the mechanics.
 
 ## Player
 Player has a RayCast in the middle of the camera / crosshair. When RayCast collided with Interactable it will act accordingly. `Interactable.interact(action, body)` can have different outcomes according to `action`.
@@ -34,6 +35,8 @@ Inventory -> explicitly for Player,
 
 ## TODO:
 - equip will unequip currently equipped into inventory (less inputs to press instead of equip + swap + put in inventory inputs), so inputs will just be equip + put in inventory
+- create chests
+- make a house, spawn inside, have to find a key to open the door outside, use axe to destroy stuffs.
 
 ## References:
 - https://www.youtube.com/watch?v=NJJNWGD25rg
