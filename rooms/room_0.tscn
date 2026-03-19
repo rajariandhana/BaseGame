@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3f2ekjqi1vut"]
+[gd_scene load_steps=10 format=3 uid="uid://d3f2ekjqi1vut"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_mcp8b"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_vvdcg"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bjlcd0hn1op06" path="res://world/floor/floor.tscn" id="4_853v1"]
 [ext_resource type="PackedScene" uid="uid://bvk624i8ws6fb" path="res://interactables/door/door.tscn" id="5_c68s2"]
 [ext_resource type="PackedScene" uid="uid://c6p1576ygart2" path="res://items/key/key.tscn" id="6_iv03q"]
+[ext_resource type="PackedScene" uid="uid://bmf725bkclgk" path="res://interactables/crate/crate.tscn" id="8_k46nf"]
+[ext_resource type="PackedScene" uid="uid://c64uegx3k64j3" path="res://items/pickaxe/pickaxe.tscn" id="8_kfai2"]
 
 [sub_resource type="Environment" id="Environment_vvdcg"]
 background_mode = 1
@@ -34,7 +36,7 @@ environment = SubResource("Environment_vvdcg")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_vvdcg")]
-transform = Transform3D(-0.619423, 0, -0.785058, 0, 1, 0, 0.785058, 0, -0.619423, 0, 1.29695, 0)
+transform = Transform3D(-0.93469, 0, 0.355466, 0, 1, 0, -0.355466, 0, -0.93469, 0, 1.29695, 0)
 
 [node name="Wall1" parent="." instance=ExtResource("3_oa8wf")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
@@ -60,11 +62,15 @@ transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 4, 0)
 [node name="Door" parent="." instance=ExtResource("5_c68s2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 0)
 door_id = "room_0_door_0"
+is_locked = true
 
 [node name="Key" parent="." instance=ExtResource("6_iv03q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89674, 0.2, 1.26215)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.746862, 0.49362, 3.12153)
 door_id = "room_0_door_0"
 
-[node name="Key2" parent="." instance=ExtResource("6_iv03q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89674, 0.2, 3.49046)
-door_id = "room_0_door_1"
+[node name="Pickaxe" parent="." instance=ExtResource("8_kfai2")]
+transform = Transform3D(1, 0, 0, 0, 0.83619, 0.548439, 0, -0.548439, 0.83619, 1.57955, 0.926993, 2.57586)
+
+[node name="Crate" parent="." instance=ExtResource("8_k46nf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.909248, 0.5, 3.06593)
+hover_message = "Something could be inside"

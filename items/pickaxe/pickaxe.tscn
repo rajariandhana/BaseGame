@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c64uegx3k64j3"]
 
-[ext_resource type="Script" path="res://items/pickaxe/pickaxe.gd" id="1_40syq"]
+[ext_resource type="Script" uid="uid://b4brbssk401yt" path="res://items/pickaxe/pickaxe.gd" id="1_40syq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyipo"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
@@ -38,6 +38,7 @@ _data = {
 [node name="Pickaxe" type="RigidBody3D"]
 script = ExtResource("1_40syq")
 item_ID = "pickaxe"
+hover_message = "Can be used to destroy something"
 
 [node name="Stick" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.6, 0, 0, 0, 0.1, 0, 0.2, 0)

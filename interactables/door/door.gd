@@ -10,6 +10,9 @@ var is_open: bool = false
 
 func _ready() -> void:
 	interactions[Inputs.Keys.E] = "Open"
+	if is_locked:
+		set_hover_message("Door is locked")
+		interactions[Inputs.Keys.E] = ""
 
 func interact(action, body):
 	if action == Inputs.Keys.E:

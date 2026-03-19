@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 far = 1000.0
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -4)
+target_position = Vector3(0, 0, -2)
 collision_mask = 7
 
 [node name="Hand" type="Node3D" parent="Camera3D"]

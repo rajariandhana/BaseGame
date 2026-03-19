@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmf725bkclgk"]
+
+[ext_resource type="Script" uid="uid://dplcgfea8h5mi" path="res://interactables/crate/crate.gd" id="1_uln55"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_82c68"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0l1lj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jihvm"]
+
+[node name="Crate" type="StaticBody3D"]
+script = ExtResource("1_uln55")
+display_name = "Crate"
+
+[node name="Bottom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.45, 0)
+mesh = SubResource("BoxMesh_82c68")
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.45, 0)
+mesh = SubResource("BoxMesh_82c68")
+
+[node name="Left" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.8, 0, 0, 0, 1, -0.45, 0, 0)
+mesh = SubResource("BoxMesh_0l1lj")
+
+[node name="Right" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0.45, 0, 0)
+mesh = SubResource("BoxMesh_0l1lj")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.1, 0, 0, -0.45)
+mesh = SubResource("BoxMesh_jihvm")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.1, 0, 0, 0.45)
+mesh = SubResource("BoxMesh_jihvm")
