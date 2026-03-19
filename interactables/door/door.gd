@@ -2,7 +2,8 @@ extends Interactable
 class_name Door
 
 @export var door_id: String
-@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var animation_player: AnimationPlayer = $"./AnimationPlayer"
+@export var door_hinge: DoorHinge
 
 var is_open: bool = false
 @export var is_locked: bool = false
