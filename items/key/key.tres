@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bw0ot5b8dm6xp"]
+
+[ext_resource type="PackedScene" uid="uid://c6p1576ygart2" path="res://items/key/key.tscn" id="1_5lfk1"]
+[ext_resource type="Script" uid="uid://bvay3hvt1o2ui" path="res://items/item_data.gd" id="1_cpugk"]
+
+[resource]
+script = ExtResource("1_cpugk")
+id = "key"
+display_name = "Door Key"
+description = "Can lock doors"
+scene = ExtResource("1_5lfk1")
+metadata/_custom_type_script = "uid://bvay3hvt1o2ui"

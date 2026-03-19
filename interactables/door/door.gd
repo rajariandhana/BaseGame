@@ -1,10 +1,11 @@
 extends Interactable
 class_name Door
 
+@export var door_id: String
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 var is_open: bool = false
-var is_locked: bool = false
+@export var is_locked: bool = false
 
 func interact(action, body):
 	if action == Inputs.Keys.E:

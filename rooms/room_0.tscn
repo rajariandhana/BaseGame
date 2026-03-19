@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3f2ekjqi1vut"]
+[gd_scene load_steps=8 format=3 uid="uid://d3f2ekjqi1vut"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_mcp8b"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_vvdcg"]
 [ext_resource type="PackedScene" uid="uid://7ugush7fenbn" path="res://world/wall/wall.tscn" id="3_oa8wf"]
 [ext_resource type="PackedScene" uid="uid://bjlcd0hn1op06" path="res://world/floor/floor.tscn" id="4_853v1"]
 [ext_resource type="PackedScene" uid="uid://bvk624i8ws6fb" path="res://interactables/door/door.tscn" id="5_c68s2"]
+[ext_resource type="PackedScene" uid="uid://c6p1576ygart2" path="res://items/key/key.tscn" id="6_iv03q"]
 
 [sub_resource type="Environment" id="Environment_vvdcg"]
 background_mode = 1
@@ -33,7 +34,7 @@ environment = SubResource("Environment_vvdcg")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_vvdcg")]
-transform = Transform3D(-0.643643, 0, 0.765326, 0, 1, 0, -0.765326, 0, -0.643643, 0, 1.29695, 0)
+transform = Transform3D(-0.619423, 0, -0.785058, 0, 1, 0, 0.785058, 0, -0.619423, 0, 1.29695, 0)
 
 [node name="Wall1" parent="." instance=ExtResource("3_oa8wf")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
@@ -58,3 +59,7 @@ transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 4, 0)
 
 [node name="Door" parent="." instance=ExtResource("5_c68s2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 0)
+
+[node name="Key" parent="." instance=ExtResource("6_iv03q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89674, 0.2, 1.26215)
+door_id = "room_0_door_0"

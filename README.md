@@ -37,6 +37,7 @@ Inventory -> explicitly for Player,
 - equip will unequip currently equipped into inventory (less inputs to press instead of equip + swap + put in inventory inputs), so inputs will just be equip + put in inventory
 - create chests
 - make a house, spawn inside, have to find a key to open the door outside, use axe to destroy stuffs.
+- must move interactable into root Door node but detect from childs,
 
 ## References:
 - https://www.youtube.com/watch?v=NJJNWGD25rg
