@@ -57,7 +57,6 @@ data = PackedVector3Array(-1, 0, -0.2, -1, 0, 0.2, -0.8, 0, -0.2, -1, 0, -0.2, -
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door_hinge")]
 script = ExtResource("1_ba8gm")
 door_hinge = NodePath("Hinge")
-is_locked = null
 display_name = "Door"
 interactions = Dictionary[int, String]({
 0: "Open"

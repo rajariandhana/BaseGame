@@ -7,6 +7,6 @@
 script = ExtResource("1_cpugk")
 id = "key"
 display_name = "Door Key"
-description = "Can lock doors"
+description = "Used to open / lock doors"
 scene = ExtResource("1_5lfk1")
 metadata/_custom_type_script = "uid://bvay3hvt1o2ui"

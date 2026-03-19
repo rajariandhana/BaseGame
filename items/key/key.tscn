@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://fgbgo5ap5ciu" path="res://items/key/key.gd" id="1_wdtj7"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wdtj7"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdtj7"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_hfu35"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wdtj7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyavp"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
@@ -23,16 +23,15 @@ albedo_color = Color(0.588235, 0.294118, 0, 1)
 script = ExtResource("1_wdtj7")
 item_ID = "key"
 display_name = "Door Key"
-hover_message = "blablabla"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.275, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("CylinderShape3D_wdtj7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 0, 0.1, 0)
 material_override = SubResource("StandardMaterial3D_wdtj7")
 mesh = SubResource("CylinderMesh_hfu35")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.275, 0, 0, 0, 0.1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_wdtj7")
 
 [node name="Node3D" type="Node3D" parent="."]
 

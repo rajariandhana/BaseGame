@@ -11,5 +11,6 @@ func _ready() -> void:
 func interact(action, body):
 	if action == Inputs.Keys.E:
 		door.toggle_open()
-	elif action == Inputs.Keys.F:
-		door.toggle_lock()
+
+func toggle_lock(key_door_id: String):
+	door.toggle_lock(key_door_id)
