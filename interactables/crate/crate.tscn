@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmf725bkclgk"]
+[gd_scene load_steps=10 format=3 uid="uid://bmf725bkclgk"]
 
 [ext_resource type="Script" uid="uid://dplcgfea8h5mi" path="res://interactables/crate/crate.gd" id="1_uln55"]
+[ext_resource type="Material" uid="uid://cjhi3td12snyy" path="res://interactables/crate/crate.tres" id="2_eufg1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mb6tb"]
+albedo_color = Color(0.34902, 0.0941176, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_82c68"]
 
@@ -8,30 +12,128 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_jihvm"]
 
+[sub_resource type="Animation" id="Animation_eufg1"]
+resource_name = "crate_open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopHinges/Top1Hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.872665, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopHinges/Top2Hinge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(-0.872665, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mb6tb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopHinges/Top1Hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopHinges/Top2Hinge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.872665, -3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82c68"]
+_data = {
+&"RESET": SubResource("Animation_mb6tb"),
+&"crate_open": SubResource("Animation_eufg1")
+}
+
 [node name="Crate" type="StaticBody3D"]
 script = ExtResource("1_uln55")
 display_name = "Crate"
 
+[node name="Inside" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.5, 0, 0, 0, 0.8, 0, -0.15, 0)
+material_override = SubResource("StandardMaterial3D_mb6tb")
+mesh = SubResource("BoxMesh_82c68")
+
 [node name="Bottom" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.45, 0)
+material_override = ExtResource("2_eufg1")
 mesh = SubResource("BoxMesh_82c68")
 
 [node name="Top" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.45, 0)
+material_override = ExtResource("2_eufg1")
 mesh = SubResource("BoxMesh_82c68")
+
+[node name="TopHinges" type="Node3D" parent="."]
+visible = false
+
+[node name="Top1Hinge" type="Node3D" parent="TopHinges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0.5)
+
+[node name="Top" type="MeshInstance3D" parent="TopHinges/Top1Hinge"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 0.5, 0, 0, -0.25)
+material_override = ExtResource("2_eufg1")
+mesh = SubResource("BoxMesh_82c68")
+skeleton = NodePath("../../..")
+
+[node name="Top2Hinge" type="Node3D" parent="TopHinges"]
+transform = Transform3D(-1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, 0, 0.45, -0.5)
+
+[node name="Top" type="MeshInstance3D" parent="TopHinges/Top2Hinge"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 0.5, 0, 0, -0.25)
+material_override = ExtResource("2_eufg1")
+mesh = SubResource("BoxMesh_82c68")
+skeleton = NodePath("../../..")
 
 [node name="Left" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.8, 0, 0, 0, 1, -0.45, 0, 0)
+material_override = ExtResource("2_eufg1")
 mesh = SubResource("BoxMesh_0l1lj")
 
 [node name="Right" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0.45, 0, 0)
+material_override = ExtResource("2_eufg1")
 mesh = SubResource("BoxMesh_0l1lj")
 
 [node name="Front" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.1, 0, 0, -0.45)
+material_override = ExtResource("2_eufg1")
 mesh = SubResource("BoxMesh_jihvm")
 
 [node name="Back" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.1, 0, 0, 0.45)
+material_override = ExtResource("2_eufg1")
 mesh = SubResource("BoxMesh_jihvm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_82c68")
+}

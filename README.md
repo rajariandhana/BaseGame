@@ -39,6 +39,8 @@ Inventory -> explicitly for Player,
 - make a house, spawn inside, have to find a key to open the door outside, use axe to destroy stuffs.
 - must move interactable into root Door node but detect from childs,
 - different message prompt according Item hover on different Interactable
+- mouse usage guide of item on hover
+- crate open animation
 
 ## References:
 - https://www.youtube.com/watch?v=NJJNWGD25rg
