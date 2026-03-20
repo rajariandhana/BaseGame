@@ -7,6 +7,6 @@
 script = ExtResource("1_gcax3")
 id = "pickaxe"
 display_name = "Pickaxe"
-description = "to mine stuffs"
+description = "Can be used to destroy something"
 scene = ExtResource("1_nnyxy")
 metadata/_custom_type_script = "uid://bvay3hvt1o2ui"

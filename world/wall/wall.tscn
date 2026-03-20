@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://7ugush7fenbn"]
+
+[ext_resource type="Script" uid="uid://cvqs3a187c6kj" path="res://world/collision_follow_mesh.gd" id="1_n8ve8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8ve8"]
+albedo_color = Color(0.529412, 0.807843, 0.921569, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6k1y5"]
+
+[node name="Wall" type="StaticBody3D"]
+script = ExtResource("1_n8ve8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 0.2, 0, 2, 0)
+material_override = SubResource("StandardMaterial3D_n8ve8")
+mesh = SubResource("BoxMesh_6k1y5")

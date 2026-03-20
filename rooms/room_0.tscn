@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3f2ekjqi1vut"]
+
+[ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_mcp8b"]
+[ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_vvdcg"]
+[ext_resource type="PackedScene" uid="uid://7ugush7fenbn" path="res://world/wall/wall.tscn" id="3_oa8wf"]
+[ext_resource type="PackedScene" uid="uid://bjlcd0hn1op06" path="res://world/floor/floor.tscn" id="4_853v1"]
+[ext_resource type="PackedScene" uid="uid://bvk624i8ws6fb" path="res://interactables/door/door.tscn" id="5_c68s2"]
+[ext_resource type="PackedScene" uid="uid://c6p1576ygart2" path="res://items/key/key.tscn" id="6_iv03q"]
+[ext_resource type="PackedScene" uid="uid://bmf725bkclgk" path="res://interactables/crate/crate.tscn" id="8_k46nf"]
+[ext_resource type="PackedScene" uid="uid://c64uegx3k64j3" path="res://items/pickaxe/pickaxe.tscn" id="8_kfai2"]
+
+[sub_resource type="Environment" id="Environment_vvdcg"]
+background_mode = 1
+background_color = Color(0.121569, 0.678431, 0.894118, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.768627, 0.690196, 0.643137, 1)
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.109804, 0.376471, 0.509804, 1)
+fog_density = 0.005
+fog_height = -0.5
+fog_height_density = 0.15
+
+[node name="Room0" type="Node3D"]
+
+[node name="Ground0" type="CSGBox3D" parent="." groups=["ItemZone"]]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, -0.5, 0)
+use_collision = true
+size = Vector3(8, 1, 12.519)
+material = ExtResource("1_mcp8b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vvdcg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_vvdcg")]
+transform = Transform3D(-0.93469, 0, 0.355466, 0, 1, 0, -0.355466, 0, -0.93469, 0, 1.29695, 0)
+
+[node name="Wall1" parent="." instance=ExtResource("3_oa8wf")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Wall2" parent="." instance=ExtResource("3_oa8wf")]
+transform = Transform3D(-8.74228e-08, 0, -1, 0, 1, 0, 2, 0, -4.37114e-08, -4, 0, 0)
+
+[node name="Wall3" parent="." instance=ExtResource("3_oa8wf")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Wall4" parent="." instance=ExtResource("3_oa8wf")]
+transform = Transform3D(-3.27835e-08, 0, 1, 0, 1, 0, -0.75, 0, -4.37114e-08, 4, 0, -2.5)
+
+[node name="Wall5" parent="." instance=ExtResource("3_oa8wf")]
+transform = Transform3D(-3.27835e-08, 0, 1, 0, 1, 0, -0.75, 0, -4.37114e-08, 4, 0, 2.5)
+
+[node name="Wall6" parent="." instance=ExtResource("3_oa8wf")]
+transform = Transform3D(-2.18557e-08, 0, 1, 0, 0.25, 0, -0.5, 0, -4.37114e-08, 4, 3, 0)
+
+[node name="Roof1" parent="." instance=ExtResource("4_853v1")]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 4, 0)
+
+[node name="Door" parent="." instance=ExtResource("5_c68s2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 0)
+door_id = "room_0_door_0"
+is_locked = true
+
+[node name="Pickaxe" parent="." instance=ExtResource("8_kfai2")]
+transform = Transform3D(-0.0020769, 0.836189, 0.548438, -0.999998, -0.00173668, -0.00113906, -3.72529e-09, -0.548439, 0.83619, 1.57955, 0.00647736, 2.57586)
+
+[node name="Crate" parent="." instance=ExtResource("8_k46nf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.909248, 0.5, 3.06593)
+hover_message = "Something could be inside"
+
+[node name="Key" parent="Crate" instance=ExtResource("6_iv03q")]
+transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, -1, -4.37114e-08, 0, -3.09086e-08, 0.707107, 0.707107, 0, 0.20563, 0)
+door_id = "room_0_door_0"

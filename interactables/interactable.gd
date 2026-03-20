@@ -52,6 +52,8 @@ func get_prompt():
 		lines.append(display_name)
 	for input_key in interactions.keys():
 		var input_value = Utils.input_map_value(input_key)
+		if interactions[input_key] == "":
+			continue
 		var msg = "[" + get_action_key_name(input_value) + "] " + interactions[input_key]
 		lines.append(msg)
 	return "\n".join(lines)

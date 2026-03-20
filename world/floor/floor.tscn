@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjlcd0hn1op06"]
+
+[ext_resource type="Script" uid="uid://cvqs3a187c6kj" path="res://world/collision_follow_mesh.gd" id="1_vbayo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nevip"]
+albedo_color = Color(0.529412, 0.807843, 0.764706, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q11ka"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbayo"]
+albedo_color = Color(0.529412, 0.807843, 0.764706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nevip"]
+
+[node name="Floor" type="StaticBody3D"]
+script = ExtResource("1_vbayo")
+
+[node name="MeshInstance3Dx" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_nevip")
+mesh = SubResource("PlaneMesh_q11ka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.2, 0, 0, 0, 2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vbayo")
+mesh = SubResource("BoxMesh_nevip")
