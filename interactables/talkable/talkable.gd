@@ -4,6 +4,8 @@ class_name Talkable
 # display_name will be the this Talkable's 'Character' name
 @export var dialogue: Array[String]
 
+signal dialogue_requested(talkable: Talkable)
+
 func _ready() -> void:
 	reset()
 	
@@ -15,7 +17,7 @@ func interact(action: Inputs.Keys, body: Node) -> void:
 
 func begin_dialogue() -> void:
 	interactions[Inputs.Keys.E] = ""
-	GameManager.get_player().begin_dialogue(self)
+	dialogue_requested.emit(self)
 
 func end_dialogue() -> void:
 	reset()

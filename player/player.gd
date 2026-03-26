@@ -33,6 +33,7 @@ func _ready() -> void:
 	#return
 	GameManager.set_player(self)
 	dialogue_panel.visible = false
+	dialogue_panel.dialogue_finished.connect(end_dialogue)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not inventory.request_drop_equipped.is_connected(drop_item_to_world):
 		inventory.request_drop_equipped.connect(drop_item_to_world)
@@ -74,6 +75,8 @@ func handle_equipped() -> void:
 
 func switch_hover(new_target: Interactable):
 	if interacting:
+		if interacting is Talkable:
+			interacting.dialogue_requested.disconnect(begin_dialogue)
 		interacting.hover_exit(owner)
 	interacting = new_target
 	interacting.hover_enter(owner)
@@ -83,6 +86,9 @@ func switch_hover(new_target: Interactable):
 			interacting.request_equip.connect(equip)
 		if not interacting.request_pickup.is_connected(pickup):
 			interacting.request_pickup.connect(pickup)
+	if interacting is Talkable:
+		if not interacting.dialogue_requested.is_connected(begin_dialogue):
+			interacting.dialogue_requested.connect(begin_dialogue)
 
 func clear_hover():
 	if interacting:
@@ -238,15 +244,13 @@ func drop_from_storage(slot_ID: int, item_data: ItemData):
 
 # Dialogue
 func begin_dialogue(talkable: Talkable) -> void:
-	# print("Player.begin_dialogue()")
 	is_talking = true
+	input_enabled = false
 	dialogue_panel.visible = true
 	dialogue_panel.begin_dialogue(talkable)
-	input_enabled = false
 
 func end_dialogue() -> void:
-	# print("Player.end_dialogue()")
 	input_enabled = true
+	is_talking = false
 	dialogue_panel.end_dialogue()
 	dialogue_panel.visible = false
-	is_talking = false
