@@ -25,6 +25,7 @@ var input_enabled: bool = true
 
 func _ready() -> void:
 	#return
+	GameManager.set_player(self)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not inventory.request_drop_equipped.is_connected(drop_item_to_world):
 		inventory.request_drop_equipped.connect(drop_item_to_world)
