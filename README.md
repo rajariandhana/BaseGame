@@ -41,6 +41,26 @@ Inventory -> explicitly for Player,
 - different message prompt according Item hover on different Interactable
 - mouse usage guide of item on hover
 - crate open animation
+- [ESC] -> show controls: [TAB] Inventory, etc?
+- [E] Talk / continue / next, yes/no question
+- replica of my apartment
+- door can reverse open direction
+- Talk -> Inputs.Keys.TALK
+
+## DialogueManager and Talkable
+- better for only one CanvasLayer for dialogue, so instead of it in the Talkable (also Talkable is only a class not a scene) put the CanvasLayer on DialogueManager
+- Talkable should just contain the words then give it to DialogueManager
+
+talkable.talk() -> 
+var is_talking: bool = false
+	
+character name, 
+
+## Game Feel
+- shake, recoil
+- background loading
+- smooth animation
+- lighting
 
 ## References:
 - https://www.youtube.com/watch?v=NJJNWGD25rg

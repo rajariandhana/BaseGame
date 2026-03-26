@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 const MOUSE_SPEED_X: float = 0.2
 const MOUSE_SPEED_Y: float = 0.3
@@ -23,9 +24,15 @@ var input_enabled: bool = true
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 @onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
 
+# Dialogue
+var is_talking: bool = false
+# var dialogue: Array[String]
+@onready var dialogue_panel: CanvasLayer = $DialoguePanel
+
 func _ready() -> void:
 	#return
 	GameManager.set_player(self)
+	dialogue_panel.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not inventory.request_drop_equipped.is_connected(drop_item_to_world):
 		inventory.request_drop_equipped.connect(drop_item_to_world)
@@ -112,7 +119,11 @@ func ray():
 
 func _physics_process(delta: float) -> void:
 	
-	if action_pressed([Inputs.Keys.OPEN_INVENTORY]):
+	if is_talking:
+		if action_pressed([Inputs.Keys.E]):
+			dialogue_panel.next_dialogue()
+		return
+	elif action_pressed([Inputs.Keys.OPEN_INVENTORY]):
 		if input_enabled:
 			inventory.open()
 			cross_hair.visible = false
@@ -224,3 +235,18 @@ func drop_from_storage(slot_ID: int, item_data: ItemData):
 	add_child(item)
 	drop_item_to_world(item)
 	inventory.remove_from_storage(slot_ID)
+
+# Dialogue
+func begin_dialogue(talkable: Talkable) -> void:
+	# print("Player.begin_dialogue()")
+	is_talking = true
+	dialogue_panel.visible = true
+	dialogue_panel.begin_dialogue(talkable)
+	input_enabled = false
+
+func end_dialogue() -> void:
+	# print("Player.end_dialogue()")
+	input_enabled = true
+	dialogue_panel.end_dialogue()
+	dialogue_panel.visible = false
+	is_talking = false
