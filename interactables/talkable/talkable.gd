@@ -3,6 +3,7 @@ class_name Talkable
 
 # display_name will be the this Talkable's 'Character' name
 @export var dialogue: Array[String]
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal dialogue_requested(talkable: Talkable)
 

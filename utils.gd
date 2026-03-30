@@ -19,3 +19,8 @@ func set_overlay_color(color: Color, mesh: MeshInstance3D):
 		mat = mat.duplicate()
 	mesh.material_overlay = mat
 	mat.albedo_color = color
+
+func get_random_color():
+	randomize()
+	var color = Color(randf(), randf(), randf())
+	return color.to_html(false)

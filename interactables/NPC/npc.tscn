@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk8uovpeg3j8h"]
+[gd_scene load_steps=12 format=3 uid="uid://bk8uovpeg3j8h"]
 
 [ext_resource type="Script" uid="uid://bpjk0l8gd31wl" path="res://interactables/NPC/npc.gd" id="1_y53of"]
 
@@ -14,6 +14,93 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_ca8m0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fkqkq"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_y53of"]
+
+[sub_resource type="Animation" id="Animation_ca8m0"]
+resource_name = "talking"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouth_Close:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mouth_Open:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.3, 0),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mouth_Open:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.96046e-08, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.08, 0.2, 0.2), Vector3(0.12, 0.2, 0.2), Vector3(0.08, 0.2, 0.2), Vector3(0.12, 0.2, 0.2), Vector3(0.08, 0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_fkqkq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouth_Close:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mouth_Open:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mouth_Open:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.08, 0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w7p4"]
+_data = {
+&"RESET": SubResource("Animation_fkqkq"),
+&"talking": SubResource("Animation_ca8m0")
+}
 
 [node name="NPC" type="StaticBody3D"]
 script = ExtResource("1_y53of")
@@ -35,7 +122,18 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.2, 0.5, 0.45)
 material_override = SubResource("StandardMaterial3D_y53of")
 mesh = SubResource("SphereMesh_ca8m0")
 
-[node name="Mouth" type="MeshInstance3D" parent="."]
+[node name="Mouth_Close" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.00249905, 0.199938, 0, -0.0999688, 0.00499811, 0, 0, 0, 0.1, 0, 0.35, 0.506518)
 material_override = SubResource("StandardMaterial3D_y53of")
 mesh = SubResource("CapsuleMesh_fkqkq")
+
+[node name="Mouth_Open" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.54373e-11, -8.73967e-09, 0.2, -0.0799761, 0.00488644, 0, -0.00195458, -0.19994, -8.74228e-09, 0, 0.35, 0.506518)
+visible = false
+material_override = SubResource("StandardMaterial3D_y53of")
+mesh = SubResource("TorusMesh_y53of")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4w7p4")
+}
