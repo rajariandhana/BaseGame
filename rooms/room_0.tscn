@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3f2ekjqi1vut"]
+[gd_scene load_steps=14 format=3 uid="uid://d3f2ekjqi1vut"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_mcp8b"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_vvdcg"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bmf725bkclgk" path="res://interactables/crate/crate.tscn" id="8_k46nf"]
 [ext_resource type="PackedScene" uid="uid://c64uegx3k64j3" path="res://items/pickaxe/pickaxe.tscn" id="8_kfai2"]
 [ext_resource type="PackedScene" uid="uid://bk8uovpeg3j8h" path="res://interactables/NPC/npc.tscn" id="9_tw3o5"]
+[ext_resource type="Resource" uid="uid://cur8ltfhxbttb" path="res://dialogues/npc_1_0.tres" id="10_pfku7"]
+[ext_resource type="Resource" uid="uid://dc0kumv4cdwso" path="res://dialogues/npc_2_0.tres" id="11_o3x8c"]
+[ext_resource type="Resource" uid="uid://tf714p4whmyc" path="res://dialogues/npc_3_0.tres" id="12_sqhb0"]
 
 [sub_resource type="Environment" id="Environment_vvdcg"]
 background_mode = 1
@@ -77,16 +80,16 @@ transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, -1, -4.37114e-08, 0, 
 door_id = "room_0_door_0"
 
 [node name="NPC 1" parent="." instance=ExtResource("9_tw3o5")]
-transform = Transform3D(0.00155334, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00155334, -2.53218, 1, -0.00398678)
-dialogue = Array[String](["Hi There, ny name is Pocong!1. Welcome to room 0.", "You have to find your way out of this room.", "You can find some stuff  in this room to help your escape.", "Good Luck!"])
+transform = Transform3D(0.00155334, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00155334, -2.532, 1, -0.004)
+lines = ExtResource("10_pfku7")
 display_name = "Pocong"
 
 [node name="NPC 2" parent="." instance=ExtResource("9_tw3o5")]
 transform = Transform3D(-0.997902, 0, -0.0647414, 0, 1, 0, 0.0647414, 0, -0.997902, 6.22569, 1, 2.11198)
-dialogue = Array[String](["Congratulations! You've escaped the first room", "Pro tip: if you fall you wil fall forever"])
+lines = ExtResource("11_o3x8c")
 display_name = "Pindang"
 
 [node name="NPC 3" parent="." instance=ExtResource("9_tw3o5")]
 transform = Transform3D(-0.605016, 0, -0.796213, 0, 1, 0, 0.796213, 0, -0.605016, 7.5187, 1, 1.2624)
-dialogue = Array[String](["Don't believe what he said", "If you fall you will safely land in a trampoline"])
+lines = ExtResource("12_sqhb0")
 display_name = "Padang"

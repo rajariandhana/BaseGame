@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueLines" load_steps=5 format=3 uid="uid://dc0kumv4cdwso"]
+
+[ext_resource type="Script" uid="uid://p74f34cyxuy1" path="res://dialogues/dialogue_line.gd" id="1_ilngq"]
+[ext_resource type="Script" uid="uid://du48hvrh6xjop" path="res://dialogues/dialogue_lines.gd" id="2_hvddn"]
+
+[sub_resource type="Resource" id="Resource_ilngq"]
+script = ExtResource("1_ilngq")
+text = "Congratulations! You've escaped the first room"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_hvddn"]
+script = ExtResource("1_ilngq")
+text = "Pro tip: if you fall you wil fall forever"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[resource]
+script = ExtResource("2_hvddn")
+lines = Array[ExtResource("1_ilngq")]([SubResource("Resource_ilngq"), SubResource("Resource_hvddn")])
+metadata/_custom_type_script = "uid://du48hvrh6xjop"

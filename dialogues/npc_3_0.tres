@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueLines" load_steps=5 format=3 uid="uid://tf714p4whmyc"]
+
+[ext_resource type="Script" uid="uid://p74f34cyxuy1" path="res://dialogues/dialogue_line.gd" id="1_sf8gu"]
+[ext_resource type="Script" uid="uid://du48hvrh6xjop" path="res://dialogues/dialogue_lines.gd" id="2_yo12j"]
+
+[sub_resource type="Resource" id="Resource_sf8gu"]
+script = ExtResource("1_sf8gu")
+text = "Don't believe what he said"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_yo12j"]
+script = ExtResource("1_sf8gu")
+text = "If you fall you will safely land in a trampoline"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[resource]
+script = ExtResource("2_yo12j")
+lines = Array[ExtResource("1_sf8gu")]([SubResource("Resource_sf8gu"), SubResource("Resource_yo12j")])
+metadata/_custom_type_script = "uid://du48hvrh6xjop"

@@ -156,12 +156,54 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="NameSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Character Name"
 
+[node name="Control" type="Control" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextKey" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Next [E]"
+
 [node name="DialogueSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1800, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Lorem ipsum dolor sit amet..."
+autowrap_mode = 3
+
+[node name="OptionsSlot" type="VBoxContainer" parent="DialoguePanel"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -275.0
+offset_top = -414.0
+offset_right = -50.0
+offset_bottom = -260.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="DialoguePanel/OptionsSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Answer A"
+
+[node name="Button2" type="Button" parent="DialoguePanel/OptionsSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Answer B"
+
+[node name="Button3" type="Button" parent="DialoguePanel/OptionsSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Answer C"

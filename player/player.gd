@@ -126,8 +126,8 @@ func ray():
 func _physics_process(delta: float) -> void:
 	
 	if is_talking:
-		if action_pressed([Inputs.Keys.E]):
-			dialogue_panel.next_dialogue()
+		# if action_pressed([Inputs.Keys.E]):
+			# dialogue_panel.next_dialogue()
 		return
 	elif action_pressed([Inputs.Keys.OPEN_INVENTORY]):
 		if input_enabled:
@@ -244,12 +244,18 @@ func drop_from_storage(slot_ID: int, item_data: ItemData):
 
 # Dialogue
 func begin_dialogue(talkable: Talkable) -> void:
+	# print("Player.begin_dialogue()")
+	cross_hair.visible = false
+	hover_message.visible = false
 	is_talking = true
 	input_enabled = false
 	dialogue_panel.visible = true
 	dialogue_panel.begin_dialogue(talkable)
 
 func end_dialogue() -> void:
+	# print("Player.end_dialogue()")
+	cross_hair.visible = true
+	hover_message.visible = true
 	input_enabled = true
 	is_talking = false
 	dialogue_panel.end_dialogue()
