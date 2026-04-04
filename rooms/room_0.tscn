@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3f2ekjqi1vut"]
+[gd_scene load_steps=14 format=3 uid="uid://d3f2ekjqi1vut"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_mcp8b"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_vvdcg"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c6p1576ygart2" path="res://items/key/key.tscn" id="6_iv03q"]
 [ext_resource type="PackedScene" uid="uid://bmf725bkclgk" path="res://interactables/crate/crate.tscn" id="8_k46nf"]
 [ext_resource type="PackedScene" uid="uid://c64uegx3k64j3" path="res://items/pickaxe/pickaxe.tscn" id="8_kfai2"]
+[ext_resource type="PackedScene" uid="uid://bk8uovpeg3j8h" path="res://interactables/NPC/npc.tscn" id="9_tw3o5"]
+[ext_resource type="Resource" uid="uid://cur8ltfhxbttb" path="res://dialogues/npc_1_0.tres" id="10_pfku7"]
+[ext_resource type="Resource" uid="uid://dc0kumv4cdwso" path="res://dialogues/npc_2_0.tres" id="11_o3x8c"]
+[ext_resource type="Resource" uid="uid://tf714p4whmyc" path="res://dialogues/npc_3_0.tres" id="12_sqhb0"]
 
 [sub_resource type="Environment" id="Environment_vvdcg"]
 background_mode = 1
@@ -65,7 +69,7 @@ door_id = "room_0_door_0"
 is_locked = true
 
 [node name="Pickaxe" parent="." instance=ExtResource("8_kfai2")]
-transform = Transform3D(-0.0020769, 0.836189, 0.548438, -0.999998, -0.00173668, -0.00113906, -3.72529e-09, -0.548439, 0.83619, 1.57955, 0.00647736, 2.57586)
+transform = Transform3D(-0.0020769, 0.836189, 0.548438, -0.999998, -0.00173668, -0.00113905, -2.79397e-09, -0.548439, 0.83619, 1.57955, 0.00647736, 2.57586)
 
 [node name="Crate" parent="." instance=ExtResource("8_k46nf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.909248, 0.5, 3.06593)
@@ -74,3 +78,18 @@ hover_message = "Something could be inside"
 [node name="Key" parent="Crate" instance=ExtResource("6_iv03q")]
 transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, -1, -4.37114e-08, 0, -3.09086e-08, 0.707107, 0.707107, 0, 0.20563, 0)
 door_id = "room_0_door_0"
+
+[node name="NPC 1" parent="." instance=ExtResource("9_tw3o5")]
+transform = Transform3D(0.00155334, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00155334, -2.532, 1, -0.004)
+lines = ExtResource("10_pfku7")
+display_name = "Pocong"
+
+[node name="NPC 2" parent="." instance=ExtResource("9_tw3o5")]
+transform = Transform3D(-0.997902, 0, -0.0647414, 0, 1, 0, 0.0647414, 0, -0.997902, 6.22569, 1, 2.11198)
+lines = ExtResource("11_o3x8c")
+display_name = "Pindang"
+
+[node name="NPC 3" parent="." instance=ExtResource("9_tw3o5")]
+transform = Transform3D(-0.605016, 0, -0.796213, 0, 1, 0, 0.796213, 0, -0.605016, 7.5187, 1, 1.2624)
+lines = ExtResource("12_sqhb0")
+display_name = "Padang"

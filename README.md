@@ -1,4 +1,4 @@
-# BaseGame
+# BaseGame - The game where art, story, music, does not matter
 Many game developers (including me) produces an unfinished game. I'm a programmer so I'll try to ignore aestethicsm, gameplay, story, audio, and instead focus on the mechanics.
 
 ## Player
@@ -41,7 +41,50 @@ Inventory -> explicitly for Player,
 - different message prompt according Item hover on different Interactable
 - mouse usage guide of item on hover
 - crate open animation
+- [ESC] -> show controls: [TAB] Inventory, etc?
+- [E] Talk / continue / next, yes/no question
+- replica of my apartment
+- door can reverse open direction
+- Talk -> Inputs.Keys.TALK
+- IMPORTANT: separate mouse enable disable functionality
+- button style theme learn it
+- Temporary main menu so can play level 0
+- NPC floating, idle, hands, hover above ground, refactor code
+- Understand the F out of FSM
+- fix dialogue bug, sometimes it starts at dialogue index 1 instead of 0
+
+## DialogueManager and Talkable
+- better for only one CanvasLayer for dialogue, so instead of it in the Talkable (also Talkable is only a class not a scene) put the CanvasLayer on DialogueManager
+- Talkable should just contain the words then give it to DialogueManager
+
+talkable.talk() -> 
+var is_talking: bool = false
+	
+character name, 
+
+## Game Feel
+- shake, recoil
+- background loading
+- smooth animation
+- lighting
 
 ## References:
-- https://www.youtube.com/watch?v=NJJNWGD25rg
 - https://www.youtube.com/watch?v=QKdyUBjzPmk
+- https://www.youtube.com/watch?v=NJJNWGD25rg
+
+## Riot Essay
+
+### In your own words, why are you interested in working at Riot Games?*
+From my experience when creating games, I realize that I cannot do it alone. There are so many aspects in a game other than the code like the graphics, story, music, physics simulation, and as someone with programming background it is just impossible to master everything. I'm interested in working at Riot Games because it offers me a chance to meet and collaborate with other talented people. I'm excited to collaborate with people who shares the same passion for creating games.
+
+According to past Riot employees testimony, Riot Games has created a work culture that allows their developers to output their full potential by giving trust, support, and top tier resources. I believe in such environment I can grow and...
+
+### In your own words, why do you want to pursue this role professionally?*
+The career path of a game developer has a wide variety of roles, game designer, level designer, systems designer, play tester, and such. I see the roles as different levels in a game with their own set of challanges. Pursuing this role professionally would be the perfect opportunity for me to grow
+
+At first I only create games for me and my friends to play.
+During my voluntary work as a game developer in an organization, I have had the chance to create games that were played by over 1000 players online. Because of this we had trouble to optimize the game in certain aspects.
+I am interested to learn how to scale games that are played by millions of players at the same time worldwide.
+
+
+should I add game jam to resume projects?

@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 const MOUSE_SPEED_X: float = 0.2
 const MOUSE_SPEED_Y: float = 0.3
@@ -23,9 +24,16 @@ var input_enabled: bool = true
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 @onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
 
+# Dialogue
+var is_talking: bool = false
+# var dialogue: Array[String]
+@onready var dialogue_panel: CanvasLayer = $DialoguePanel
+
 func _ready() -> void:
 	#return
 	GameManager.set_player(self)
+	dialogue_panel.visible = false
+	dialogue_panel.dialogue_finished.connect(end_dialogue)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not inventory.request_drop_equipped.is_connected(drop_item_to_world):
 		inventory.request_drop_equipped.connect(drop_item_to_world)
@@ -67,6 +75,8 @@ func handle_equipped() -> void:
 
 func switch_hover(new_target: Interactable):
 	if interacting:
+		if interacting is Talkable:
+			interacting.dialogue_requested.disconnect(begin_dialogue)
 		interacting.hover_exit(owner)
 	interacting = new_target
 	interacting.hover_enter(owner)
@@ -76,6 +86,9 @@ func switch_hover(new_target: Interactable):
 			interacting.request_equip.connect(equip)
 		if not interacting.request_pickup.is_connected(pickup):
 			interacting.request_pickup.connect(pickup)
+	if interacting is Talkable:
+		if not interacting.dialogue_requested.is_connected(begin_dialogue):
+			interacting.dialogue_requested.connect(begin_dialogue)
 
 func clear_hover():
 	if interacting:
@@ -112,7 +125,11 @@ func ray():
 
 func _physics_process(delta: float) -> void:
 	
-	if action_pressed([Inputs.Keys.OPEN_INVENTORY]):
+	if is_talking:
+		# if action_pressed([Inputs.Keys.E]):
+			# dialogue_panel.next_dialogue()
+		return
+	elif action_pressed([Inputs.Keys.OPEN_INVENTORY]):
 		if input_enabled:
 			inventory.open()
 			cross_hair.visible = false
@@ -224,3 +241,22 @@ func drop_from_storage(slot_ID: int, item_data: ItemData):
 	add_child(item)
 	drop_item_to_world(item)
 	inventory.remove_from_storage(slot_ID)
+
+# Dialogue
+func begin_dialogue(talkable: Talkable) -> void:
+	# print("Player.begin_dialogue()")
+	cross_hair.visible = false
+	hover_message.visible = false
+	is_talking = true
+	input_enabled = false
+	dialogue_panel.visible = true
+	dialogue_panel.begin_dialogue(talkable)
+
+func end_dialogue() -> void:
+	# print("Player.end_dialogue()")
+	cross_hair.visible = true
+	hover_message.visible = true
+	input_enabled = true
+	is_talking = false
+	dialogue_panel.end_dialogue()
+	dialogue_panel.visible = false

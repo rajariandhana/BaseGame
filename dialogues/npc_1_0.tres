@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="DialogueLines" load_steps=9 format=3 uid="uid://cur8ltfhxbttb"]
+
+[ext_resource type="Script" uid="uid://p74f34cyxuy1" path="res://dialogues/dialogue_line.gd" id="1_prvm2"]
+[ext_resource type="Script" uid="uid://du48hvrh6xjop" path="res://dialogues/dialogue_lines.gd" id="2_vg5bs"]
+
+[sub_resource type="Resource" id="Resource_vg5bs"]
+script = ExtResource("1_prvm2")
+text = "Hi There, ny name is Pocong!1. Welcome to room 0."
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_ytymd"]
+script = ExtResource("1_prvm2")
+text = "You have to find your way out of this room. You can find some stuff  in this room to help your escape. Do you know the controls?"
+type = 1
+answer_choice = Array[String](["Yes", "No"])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_csh7o"]
+script = ExtResource("1_prvm2")
+text = "Use WASD and mouse to move yourself."
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_egc12"]
+script = ExtResource("1_prvm2")
+text = "You can interact with an object by using the keys option shown when approaching, or use left/right mouse click."
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_mpgtq"]
+script = ExtResource("1_prvm2")
+text = "Use [Tab] to access your inventory."
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_15ap4"]
+script = ExtResource("1_prvm2")
+text = "Good Luck"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[resource]
+script = ExtResource("2_vg5bs")
+lines = Array[ExtResource("1_prvm2")]([SubResource("Resource_vg5bs"), SubResource("Resource_ytymd"), SubResource("Resource_csh7o"), SubResource("Resource_egc12"), SubResource("Resource_mpgtq"), SubResource("Resource_15ap4")])
+metadata/_custom_type_script = "uid://du48hvrh6xjop"

@@ -12,6 +12,33 @@ albedo_color = Color(0.34902, 0.0941176, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jihvm"]
 
+[sub_resource type="Animation" id="Animation_mb6tb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopHinges/Top1Hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopHinges/Top2Hinge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.872665, -3.14159, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_eufg1"]
 resource_name = "crate_open"
 length = 0.2
@@ -38,33 +65,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, -3.14159, 0), Vector3(-0.872665, -3.14159, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mb6tb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TopHinges/Top1Hinge:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TopHinges/Top2Hinge:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.872665, -3.14159, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_82c68"]
@@ -105,7 +105,7 @@ mesh = SubResource("BoxMesh_82c68")
 skeleton = NodePath("../../..")
 
 [node name="Top2Hinge" type="Node3D" parent="TopHinges"]
-transform = Transform3D(-1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, 0, 0.45, -0.5)
+transform = Transform3D(-1, 1.94206e-06, -1.62958e-06, 0, 0.642787, 0.766045, 2.53518e-06, 0.766045, -0.642787, 0, 0.45, -0.5)
 
 [node name="Top" type="MeshInstance3D" parent="TopHinges/Top2Hinge"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 0.5, 0, 0, -0.25)
