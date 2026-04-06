@@ -16,13 +16,14 @@ const RAY_LENGTH: float = 1000.0
 var interacting: Interactable = null
 
 var input_enabled: bool = true
-@onready var inventory: Inventory = $CanvasLayer/Inventory
+@onready var inventory: Inventory = $Inventory
 @onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
 
 # Dialogue
 var is_talking: bool = false
 # var dialogue: Array[String]
 @onready var dialogue_panel: CanvasLayer = $DialoguePanel
+@onready var menu: CanvasLayer = $Menu
 
 @onready var state_machine: StateMachine = $StateMachine
 

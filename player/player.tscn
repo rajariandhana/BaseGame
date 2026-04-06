@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=14 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://c5fcpueadqbab" path="res://storage/storage.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://cdur0kd18jy28" path="res://player/dialogue_panel.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://c6gxswkdyr7jq" path="res://state/state_machine.gd" id="5_g6k8r"]
+[ext_resource type="Script" uid="uid://c8hwpxsaexmqi" path="res://player/menu_open.gd" id="5_hg6s5"]
+[ext_resource type="Script" uid="uid://vrmj5bk4c6o7" path="res://player/dialogue_open.gd" id="6_2ieo8"]
+[ext_resource type="PackedScene" uid="uid://dj5uy5ohnedkm" path="res://player/dark_layer.tscn" id="6_8t03j"]
 [ext_resource type="Script" uid="uid://b7ovpxp0p3eef" path="res://player/moveable.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://ttoohobwdx7g" path="res://player/inventory_open.gd" id="7_boad6"]
+[ext_resource type="Script" uid="uid://71uxsbg08o71" path="res://player/menu.gd" id="10_8t03j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -15,6 +19,31 @@
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_4flbx")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_g6k8r")
+starting_state = NodePath("Moveable")
+
+[node name="Moveable" type="Node" parent="StateMachine" node_paths=PackedStringArray("inventory_open_state", "talking_state", "menu_open_state")]
+script = ExtResource("6_g6k8r")
+inventory_open_state = NodePath("../InventoryOpen")
+talking_state = NodePath("../Talking")
+menu_open_state = NodePath("../MenuOpen")
+
+[node name="InventoryOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+script = ExtResource("7_boad6")
+moveable_state = NodePath("../Moveable")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+script = ExtResource("6_2ieo8")
+moveable_state = NodePath("../Moveable")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="MenuOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+script = ExtResource("5_hg6s5")
+moveable_state = NodePath("../Moveable")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sh265")
@@ -76,57 +105,11 @@ text = "[HOVER MESSAGE]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DarkLayer" type="ColorRect" parent="CanvasLayer"]
+[node name="DarkLayer" parent="CanvasLayer" instance=ExtResource("6_8t03j")]
 visible = false
-custom_minimum_size = Vector2(1920, 1080)
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0, 0, 0, 0.25098)
-
-[node name="Inventory" type="CenterContainer" parent="CanvasLayer"]
-custom_minimum_size = Vector2(640, 1080)
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -71.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("2_g1dw6")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory"]
-custom_minimum_size = Vector2(640, 520)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Inventory/MarginContainer"]
-custom_minimum_size = Vector2(600, 890)
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Equipped" type="PanelContainer" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer/Equipped"]
-custom_minimum_size = Vector2(600, 230)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Equipped"
-
-[node name="EquippedSlots" type="VBoxContainer" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
-custom_minimum_size = Vector2(600, 200)
-layout_mode = 2
-
-[node name="Storage" parent="CanvasLayer/Inventory/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]
-layout_mode = 2
 
 [node name="DialoguePanel" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("4_yw30f")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
@@ -211,15 +194,85 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer C"
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("5_g6k8r")
-starting_state = NodePath("Moveable")
+[node name="Inventory" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("2_g1dw6")
 
-[node name="Moveable" type="Node" parent="StateMachine" node_paths=PackedStringArray("inventory_open_state")]
-script = ExtResource("6_g6k8r")
-inventory_open_state = NodePath("../InventoryOpen")
+[node name="DarkLayer" parent="Inventory" instance=ExtResource("6_8t03j")]
 
-[node name="InventoryOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
-script = ExtResource("7_boad6")
-moveable_state = NodePath("../Moveable")
-metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+[node name="CenterContainer" type="CenterContainer" parent="Inventory"]
+custom_minimum_size = Vector2(640, 1080)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer"]
+custom_minimum_size = Vector2(640, 520)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(600, 890)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Equipped" type="PanelContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped"]
+custom_minimum_size = Vector2(600, 230)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Equipped"
+
+[node name="EquippedSlots" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+
+[node name="Storage" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]
+layout_mode = 2
+
+[node name="Menu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("10_8t03j")
+
+[node name="DarkLayer" parent="Menu" instance=ExtResource("6_8t03j")]
+
+[node name="HoverMessage" type="Label" parent="Menu"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.0
+offset_top = -783.0
+offset_right = 271.0
+offset_bottom = -738.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "MENU OPENED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Menu"]
+offset_left = 598.0
+offset_top = 392.0
+offset_right = 919.0
+offset_bottom = 467.0
+theme_override_font_sizes/font_size = 48
+text = "Click me"
+
+[connection signal="pressed" from="Menu/Button" to="Menu" method="_on_button_pressed"]

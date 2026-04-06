@@ -14,6 +14,12 @@ signal dialogue_finished
 
 var animation_player: AnimationPlayer;
 
+func open() -> void:
+	visible = true
+
+func close() -> void:
+	visible = false
+
 func begin_dialogue(talkable: Talkable) -> void:
 	is_talking = true
 	current_talkable = talkable
