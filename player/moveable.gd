@@ -27,7 +27,7 @@ func process_physics(delta: float) -> State:
   if Utils.action_pressed([Inputs.Keys.OPEN_INVENTORY]):
     return inventory_open_state
   handle_move(delta)
-  var res: State = ray()
+  var res: State = parent.interact_ray.scan()
   if res:
     return res
   return null
@@ -55,18 +55,6 @@ func handle_move(delta: float) -> void:
     parent.velocity.y = 0
 
   parent.move_and_slide()
-
-func ray() -> State:
-  parent.hover_message.text = ""
-
-  if parent.interact_ray.is_colliding():
-    parent.handle_interaction()
-  else:
-    parent.clear_hover()
-  if parent.is_equipped():
-    parent.handle_equipped()
-  
-  return null
 
 func process_input(event: InputEvent) -> State:
   if event.is_action_pressed("ui_cancel"):

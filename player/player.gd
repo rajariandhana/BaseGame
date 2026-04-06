@@ -13,8 +13,6 @@ const RAY_LENGTH: float = 1000.0
 
 @onready var hand: Node3D = $Camera3D/Hand
 
-var interacting: Interactable = null
-
 var input_enabled: bool = true
 @onready var inventory: Inventory = $Inventory
 @onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
@@ -53,58 +51,11 @@ func handle_equipped() -> void:
 	elif Utils.action_pressed([Inputs.Keys.USE_SECONDARY]):
 		item.use(Inputs.Keys.USE_SECONDARY, target)
 
-func switch_hover(new_target: Interactable):
-	if interacting:
-		if interacting is Talkable:
-			interacting.dialogue_requested.disconnect(begin_dialogue)
-		interacting.hover_exit(owner)
-	interacting = new_target
-	interacting.hover_enter(owner)
-	
-	if interacting is Item:
-		if not interacting.request_equip.is_connected(equip):
-			interacting.request_equip.connect(equip)
-		if not interacting.request_pickup.is_connected(pickup):
-			interacting.request_pickup.connect(pickup)
-	if interacting is Talkable:
-		if not interacting.dialogue_requested.is_connected(begin_dialogue):
-			interacting.dialogue_requested.connect(begin_dialogue)
-
-func clear_hover():
-	if interacting:
-		interacting.hover_exit(owner)
-		interacting = null
-
-func handle_interactable(collider: Interactable):
-	if interacting != collider:
-		switch_hover(collider)
-	
-	hover_message.text = collider.get_prompt()
-	for action in collider.interactions.keys():
-		if Utils.action_pressed([action]):
-			collider.interact(action, owner)
-
-func handle_interaction():
-	var collider = interact_ray.get_collider()
-
-	if collider is Interactable:
-		handle_interactable(collider)
-		return
-	#if Utils.action_pressed([Inputs.Keys.DROP]) and collider.is_in_group("ItemZone"):
-		#drop(interact_ray.get_collision_point())
-
-
-
 # func _process(delta: float) -> void:
 # 	state_machine.process_frame(delta)
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
-	if is_talking:
-		# if Utils.action_pressed([Inputs.Keys.E]):
-			# dialogue_panel.next_dialogue()
-		return
-	
 
 func equip(item: Item):
 	if is_equipped():
