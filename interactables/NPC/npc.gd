@@ -1,4 +1,5 @@
 extends Talkable
+class_name NPC
 
 func _ready() -> void:
   super()
