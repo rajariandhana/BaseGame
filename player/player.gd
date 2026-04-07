@@ -8,22 +8,16 @@ const RAY_LENGTH: float = 1000.0
 @onready var space_state = get_world_3d().direct_space_state
 
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
-@onready var hover_message: Label = $CanvasLayer/HoverMessage
-@onready var cross_hair: Label = $CanvasLayer/CrossHair
+@onready var hover_message: Label = $HUD/HoverMessage
+@onready var cross_hair: Label = $HUD/CrossHair
 
 @onready var hand: Node3D = $Camera3D/Hand
 
-@onready var inventory: Inventory = $Inventory
-@onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
-
-# Dialogue
-var is_talking: bool = false
-# var dialogue: Array[String]
-@onready var dialogue_panel: CanvasLayer = $DialoguePanel
-@export var moveable: State
-@onready var menu: CanvasLayer = $Menu
-
 @onready var state_machine: StateMachine = $StateMachine
+@export var moveable: State
+@onready var inventory: Inventory = $Inventory
+@onready var dialogue_panel: CanvasLayer = $DialoguePanel
+@onready var menu: CanvasLayer = $Menu
 
 func _ready() -> void:
 	#return

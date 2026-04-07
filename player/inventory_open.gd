@@ -5,7 +5,7 @@ extends State
 func enter() -> void:
   super()
   parent.inventory.open()
-  # does that mean enter is enable movement keys
+  Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func exit() -> void:
   parent.inventory.close()

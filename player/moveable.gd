@@ -19,18 +19,13 @@ func enter() -> void:
 func exit() -> void:
   parent.cross_hair.visible = false
   parent.hover_message.text = ""
-  # disable movement keys?
-  Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
   
 func process_physics(delta: float) -> State:
 
   if Utils.action_pressed([Inputs.Keys.OPEN_INVENTORY]):
     return inventory_open_state
   handle_move(delta)
-  var res: State = parent.interact_ray.scan()
-  if res:
-    return res
-  return null
+  return parent.interact_ray.scan()
 
 func handle_move(delta: float) -> void:
   var input_direction_2D: Vector2 = Input.get_vector(

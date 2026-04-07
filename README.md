@@ -51,7 +51,6 @@ Inventory -> explicitly for Player,
 - Temporary main menu so can play level 0
 - NPC floating, idle, hands, hover above ground, refactor code
 - Understand the F out of FSM
-- fix dialogue bug, sometimes it starts at dialogue index 1 instead of 0
 - there is a super() function in Godot
 - introduce Economy
 - create auto template for scripts, reusable

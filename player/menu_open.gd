@@ -5,6 +5,7 @@ extends State
 func enter() -> void:
   super()
   parent.menu.open()
+  Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func exit() -> void:
   parent.menu.close()

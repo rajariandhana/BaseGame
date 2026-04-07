@@ -25,19 +25,14 @@ func handle_interaction() -> State:
   var collider: Object = get_collider()
 
   if collider is Interactable:
-    var res: State = handle_interactable(collider)
-    if res:
-      return res
-    return null
+    return handle_interactable(collider)
   #if Utils.action_pressed([Inputs.Keys.DROP]) and collider.is_in_group("ItemZone"):
     #drop(interact_ray.get_collision_point())
   return null
 
 func handle_interactable(collider: Interactable) -> State:
   if interacting != collider:
-    var res: State = switch_hover(collider)
-    if res:
-      return res
+    switch_hover(collider)
 
   player.hover_message.text = collider.get_prompt()
   for action: int in collider.interactions.keys():
@@ -45,7 +40,6 @@ func handle_interactable(collider: Interactable) -> State:
       collider.interact(action, owner)
       if collider is Talkable:
         return talking_state
-      # player.begin_dialogue(interacting)
   return null
 
 func clear_hover() -> void:
@@ -54,7 +48,7 @@ func clear_hover() -> void:
     interacting = null
     player.hover_message.text = ""
 
-func switch_hover(new_target: Interactable) -> State:
+func switch_hover(new_target: Interactable) -> void:
   if interacting:
     interacting.hover_exit(owner)
   interacting = new_target
@@ -65,5 +59,3 @@ func switch_hover(new_target: Interactable) -> State:
       interacting.request_equip.connect(player.equip)
     if not interacting.request_pickup.is_connected(player.pickup):
       interacting.request_pickup.connect(player.pickup)
-  
-  return null

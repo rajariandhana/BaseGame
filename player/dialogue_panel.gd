@@ -13,7 +13,7 @@ var animation_player: AnimationPlayer;
 
 @export var moveable: State
 
-# could put another state machine in dialogue_panel, maybe later
+# TODO: could put another state machine in dialogue_panel, maybe later
 # e.g. while waiting for player respond
 
 func open() -> void:
