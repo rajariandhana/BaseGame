@@ -7,7 +7,11 @@ var waiting_response: bool = false
 @onready var name_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NameSlot
 @onready var dialogue_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/DialogueSlot
 @onready var next_key: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextKey
-@onready var options_slot: VBoxContainer = $OptionsSlot
+@onready var mcq_slot: VBoxContainer = $MCQSlot
+@onready var oeq_slot: VBoxContainer = $OEQSlot
+@onready var oe_input: LineEdit = $OEQSlot/OEInput
+@onready var oe_submit_button: Button = $OEQSlot/OESubmitButton
+@onready var dark_layer: ColorRect = $DarkLayer
 
 var animation_player: AnimationPlayer;
 
@@ -26,11 +30,13 @@ func begin(talkable: Talkable) -> void:
 	current_talkable = talkable
 	dialogue_ctr = 0
 	name_slot.text = talkable.display_name
-	options_slot.visible = true
+	mcq_slot.visible = false
+	oeq_slot.visible = false
 	if current_talkable.animation_player:
 		animation_player = current_talkable.animation_player;
 	next()
 
+# TODO: consider to return State
 func next() -> void:
 	# print("dialogue_ctr: ",dialogue_ctr, "/", current_talkable.lines.lines.size())
 	if dialogue_ctr >= current_talkable.lines.lines.size():
@@ -41,27 +47,37 @@ func next() -> void:
 	# print("new dialogue_ctr:", dialogue_ctr)
 	var type: DialogueType.Types = line.type
 	dialogue_ctr += 1
-	if type == DialogueType.Types.QuestionChoice:
+	if type == DialogueType.Types.MCQ:
 		waiting_response = true
-		# print("DialogueType.Types.QuestionChoice")
+		# print("DialogueType.Types.MCQ")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		next_key.visible = false
-		options_slot.visible = true
-		for child: Node in options_slot.get_children():
+		mcq_slot.visible = true
+		oeq_slot.visible = false
+		dark_layer.visible = true
+		for child: Node in mcq_slot.get_children():
 			child.free()
 		for choice: String in line.answer_choice:
 			var button: Button = Button.new()
 			button.text = choice
-			button.pressed.connect(func(): _on_answer_option(choice))
-			options_slot.add_child(button)
-	elif type == DialogueType.Types.QuestionOpen:
-		# print("DialogueType.Types.QuestionOpen")
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			button.pressed.connect(func(): handle_mcq(choice))
+			mcq_slot.add_child(button)
+	elif type == DialogueType.Types.OEQ:
+		waiting_response = true
+		# print("DialogueType.Types.OEQ")
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		next_key.visible = false
+		mcq_slot.visible = false
+		oeq_slot.visible = true
+		dark_layer.visible = true
+		oe_input.text = ""
 		pass
 	else:
-		options_slot.visible = false
 		next_key.visible = true
+		mcq_slot.visible = false
+		oeq_slot.visible = false
+		dark_layer.visible = false
+		oe_submit_button.set_disabled(true)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if animation_player:
 		if animation_player.is_playing():
@@ -77,11 +93,27 @@ func end() -> void:
 			animation_player.stop()
 		animation_player.play("RESET")
 	current_talkable = null
-	options_slot.visible = false
+	mcq_slot.visible = false
 	GameManager.get_player().state_machine.change_state(moveable)
 
-func _on_answer_option(x) -> void:
-	var next_dialogue_index: int = current_talkable.respond(dialogue_ctr - 1, x)
+func handle_respond(answer: String) -> void:
+	var next_dialogue_index: int = current_talkable.respond(dialogue_ctr - 1, answer)
 	dialogue_ctr = next_dialogue_index
 	waiting_response = false
 	next()
+
+func handle_mcq(option_text: String) -> void:
+	handle_respond(option_text)
+
+func handle_oeq() -> void:
+	var res: String = oe_input.get_text()
+	if res == "":
+		return
+	handle_respond(res)
+
+func _on_oe_input_text_changed(new_text: String) -> void:
+	# print("_on_oe_input_text_changed: ", new_text)
+	if new_text == "":
+		oe_submit_button.set_disabled(true)
+	else:
+		oe_submit_button.set_disabled(false)

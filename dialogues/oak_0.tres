@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="DialogueLines" load_steps=7 format=3 uid="uid://byc0s1v4i86rb"]
+
+[ext_resource type="Script" uid="uid://p74f34cyxuy1" path="res://dialogues/dialogue_line.gd" id="1_uii0g"]
+[ext_resource type="Script" uid="uid://du48hvrh6xjop" path="res://dialogues/dialogue_lines.gd" id="2_yq6y4"]
+
+[sub_resource type="Resource" id="Resource_uii0g"]
+script = ExtResource("1_uii0g")
+text = "Welcome to the world of Pokemon. My name is Professor Oak!"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_yq6y4"]
+script = ExtResource("1_uii0g")
+text = "Are you a boy or are you a girl?"
+type = 1
+answer_choice = Array[String](["Boy", "Girl"])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_8w5ec"]
+script = ExtResource("1_uii0g")
+text = "What is your name?"
+type = 2
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[sub_resource type="Resource" id="Resource_2q4cn"]
+script = ExtResource("1_uii0g")
+text = "Thank you"
+type = 0
+answer_choice = Array[String]([])
+metadata/_custom_type_script = "uid://p74f34cyxuy1"
+
+[resource]
+script = ExtResource("2_yq6y4")
+lines = Array[ExtResource("1_uii0g")]([SubResource("Resource_uii0g"), SubResource("Resource_yq6y4"), SubResource("Resource_8w5ec"), SubResource("Resource_2q4cn")])
+metadata/_custom_type_script = "uid://du48hvrh6xjop"

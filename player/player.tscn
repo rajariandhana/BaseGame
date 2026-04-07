@@ -115,6 +115,9 @@ visible = false
 script = ExtResource("4_yw30f")
 moveable = NodePath("../StateMachine/Moveable")
 
+[node name="DarkLayer" parent="DialoguePanel" instance=ExtResource("6_8t03j")]
+visible = false
+
 [node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
 custom_minimum_size = Vector2(1920, 300)
 anchors_preset = 7
@@ -169,33 +172,58 @@ theme_override_font_sizes/font_size = 32
 text = "Lorem ipsum dolor sit amet..."
 autowrap_mode = 3
 
-[node name="OptionsSlot" type="VBoxContainer" parent="DialoguePanel"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -275.0
-offset_top = -414.0
-offset_right = -50.0
-offset_bottom = -260.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="MCQSlot" type="VBoxContainer" parent="DialoguePanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -116.5
+offset_right = 112.5
+offset_bottom = 116.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Button" type="Button" parent="DialoguePanel/OptionsSlot"]
+[node name="Button" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer A"
 
-[node name="Button2" type="Button" parent="DialoguePanel/OptionsSlot"]
+[node name="Button2" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer B"
 
-[node name="Button3" type="Button" parent="DialoguePanel/OptionsSlot"]
+[node name="Button3" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer C"
+
+[node name="OEQSlot" type="VBoxContainer" parent="DialoguePanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -26.5
+offset_right = 200.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Open ended question"
+
+[node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQSlot"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Submit"
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 visible = false
@@ -278,4 +306,6 @@ offset_bottom = 467.0
 theme_override_font_sizes/font_size = 48
 text = "Click me"
 
+[connection signal="text_changed" from="DialoguePanel/OEQSlot/OEInput" to="DialoguePanel" method="_on_oe_input_text_changed"]
+[connection signal="pressed" from="DialoguePanel/OEQSlot/OESubmitButton" to="DialoguePanel" method="handle_oeq"]
 [connection signal="pressed" from="Menu/Button" to="Menu" method="_on_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3f2ekjqi1vut"]
+[gd_scene load_steps=15 format=3 uid="uid://d3f2ekjqi1vut"]
 
 [ext_resource type="Material" uid="uid://bx1leba4qjja8" path="res://basic.tres" id="1_mcp8b"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_vvdcg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bk8uovpeg3j8h" path="res://interactables/NPC/npc.tscn" id="9_tw3o5"]
 [ext_resource type="Resource" uid="uid://cur8ltfhxbttb" path="res://dialogues/npc_1_0.tres" id="10_pfku7"]
 [ext_resource type="Resource" uid="uid://dc0kumv4cdwso" path="res://dialogues/npc_2_0.tres" id="11_o3x8c"]
+[ext_resource type="Resource" uid="uid://byc0s1v4i86rb" path="res://dialogues/oak_0.tres" id="11_sqhb0"]
 [ext_resource type="Resource" uid="uid://tf714p4whmyc" path="res://dialogues/npc_3_0.tres" id="12_sqhb0"]
 
 [sub_resource type="Environment" id="Environment_vvdcg"]
@@ -83,6 +84,11 @@ door_id = "room_0_door_0"
 transform = Transform3D(0.00155334, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00155334, -2.532, 1, -0.004)
 lines = ExtResource("10_pfku7")
 display_name = "Pocong"
+
+[node name="Professor Oak" parent="." instance=ExtResource("9_tw3o5")]
+transform = Transform3D(0.527401, 0, 0.849617, 0, 1, 0, -0.849617, 0, 0.527401, -2.532, 1, -1.80293)
+lines = ExtResource("11_sqhb0")
+display_name = "Professor Oak"
 
 [node name="NPC 2" parent="." instance=ExtResource("9_tw3o5")]
 transform = Transform3D(-0.997902, 0, -0.0647414, 0, 1, 0, 0.0647414, 0, -0.997902, 6.22569, 1, 2.11198)

@@ -18,6 +18,8 @@ func reset() -> void:
 
 # scripts that inherits Talkable can declare the next line to go to
 # after getting a respond from player
+# TODO: consider changing answer to anything not always String, when it is MCQ
+# caller should pass the index of the option, more secure?
 func respond(index: int, answer: String) -> int:
 	print("Q:", lines.lines[index].text)
 	print("A:", answer)

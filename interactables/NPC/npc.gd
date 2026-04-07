@@ -7,7 +7,7 @@ func _ready() -> void:
     Utils.set_overlay_color(Utils.get_random_color(), mesh_instance_3d)
 
 func respond(index: int, answer: String) -> int:
-  # print("index: ",index," answer: ",answer)
+  print("index: ",index," answer: ",answer)
   if index == 1:
     if answer == "Yes":
       return 5
