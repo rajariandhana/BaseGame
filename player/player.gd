@@ -13,7 +13,6 @@ const RAY_LENGTH: float = 1000.0
 
 @onready var hand: Node3D = $Camera3D/Hand
 
-var input_enabled: bool = true
 @onready var inventory: Inventory = $Inventory
 @onready var dark_layer: ColorRect = $CanvasLayer/DarkLayer
 
@@ -21,6 +20,7 @@ var input_enabled: bool = true
 var is_talking: bool = false
 # var dialogue: Array[String]
 @onready var dialogue_panel: CanvasLayer = $DialoguePanel
+@export var moveable: State
 @onready var menu: CanvasLayer = $Menu
 
 @onready var state_machine: StateMachine = $StateMachine
@@ -28,9 +28,6 @@ var is_talking: bool = false
 func _ready() -> void:
 	#return
 	GameManager.set_player(self)
-	dialogue_panel.visible = false
-	dialogue_panel.dialogue_finished.connect(end_dialogue)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not inventory.request_drop_equipped.is_connected(drop_item_to_world):
 		inventory.request_drop_equipped.connect(drop_item_to_world)
 	inventory.bind_functions(drop_equipped, equip_from_storage, drop_from_storage)
@@ -131,22 +128,3 @@ func drop_from_storage(slot_ID: int, item_data: ItemData):
 	add_child(item)
 	drop_item_to_world(item)
 	inventory.remove_from_storage(slot_ID)
-
-# Dialogue
-func begin_dialogue(talkable: Talkable) -> void:
-	# print("Player.begin_dialogue()")
-	cross_hair.visible = false
-	hover_message.visible = false
-	is_talking = true
-	input_enabled = false
-	dialogue_panel.visible = true
-	dialogue_panel.begin_dialogue(talkable)
-
-func end_dialogue() -> void:
-	# print("Player.end_dialogue()")
-	cross_hair.visible = true
-	hover_message.visible = true
-	input_enabled = true
-	is_talking = false
-	dialogue_panel.end_dialogue()
-	dialogue_panel.visible = false

@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://c5fcpueadqbab" path="res://storage/storage.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://cdur0kd18jy28" path="res://player/dialogue_panel.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://clwgxf0twmhti" path="res://player/talking.gd" id="5_ebec5"]
 [ext_resource type="Script" uid="uid://c6gxswkdyr7jq" path="res://state/state_machine.gd" id="5_g6k8r"]
 [ext_resource type="Script" uid="uid://c8hwpxsaexmqi" path="res://player/menu_open.gd" id="5_hg6s5"]
-[ext_resource type="Script" uid="uid://vrmj5bk4c6o7" path="res://player/dialogue_open.gd" id="6_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://dj5uy5ohnedkm" path="res://player/dark_layer.tscn" id="6_8t03j"]
 [ext_resource type="Script" uid="uid://b7ovpxp0p3eef" path="res://player/moveable.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://ttoohobwdx7g" path="res://player/inventory_open.gd" id="7_boad6"]
@@ -37,7 +37,7 @@ moveable_state = NodePath("../Moveable")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
 [node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
-script = ExtResource("6_2ieo8")
+script = ExtResource("5_ebec5")
 moveable_state = NodePath("../Moveable")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
@@ -113,9 +113,10 @@ vertical_alignment = 1
 [node name="DarkLayer" parent="CanvasLayer" instance=ExtResource("6_8t03j")]
 visible = false
 
-[node name="DialoguePanel" type="CanvasLayer" parent="."]
+[node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable")]
 visible = false
 script = ExtResource("4_yw30f")
+moveable = NodePath("../StateMachine/Moveable")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
 custom_minimum_size = Vector2(1920, 300)

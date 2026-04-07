@@ -9,7 +9,6 @@ var interacting: Interactable = null
 
 func scan() -> State:
   # TODO: why are there repetitive setting of hover_message.text
-  player.hover_message.text = ""
 
   if is_colliding():
     var res: State = handle_interaction()
@@ -44,19 +43,19 @@ func handle_interactable(collider: Interactable) -> State:
   for action: int in collider.interactions.keys():
     if Utils.action_pressed([action]):
       collider.interact(action, owner)
+      if collider is Talkable:
+        return talking_state
+      # player.begin_dialogue(interacting)
   return null
 
 func clear_hover() -> void:
   if interacting:
     interacting.hover_exit(owner)
     interacting = null
+    player.hover_message.text = ""
 
 func switch_hover(new_target: Interactable) -> State:
   if interacting:
-    if interacting is Talkable:
-      # player.begin_dialogue(interacting)
-      interacting.dialogue_requested.disconnect(player.begin_dialogue)
-      return talking_state
     interacting.hover_exit(owner)
   interacting = new_target
   interacting.hover_enter(owner)
@@ -66,8 +65,5 @@ func switch_hover(new_target: Interactable) -> State:
       interacting.request_equip.connect(player.equip)
     if not interacting.request_pickup.is_connected(player.pickup):
       interacting.request_pickup.connect(player.pickup)
-  if interacting is Talkable:
-    if not interacting.dialogue_requested.is_connected(player.begin_dialogue):
-      interacting.dialogue_requested.connect(player.begin_dialogue)
   
   return null
