@@ -24,3 +24,9 @@ func get_random_color():
 	randomize()
 	var color = Color(randf(), randf(), randf())
 	return color.to_html(false)
+
+func action_pressed(to_check: Array) -> bool:
+	for check: int in to_check:
+		if Input.is_action_just_pressed(input_map_value(check)):
+			return true
+	return false

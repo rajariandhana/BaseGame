@@ -1,34 +1,40 @@
 extends CanvasLayer
 class_name DialoguePanel
 
-var is_talking: bool = false
 var current_talkable: Talkable
 var dialogue_ctr: int = 0
-# var dialogue: Array[String]
+var waiting_response: bool = false
 @onready var name_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NameSlot
 @onready var dialogue_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/DialogueSlot
 @onready var next_key: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextKey
 @onready var options_slot: VBoxContainer = $OptionsSlot
 
-signal dialogue_finished
-
 var animation_player: AnimationPlayer;
 
-func begin_dialogue(talkable: Talkable) -> void:
-	is_talking = true
+@export var moveable: State
+
+# TODO: could put another state machine in dialogue_panel, maybe later
+# e.g. while waiting for player respond
+
+func open() -> void:
+	visible = true
+
+func close() -> void:
+	visible = false
+
+func begin(talkable: Talkable) -> void:
 	current_talkable = talkable
 	dialogue_ctr = 0
 	name_slot.text = talkable.display_name
 	options_slot.visible = true
 	if current_talkable.animation_player:
 		animation_player = current_talkable.animation_player;
-		next_dialogue()
+	next()
 
-func next_dialogue() -> void:
+func next() -> void:
 	# print("dialogue_ctr: ",dialogue_ctr, "/", current_talkable.lines.lines.size())
 	if dialogue_ctr >= current_talkable.lines.lines.size():
-		is_talking = false
-		dialogue_finished.emit()
+		end()
 		return
 	var line: DialogueLine = current_talkable.lines.lines[dialogue_ctr]
 	dialogue_slot.text = line.text
@@ -36,6 +42,7 @@ func next_dialogue() -> void:
 	var type: DialogueType.Types = line.type
 	dialogue_ctr += 1
 	if type == DialogueType.Types.QuestionChoice:
+		waiting_response = true
 		# print("DialogueType.Types.QuestionChoice")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		next_key.visible = false
@@ -63,31 +70,18 @@ func next_dialogue() -> void:
 		await animation_player.animation_finished
 		animation_player.play("RESET")
 
-func end_dialogue() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func end() -> void:
+	# print("dialogue_panel.end()")
 	if animation_player:
 		if animation_player.is_playing():
 			animation_player.stop()
 		animation_player.play("RESET")
-	current_talkable.end_dialogue()
 	current_talkable = null
-	is_talking = false
-	options_slot.visible = true
-
-func action_pressed(to_check: Array) -> bool:
-	for check in to_check:
-		if Input.is_action_just_pressed(Utils.input_map_value(check)):
-			return true
-	return false
-
-func _process(delta: float) -> void:
-	if is_talking:
-		if options_slot.visible:
-			return
-		if action_pressed([Inputs.Keys.E]):
-			next_dialogue()
+	options_slot.visible = false
+	GameManager.get_player().state_machine.change_state(moveable)
 
 func _on_answer_option(x) -> void:
 	var next_dialogue_index: int = current_talkable.respond(dialogue_ctr - 1, x)
 	dialogue_ctr = next_dialogue_index
-	next_dialogue()
+	waiting_response = false
+	next()

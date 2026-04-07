@@ -51,7 +51,9 @@ Inventory -> explicitly for Player,
 - Temporary main menu so can play level 0
 - NPC floating, idle, hands, hover above ground, refactor code
 - Understand the F out of FSM
-- fix dialogue bug, sometimes it starts at dialogue index 1 instead of 0
+- there is a super() function in Godot
+- introduce Economy
+- create auto template for scripts, reusable
 
 ## DialogueManager and Talkable
 - better for only one CanvasLayer for dialogue, so instead of it in the Talkable (also Talkable is only a class not a scene) put the CanvasLayer on DialogueManager
@@ -71,20 +73,25 @@ character name,
 ## References:
 - https://www.youtube.com/watch?v=QKdyUBjzPmk
 - https://www.youtube.com/watch?v=NJJNWGD25rg
+- https://shaggydev.com/2023/10/08/godot-4-state-machines/
 
 ## Riot Essay
 
 ### In your own words, why are you interested in working at Riot Games?*
-From my experience when creating games, I realize that I cannot do it alone. There are so many aspects in a game other than the code like the graphics, story, music, physics simulation, and as someone with programming background it is just impossible to master everything. I'm interested in working at Riot Games because it offers me a chance to meet and collaborate with other talented people. I'm excited to collaborate with people who shares the same passion for creating games.
+From my experience when creating games, I realize that I cannot do it alone. There are so many aspects in a game other than the code like the graphics, story, music, physics simulation. As someone with programming background it is just impossible to master everything. I'm interested in working at Riot Games because it offers me a chance to meet and collaborate with other talented people who shares the same passion for creating games.
 
-According to past Riot employees testimony, Riot Games has created a work culture that allows their developers to output their full potential by giving trust, support, and top tier resources. I believe in such environment I can grow and...
+According to past Riot employees testimony, Riot Games has created a work culture that allows their developers to output their potentials by giving trust, support, and top tier resources. By trusting their developers, Riot had created high quality games that can keep players engaged and having the best time. I am excited to work in an environtment like this, where I can fully contribute and keep growing as a developer.
 
 ### In your own words, why do you want to pursue this role professionally?*
-The career path of a game developer has a wide variety of roles, game designer, level designer, systems designer, play tester, and such. I see the roles as different levels in a game with their own set of challanges. Pursuing this role professionally would be the perfect opportunity for me to grow
+I started by creating small games only for me and my friends to play, then I got the chance to work voluntarily in an organization. The games we made eventually reached over 1000 players, which raises problem in optimizing certain aspects of the game. We were afraid that some players would left because it was too uncomfortable for them to play. This experience made me interested to learn more about how to design and maintain games that scales for millions of players worldwide in order to keep players feeling joy and having fun.
 
-At first I only create games for me and my friends to play.
-During my voluntary work as a game developer in an organization, I have had the chance to create games that were played by over 1000 players online. Because of this we had trouble to optimize the game in certain aspects.
-I am interested to learn how to scale games that are played by millions of players at the same time worldwide.
+The career path of a game developer has a wide variety of roles, game designer, level designer, systems designer, and such. I like to see the roles as different "levels" in a game with their own set of challanges that require different skills. Being a game developer gives me flexibility of trying different things, find what I like and dislike, what I'm best at, while still in an environnment that excites me.
 
+Last year I participated in my first game jam organized by a YouTuber. At the event I teamed up with someone new that I've never met in real life. As an introvert I never thought could happen. We managed to finish a game that we like. Although our game were nowhere close to join the top games, it made me get out of my comfort zone and thrive.
+
+Ultimately, I want to pursue this career profesionally because I enjoy both the creative and technical challange it has, it pushes me beyond my comfort zone, and gives joy to other people.
 
 should I add game jam to resume projects?
+
+## Player States
+ray should be independent

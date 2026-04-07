@@ -1,9 +1,9 @@
-extends CenterContainer
+extends CanvasLayer
 class_name Inventory
 
 # requires only contain <= 1 child
-@onready var equipped_slots: VBoxContainer = $MarginContainer/VBoxContainer/Equipped/VBoxContainer/EquippedSlots
-@onready var storage: Storage = $MarginContainer/VBoxContainer/Storage
+@onready var equipped_slots: VBoxContainer = $CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer/EquippedSlots
+@onready var storage: Storage = $CenterContainer/MarginContainer/VBoxContainer/Storage
 
 @onready var item_slot_scene: PackedScene = preload("res://storage/item_slot.tscn")
 var equipped_slot: ItemSlot
@@ -17,11 +17,9 @@ func _ready() -> void:
 
 func open() -> void:
 	visible = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func close() -> void:
 	visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func pickup(item_data: ItemData):
 	storage.insert(item_data)

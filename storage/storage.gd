@@ -25,11 +25,11 @@ func bind_functions(on_equip_storage: Callable, on_drop_storage: Callable):
  
 func open() -> void:
 	visible = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func close() -> void:
 	visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func size() -> int:
 	return item_slot_container.get_child_count()
