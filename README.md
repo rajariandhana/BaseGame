@@ -54,6 +54,7 @@ Inventory -> explicitly for Player,
 - there is a super() function in Godot
 - introduce Economy
 - create auto template for scripts, reusable
+- dialogue state -> UI theme -> upload to itch.io
 
 ## Dialogue System - DialoguePanel, Talkable, DialogueLine
 A "person" to talk to inherits `Talkable`. `Talkable` stores the dialogue lines as array of `DialogueLine` in `DialogueLines`. A `DialogueLine` have a type (`DialogueType`) to distinguish if it is a normal text or a question. An option of answer can also be declared.

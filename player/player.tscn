@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=20 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -12,6 +12,11 @@
 [ext_resource type="Script" uid="uid://ttoohobwdx7g" path="res://player/inventory_open.gd" id="7_boad6"]
 [ext_resource type="Script" uid="uid://dhhth5g6flnb8" path="res://player/interact_ray.gd" id="7_ebec5"]
 [ext_resource type="Script" uid="uid://71uxsbg08o71" path="res://player/menu.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://dnt526ghls0ii" path="res://player/dialogue_panel/printing.gd" id="10_32hag"]
+[ext_resource type="Script" uid="uid://dns5i4dokuf30" path="res://player/dialogue_panel/wait_next.gd" id="11_tqiix"]
+[ext_resource type="Script" uid="uid://bf18p6iqjtag6" path="res://player/dialogue_panel/wait_mcq.gd" id="12_e7oew"]
+[ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
+[ext_resource type="Script" uid="uid://bnn16jvnv4hpm" path="res://state/state.gd" id="14_tqiix"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -36,9 +41,10 @@ script = ExtResource("7_boad6")
 moveable_state = NodePath("../Moveable")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+[node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state", "dialogue_panel")]
 script = ExtResource("5_ebec5")
 moveable_state = NodePath("../Moveable")
+dialogue_panel = NodePath("../../DialoguePanel")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
 [node name="MenuOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
@@ -110,10 +116,15 @@ text = "[HOVER MESSAGE]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable")]
+[node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable", "printing_state", "wait_next_state", "wait_mcq_state", "wait_oeq_state", "idle_state")]
 visible = false
 script = ExtResource("4_yw30f")
 moveable = NodePath("../StateMachine/Moveable")
+printing_state = NodePath("StateMachine/Printing")
+wait_next_state = NodePath("StateMachine/WaitNext")
+wait_mcq_state = NodePath("StateMachine/WaitMCQ")
+wait_oeq_state = NodePath("StateMachine/WaitOEQ")
+idle_state = NodePath("StateMachine/Idle")
 
 [node name="DarkLayer" parent="DialoguePanel" instance=ExtResource("6_8t03j")]
 visible = false
@@ -225,6 +236,35 @@ theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Submit"
 
+[node name="StateMachine" type="Node" parent="DialoguePanel" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_g6k8r")
+starting_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://c6gxswkdyr7jq"
+
+[node name="Printing" type="Node" parent="DialoguePanel/StateMachine"]
+script = ExtResource("10_32hag")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="WaitNext" type="Node" parent="DialoguePanel/StateMachine"]
+script = ExtResource("11_tqiix")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="WaitMCQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("slot")]
+script = ExtResource("12_e7oew")
+slot = NodePath("../../MCQSlot")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="WaitOEQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("slot", "input", "submit_button")]
+script = ExtResource("13_32hag")
+slot = NodePath("../../OEQSlot")
+input = NodePath("../../OEQSlot/OEInput")
+submit_button = NodePath("../../OEQSlot/OESubmitButton")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="Idle" type="Node" parent="DialoguePanel/StateMachine"]
+script = ExtResource("14_tqiix")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
 [node name="Inventory" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("2_g1dw6")
@@ -306,6 +346,6 @@ offset_bottom = 467.0
 theme_override_font_sizes/font_size = 48
 text = "Click me"
 
-[connection signal="text_changed" from="DialoguePanel/OEQSlot/OEInput" to="DialoguePanel" method="_on_oe_input_text_changed"]
-[connection signal="pressed" from="DialoguePanel/OEQSlot/OESubmitButton" to="DialoguePanel" method="handle_oeq"]
+[connection signal="text_changed" from="DialoguePanel/OEQSlot/OEInput" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_input_text_changed"]
+[connection signal="pressed" from="DialoguePanel/OEQSlot/OESubmitButton" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_submit_button_pressed"]
 [connection signal="pressed" from="Menu/Button" to="Menu" method="_on_button_pressed"]
