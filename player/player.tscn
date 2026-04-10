@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=20 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -12,6 +12,11 @@
 [ext_resource type="Script" uid="uid://ttoohobwdx7g" path="res://player/inventory_open.gd" id="7_boad6"]
 [ext_resource type="Script" uid="uid://dhhth5g6flnb8" path="res://player/interact_ray.gd" id="7_ebec5"]
 [ext_resource type="Script" uid="uid://71uxsbg08o71" path="res://player/menu.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://dnt526ghls0ii" path="res://player/dialogue_panel/printing.gd" id="10_32hag"]
+[ext_resource type="Script" uid="uid://dns5i4dokuf30" path="res://player/dialogue_panel/wait_next.gd" id="11_tqiix"]
+[ext_resource type="Script" uid="uid://bf18p6iqjtag6" path="res://player/dialogue_panel/wait_mcq.gd" id="12_e7oew"]
+[ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
+[ext_resource type="PackedScene" uid="uid://ltkr6xxdfew6" path="res://state/idle.tscn" id="14_tqiix"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -36,9 +41,10 @@ script = ExtResource("7_boad6")
 moveable_state = NodePath("../Moveable")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+[node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state", "dialogue_panel")]
 script = ExtResource("5_ebec5")
 moveable_state = NodePath("../Moveable")
+dialogue_panel = NodePath("../../DialoguePanel")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
 [node name="MenuOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
@@ -110,10 +116,18 @@ text = "[HOVER MESSAGE]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable")]
+[node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable", "printing_state", "wait_next_state", "wait_mcq_state", "wait_oeq_state", "idle_state")]
 visible = false
 script = ExtResource("4_yw30f")
 moveable = NodePath("../StateMachine/Moveable")
+printing_state = NodePath("StateMachine/Printing")
+wait_next_state = NodePath("StateMachine/WaitNext")
+wait_mcq_state = NodePath("StateMachine/WaitMCQ")
+wait_oeq_state = NodePath("StateMachine/WaitOEQ")
+idle_state = NodePath("StateMachine/Idle")
+
+[node name="DarkLayer" parent="DialoguePanel" instance=ExtResource("6_8t03j")]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
 custom_minimum_size = Vector2(1920, 300)
@@ -169,33 +183,85 @@ theme_override_font_sizes/font_size = 32
 text = "Lorem ipsum dolor sit amet..."
 autowrap_mode = 3
 
-[node name="OptionsSlot" type="VBoxContainer" parent="DialoguePanel"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -275.0
-offset_top = -414.0
-offset_right = -50.0
-offset_bottom = -260.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="MCQSlot" type="VBoxContainer" parent="DialoguePanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -116.5
+offset_right = 112.5
+offset_bottom = 116.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Button" type="Button" parent="DialoguePanel/OptionsSlot"]
+[node name="Button" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer A"
 
-[node name="Button2" type="Button" parent="DialoguePanel/OptionsSlot"]
+[node name="Button2" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer B"
 
-[node name="Button3" type="Button" parent="DialoguePanel/OptionsSlot"]
+[node name="Button3" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Answer C"
+
+[node name="OEQSlot" type="VBoxContainer" parent="DialoguePanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -26.5
+offset_right = 200.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Open ended question"
+
+[node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQSlot"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Submit"
+
+[node name="StateMachine" type="Node" parent="DialoguePanel" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_g6k8r")
+starting_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://c6gxswkdyr7jq"
+
+[node name="Printing" type="Node" parent="DialoguePanel/StateMachine"]
+script = ExtResource("10_32hag")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="WaitNext" type="Node" parent="DialoguePanel/StateMachine"]
+script = ExtResource("11_tqiix")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="WaitMCQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("slot")]
+script = ExtResource("12_e7oew")
+slot = NodePath("../../MCQSlot")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="WaitOEQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("slot", "input", "submit_button")]
+script = ExtResource("13_32hag")
+slot = NodePath("../../OEQSlot")
+input = NodePath("../../OEQSlot/OEInput")
+submit_button = NodePath("../../OEQSlot/OESubmitButton")
+metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+
+[node name="Idle" parent="DialoguePanel/StateMachine" instance=ExtResource("14_tqiix")]
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 visible = false
@@ -278,4 +344,6 @@ offset_bottom = 467.0
 theme_override_font_sizes/font_size = 48
 text = "Click me"
 
+[connection signal="text_changed" from="DialoguePanel/OEQSlot/OEInput" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_input_text_changed"]
+[connection signal="pressed" from="DialoguePanel/OEQSlot/OESubmitButton" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_submit_button_pressed"]
 [connection signal="pressed" from="Menu/Button" to="Menu" method="_on_button_pressed"]

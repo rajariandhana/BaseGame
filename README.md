@@ -54,15 +54,14 @@ Inventory -> explicitly for Player,
 - there is a super() function in Godot
 - introduce Economy
 - create auto template for scripts, reusable
+- dialogue state -> UI theme -> upload to itch.io
 
-## DialogueManager and Talkable
-- better for only one CanvasLayer for dialogue, so instead of it in the Talkable (also Talkable is only a class not a scene) put the CanvasLayer on DialogueManager
-- Talkable should just contain the words then give it to DialogueManager
+## Dialogue System - DialoguePanel, Talkable, DialogueLine
+A "person" to talk to inherits `Talkable`. `Talkable` stores the dialogue lines as array of `DialogueLine` in `DialogueLines`. A `DialogueLine` have a type (`DialogueType`) to distinguish if it is a normal text or a question. An option of answer can also be declared.
 
-talkable.talk() -> 
-var is_talking: bool = false
-	
-character name, 
+`DialogueLines` is a one dimensional array. `Talkable.respond()` can be overriden to handle an answer given and return the index of the next dialogue line it should go to.
+
+- TODO: consider changing linear dialogue to tree based dialogue
 
 ## Game Feel
 - shake, recoil

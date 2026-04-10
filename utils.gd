@@ -30,3 +30,9 @@ func action_pressed(to_check: Array) -> bool:
 		if Input.is_action_just_pressed(input_map_value(check)):
 			return true
 	return false
+
+# On usage use `await` if want to wait for the function to end then execute next line
+func timeout(seconds: float) -> void:
+	# print("timeout_start")
+	await get_tree().create_timer(seconds).timeout
+	# print("timeout_end")

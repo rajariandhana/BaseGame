@@ -128,7 +128,7 @@ material_override = SubResource("StandardMaterial3D_y53of")
 mesh = SubResource("CapsuleMesh_fkqkq")
 
 [node name="Mouth_Open" type="MeshInstance3D" parent="."]
-transform = Transform3D(-8.54325e-11, -8.73967e-09, 0.2, -0.0799761, 0.00488644, 1.19093e-14, -0.00195458, -0.19994, -8.74228e-09, 0, 0.35, 0.506518)
+transform = Transform3D(-8.54319e-11, -8.73967e-09, 0.2, -0.0799761, 0.00488644, 1.33945e-14, -0.00195458, -0.19994, -8.74228e-09, 0, 0.35, 0.506518)
 visible = false
 material_override = SubResource("StandardMaterial3D_y53of")
 mesh = SubResource("TorusMesh_y53of")
