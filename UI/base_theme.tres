@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b1vbaymb2iq7c"]
+
+[ext_resource type="FontFile" uid="uid://dew03man6alu3" path="res://UI/fonts/dogicapixel.ttf" id="1_l30ol"]
+[ext_resource type="StyleBox" uid="uid://dqw1nk5k65wmb" path="res://UI/button_normal.tres" id="2_ugxw7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a41xb"]
+bg_color = Color(0.48151, 0.641618, 0.580678, 1)
+
+[resource]
+Button/colors/font_color = Color(0.121569, 0.188235, 0.160784, 1)
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_l30ol")
+Button/styles/disabled = ExtResource("2_ugxw7")
+Button/styles/normal = ExtResource("2_ugxw7")
+Button/styles/pressed = ExtResource("2_ugxw7")
+Label/colors/font_color = Color(0.119933, 0.188326, 0.162326, 1)
+Label/fonts/font = ExtResource("1_l30ol")
+MarginContainer/constants/margin_bottom = 10
+Panel/styles/panel = SubResource("StyleBoxFlat_a41xb")

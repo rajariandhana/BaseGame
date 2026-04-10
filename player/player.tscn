@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=21 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dhhth5g6flnb8" path="res://player/interact_ray.gd" id="7_ebec5"]
 [ext_resource type="Script" uid="uid://71uxsbg08o71" path="res://player/menu.gd" id="10_8t03j"]
 [ext_resource type="Script" uid="uid://dnt526ghls0ii" path="res://player/dialogue_panel/printing.gd" id="10_32hag"]
+[ext_resource type="Theme" uid="uid://b1vbaymb2iq7c" path="res://UI/base_theme.tres" id="10_e7oew"]
 [ext_resource type="Script" uid="uid://dns5i4dokuf30" path="res://player/dialogue_panel/wait_next.gd" id="11_tqiix"]
 [ext_resource type="Script" uid="uid://bf18p6iqjtag6" path="res://player/dialogue_panel/wait_mcq.gd" id="12_e7oew"]
 [ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
@@ -141,42 +142,45 @@ offset_top = -300.0
 offset_right = 960.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("10_e7oew")
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="PanelContainer" type="PanelContainer" parent="DialoguePanel/MarginContainer"]
+[node name="Panel" type="Panel" parent="DialoguePanel/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel/MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel/MarginContainer/Panel"]
 layout_mode = 2
+offset_right = 1820.0
+offset_bottom = 200.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="NameSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NameSlot" type="Label" parent="DialoguePanel/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Character Name"
 
-[node name="Control" type="Control" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="DialoguePanel/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NextKey" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NextKey" type="Label" parent="DialoguePanel/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Next [E]"
 
-[node name="DialogueSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="DialogueSlot" type="Label" parent="DialoguePanel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1800, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -195,6 +199,7 @@ offset_right = 112.5
 offset_bottom = 116.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_e7oew")
 
 [node name="Button" type="Button" parent="DialoguePanel/MCQSlot"]
 layout_mode = 2
@@ -223,6 +228,7 @@ offset_right = 200.0
 offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_e7oew")
 
 [node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQSlot"]
 layout_mode = 2
@@ -232,7 +238,6 @@ text = "Open ended question"
 [node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQSlot"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Submit"
 

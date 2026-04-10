@@ -3,9 +3,9 @@ class_name DialoguePanel
 
 var current_talkable: Talkable
 var dialogue_ctr: int = 0
-@onready var name_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NameSlot
-@onready var dialogue_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/DialogueSlot
-@onready var next_key: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextKey
+@onready var name_slot: Label = $MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/NameSlot
+@onready var dialogue_slot: Label = $MarginContainer/Panel/MarginContainer/VBoxContainer/DialogueSlot
+@onready var next_key: Label = $MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/NextKey
 @onready var mcq_slot: VBoxContainer = $MCQSlot
 @onready var oeq_slot: VBoxContainer = $OEQSlot
 @onready var dark_layer: ColorRect = $DarkLayer
