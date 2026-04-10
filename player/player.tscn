@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dns5i4dokuf30" path="res://player/dialogue_panel/wait_next.gd" id="11_tqiix"]
 [ext_resource type="Script" uid="uid://bf18p6iqjtag6" path="res://player/dialogue_panel/wait_mcq.gd" id="12_e7oew"]
 [ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
-[ext_resource type="Script" uid="uid://bnn16jvnv4hpm" path="res://state/state.gd" id="14_tqiix"]
+[ext_resource type="PackedScene" uid="uid://ltkr6xxdfew6" path="res://state/idle.tscn" id="14_tqiix"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -261,9 +261,7 @@ input = NodePath("../../OEQSlot/OEInput")
 submit_button = NodePath("../../OEQSlot/OESubmitButton")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="Idle" type="Node" parent="DialoguePanel/StateMachine"]
-script = ExtResource("14_tqiix")
-metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
+[node name="Idle" parent="DialoguePanel/StateMachine" instance=ExtResource("14_tqiix")]
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 visible = false

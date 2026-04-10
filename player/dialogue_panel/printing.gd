@@ -12,9 +12,7 @@ func enter() -> void:
 	if parent.animation_player:
 		ap = parent.animation_player
 		ap.play("talking")
-	# print("timeout_start")
-	await get_tree().create_timer(PRINTING_TIME).timeout
-	# print("timeout_end")
+	await Utils.timeout(PRINTING_TIME)
 	parent.wait()
 
 func exit() -> void:

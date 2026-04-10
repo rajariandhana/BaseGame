@@ -10,6 +10,5 @@ func exit() -> void:
 
 func process_physics(_delta: float) -> State:
 	if Utils.action_pressed([Inputs.Keys.E]):
-		# print("Utils.action_pressed([Inputs.Keys.E])")
-		return parent.next_printing()
+		parent.next_printing()
 	return null

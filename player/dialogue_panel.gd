@@ -3,7 +3,6 @@ class_name DialoguePanel
 
 var current_talkable: Talkable
 var dialogue_ctr: int = 0
-var waiting_response: bool = false
 @onready var name_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NameSlot
 @onready var dialogue_slot: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/DialogueSlot
 @onready var next_key: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextKey
@@ -44,18 +43,10 @@ func begin(talkable: Talkable) -> void:
 
 func open() -> void:
 	visible = true
-	state_machine.change_state(printing_state)
 	state_machine.set_process(true)
 
 func close() -> void:
-	if animation_player:
-		if animation_player.is_playing():
-			animation_player.stop()
-		animation_player.play("RESET")
-	animation_player = null
-
 	state_machine.set_process(false)
-	state_machine.change_state(printing_state)
 	visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -69,7 +60,7 @@ func _process(delta: float) -> void:
 
 func next_printing() -> void:
 	if dialogue_ctr >= current_talkable.lines.lines.size():
-		state_machine.change_state(idle_state)
+		# state_machine.change_state(idle_state)
 		end()
 		return
 	
@@ -80,9 +71,11 @@ func next_printing() -> void:
 	dialogue_ctr += 1
 
 func wait() -> void:
-	var wait_state: State = wait_next_state
+	var wait_state: State = idle_state
 	var type: DialogueType.Types = current_line.type
 	match type:
+		DialogueType.Types.Text:
+			wait_state = wait_next_state
 		DialogueType.Types.MCQ:
 			wait_mcq_state.setup(current_line.answer_choice)
 			wait_state = wait_mcq_state
@@ -91,11 +84,16 @@ func wait() -> void:
 	state_machine.change_state(wait_state)
 
 func end() -> void:
-	# print("dialogue_panel.end()")
+	if animation_player:
+		if animation_player.is_playing():
+			animation_player.stop()
+		animation_player.play("RESET")
+	animation_player = null
+
 	current_talkable = null
+	state_machine.change_state(idle_state)
 	GameManager.get_player().state_machine.change_state(moveable)
 
 func handle_respond(answer: String) -> void:
 	dialogue_ctr = current_talkable.respond(dialogue_ctr - 1, answer)
-	waiting_response = false
 	next_printing()
