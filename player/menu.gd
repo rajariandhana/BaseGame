@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _ready() -> void:
+  close()
+
 func open() -> void:
   visible = true
 

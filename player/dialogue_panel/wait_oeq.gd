@@ -1,19 +1,20 @@
 extends State
 
-@export var slot: VBoxContainer
+@export var container: MarginContainer
+@export var slot: HBoxContainer
 @export var input: LineEdit
 @export var submit_button: Button
 
 func enter() -> void:
 	# print("DP.State.WaitOEQ")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	slot.visible = true
+	container.visible = true
 	parent.dark_layer.visible = true
 	submit_button.set_disabled(true)
 	input.text = ""
 
 func exit() -> void:
-	slot.visible = false
+	container.visible = false
 	parent.dark_layer.visible = false
 
 func _on_oe_input_text_changed(new_text: String) -> void:
