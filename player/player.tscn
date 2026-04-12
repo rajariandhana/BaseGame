@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=22 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bf18p6iqjtag6" path="res://player/dialogue_panel/wait_mcq.gd" id="12_e7oew"]
 [ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
 [ext_resource type="PackedScene" uid="uid://ltkr6xxdfew6" path="res://state/idle.tscn" id="14_tqiix"]
+[ext_resource type="Theme" uid="uid://bowup014oq7o0" path="res://UI/storage_theme.tres" id="17_c35mf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -118,6 +119,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable", "printing_state", "wait_next_state", "wait_mcq_state", "wait_oeq_state", "idle_state")]
+visible = false
 script = ExtResource("4_yw30f")
 moveable = NodePath("../StateMachine/Moveable")
 printing_state = NodePath("StateMachine/Printing")
@@ -318,18 +320,24 @@ theme_override_constants/separation = 20
 
 [node name="Equipped" type="PanelContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("17_c35mf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped"]
-custom_minimum_size = Vector2(600, 230)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Equipped"
 
 [node name="EquippedSlots" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
-custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
 [node name="Storage" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]

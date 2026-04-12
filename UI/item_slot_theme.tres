@@ -1,0 +1,69 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cbct8x7t3q45t"]
+
+[ext_resource type="FontFile" uid="uid://dew03man6alu3" path="res://UI/fonts/dogicapixel.ttf" id="1_nir47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nir47"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0901961, 0.137255, 0.176471, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otgvk"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0901961, 0.137255, 0.176471, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kic45"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.117647, 0.152941, 0.286275, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6m8y"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0901961, 0.137255, 0.176471, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46e4i"]
+bg_color = Color(0.262745, 0.356863, 0.45098, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.117647, 0.152941, 0.286275, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[resource]
+Button/fonts/font = ExtResource("1_nir47")
+Button/styles/disabled = SubResource("StyleBoxFlat_nir47")
+Button/styles/hover = SubResource("StyleBoxFlat_otgvk")
+Button/styles/normal = SubResource("StyleBoxFlat_kic45")
+Button/styles/pressed = SubResource("StyleBoxFlat_g6m8y")
+Label/constants/line_spacing = 10
+Label/fonts/font = ExtResource("1_nir47")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_46e4i")
