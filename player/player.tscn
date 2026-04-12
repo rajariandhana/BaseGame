@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=24 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
 [ext_resource type="PackedScene" uid="uid://ltkr6xxdfew6" path="res://state/idle.tscn" id="14_tqiix"]
 [ext_resource type="Theme" uid="uid://bowup014oq7o0" path="res://UI/storage_theme.tres" id="17_c35mf"]
+[ext_resource type="Theme" uid="uid://soqhoeqybnli" path="res://UI/menu_theme.tres" id="20_x7c3f"]
+[ext_resource type="FontFile" uid="uid://usbqmhhjmds0" path="res://UI/fonts/dogicabold.ttf" id="21_bjvpn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -343,39 +345,133 @@ layout_mode = 2
 [node name="Storage" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]
 layout_mode = 2
 
-[node name="Menu" type="CanvasLayer" parent="."]
-visible = false
+[node name="Menu" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable_state")]
 script = ExtResource("10_8t03j")
+moveable_state = NodePath("../StateMachine/Moveable")
 
 [node name="DarkLayer" parent="Menu" instance=ExtResource("6_8t03j")]
 
-[node name="HoverMessage" type="Label" parent="Menu"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -271.0
-offset_top = -783.0
-offset_right = 271.0
-offset_bottom = -738.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "MENU OPENED"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ItemList" type="ItemList" parent="Menu"]
+visible = false
+custom_minimum_size = Vector2(200, 200)
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 540.0
+item_count = 4
+item_0/text = "ABC"
+item_1/text = "DEF"
+item_2/text = "GHI"
+item_3/text = "JKL"
 
-[node name="Button" type="Button" parent="Menu"]
-offset_left = 598.0
-offset_top = 392.0
-offset_right = 919.0
-offset_bottom = 467.0
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_x7c3f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("21_bjvpn")
 theme_override_font_sizes/font_size = 48
-text = "Click me"
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[Tab]"
+
+[node name="Label2" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="Label3" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[W]"
+
+[node name="Label4" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Move Forward"
+
+[node name="Label5" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[A]"
+
+[node name="Label6" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Strafe Left"
+
+[node name="Label7" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[S]"
+
+[node name="Label8" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Move Back"
+
+[node name="Label9" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[D]"
+
+[node name="Label10" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Strafe Rght"
+
+[node name="Label11" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[Space]"
+
+[node name="Label12" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Jump"
+
+[node name="Label13" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "[Esc]"
+
+[node name="Label14" type="Label" parent="Menu/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonResume" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="ButtonMainMenu" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="TabBar" type="TabBar" parent="Menu/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+current_tab = 0
+clip_tabs = false
+tab_count = 2
+tab_0/title = "Controls"
+tab_1/title = "Options"
+
+[node name="TabContainer" type="TabContainer" parent="Menu/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+clip_tabs = false
 
 [connection signal="text_changed" from="DialoguePanel/OEQContainer/OEQSlot/OEInput" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_input_text_changed"]
 [connection signal="pressed" from="DialoguePanel/OEQContainer/OEQSlot/OESubmitButton" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_submit_button_pressed"]
-[connection signal="pressed" from="Menu/Button" to="Menu" method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/ButtonResume" to="Menu" method="_on_button_resume_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/ButtonMainMenu" to="Menu" method="_on_button_main_menu_pressed"]

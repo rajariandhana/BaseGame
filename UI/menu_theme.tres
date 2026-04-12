@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://soqhoeqybnli"]
+
+[ext_resource type="FontFile" uid="uid://dew03man6alu3" path="res://UI/fonts/dogicapixel.ttf" id="1_ptyj5"]
+[ext_resource type="StyleBox" uid="uid://dqw1nk5k65wmb" path="res://UI/button_normal.tres" id="2_lk8tw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46oc6"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+bg_color = Color(0.117647, 0.152941, 0.286275, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.117647, 0.152941, 0.286275, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kbdb"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+bg_color = Color(0.0901961, 0.137255, 0.176471, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.0901961, 0.137255, 0.176471, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[resource]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_ptyj5")
+Button/styles/hover = SubResource("StyleBoxFlat_46oc6")
+Button/styles/normal = ExtResource("2_lk8tw")
+Button/styles/pressed = SubResource("StyleBoxFlat_0kbdb")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_ptyj5")

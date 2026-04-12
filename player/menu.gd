@@ -1,13 +1,18 @@
 extends CanvasLayer
 
+@export var moveable_state: State
+
 func _ready() -> void:
-  close()
+	close()
 
 func open() -> void:
-  visible = true
+	visible = true
 
 func close() -> void:
-  visible = false
+	visible = false
 
-func _on_button_pressed() -> void:
-  print("button on menu clicked")
+func _on_button_resume_pressed() -> void:
+	GameManager.get_player().state_machine.change_state(moveable_state)
+
+func _on_button_main_menu_pressed() -> void:
+	pass # Replace with function body.
