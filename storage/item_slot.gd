@@ -9,10 +9,10 @@ var item_data: ItemData
 @onready var item_name: Label = $MarginContainer/HBoxContainer/VBoxContainer/Name
 @onready var item_description: Label = $MarginContainer/HBoxContainer/VBoxContainer/Description
 
-@onready var action_v_box_container: VBoxContainer = $ActionVBoxContainer
+@onready var action_v_box_container: VBoxContainer = $MarginContainer/HBoxContainer/ActionVBoxContainer
 
-@onready var button_equip: Button = $ActionVBoxContainer/ButtonEquip
-@onready var button_drop: Button = $ActionVBoxContainer/ButtonDrop
+@onready var button_equip: Button = $MarginContainer/HBoxContainer/ActionVBoxContainer/ButtonEquip
+@onready var button_drop: Button = $MarginContainer/HBoxContainer/ActionVBoxContainer/ButtonDrop
 
 func _ready() -> void:
 	return

@@ -7,7 +7,7 @@ class_name Storage
 @export var items: Dictionary[int, ItemSlot]
 
 @onready var item_slot_container: VBoxContainer = $VBoxContainer/ScrollContainer/ItemSlotContainer
-@onready var title: Label = $PanelContainer/VBoxContainer/Title
+@onready var title: Label = $PanelContainer/VBoxContainer/MarginContainer/Title
 
 @onready var item_slot_scene: PackedScene = preload("res://storage/item_slot.tscn")
 

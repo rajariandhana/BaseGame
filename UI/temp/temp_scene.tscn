@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://djftva72fcg4p"]
+
+[ext_resource type="Theme" uid="uid://soqhoeqybnli" path="res://UI/main_menu/menu_theme.tres" id="1_2ltmq"]
+[ext_resource type="Script" uid="uid://cawg7qyavw6et" path="res://UI/temp/temp_scene.gd" id="1_tjx8h"]
+
+[node name="TempScene" type="CanvasLayer"]
+script = ExtResource("1_tjx8h")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2ltmq")
+
+[node name="Button" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="CenterContainer/Button" to="." method="_on_button_pressed"]

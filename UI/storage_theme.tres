@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bowup014oq7o0"]
+
+[ext_resource type="FontFile" uid="uid://usbqmhhjmds0" path="res://UI/fonts/dogicabold.ttf" id="1_fwog2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwog2"]
+bg_color = Color(0.117647, 0.152941, 0.286275, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+Label/fonts/font = ExtResource("1_fwog2")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_fwog2")

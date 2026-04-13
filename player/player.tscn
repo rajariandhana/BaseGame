@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene load_steps=25 format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -13,10 +13,15 @@
 [ext_resource type="Script" uid="uid://dhhth5g6flnb8" path="res://player/interact_ray.gd" id="7_ebec5"]
 [ext_resource type="Script" uid="uid://71uxsbg08o71" path="res://player/menu.gd" id="10_8t03j"]
 [ext_resource type="Script" uid="uid://dnt526ghls0ii" path="res://player/dialogue_panel/printing.gd" id="10_32hag"]
+[ext_resource type="Theme" uid="uid://b1vbaymb2iq7c" path="res://UI/dialogue_theme.tres" id="10_e7oew"]
 [ext_resource type="Script" uid="uid://dns5i4dokuf30" path="res://player/dialogue_panel/wait_next.gd" id="11_tqiix"]
 [ext_resource type="Script" uid="uid://bf18p6iqjtag6" path="res://player/dialogue_panel/wait_mcq.gd" id="12_e7oew"]
 [ext_resource type="Script" uid="uid://b54kt7oefbc6q" path="res://player/dialogue_panel/wait_oeq.gd" id="13_32hag"]
 [ext_resource type="PackedScene" uid="uid://ltkr6xxdfew6" path="res://state/idle.tscn" id="14_tqiix"]
+[ext_resource type="Theme" uid="uid://bowup014oq7o0" path="res://UI/storage_theme.tres" id="17_c35mf"]
+[ext_resource type="Theme" uid="uid://soqhoeqybnli" path="res://UI/main_menu/menu_theme.tres" id="20_x7c3f"]
+[ext_resource type="FontFile" uid="uid://usbqmhhjmds0" path="res://UI/fonts/dogicabold.ttf" id="21_bjvpn"]
+[ext_resource type="PackedScene" uid="uid://ygi2imxu6i2c" path="res://UI/controls_guide.tscn" id="22_bjvpn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
@@ -126,116 +131,6 @@ wait_mcq_state = NodePath("StateMachine/WaitMCQ")
 wait_oeq_state = NodePath("StateMachine/WaitOEQ")
 idle_state = NodePath("StateMachine/Idle")
 
-[node name="DarkLayer" parent="DialoguePanel" instance=ExtResource("6_8t03j")]
-visible = false
-
-[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
-custom_minimum_size = Vector2(1920, 300)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -960.0
-offset_top = -300.0
-offset_right = 960.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="PanelContainer" type="PanelContainer" parent="DialoguePanel/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel/MarginContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="NameSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Character Name"
-
-[node name="Control" type="Control" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="NextKey" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Next [E]"
-
-[node name="DialogueSlot" type="Label" parent="DialoguePanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1800, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Lorem ipsum dolor sit amet..."
-autowrap_mode = 3
-
-[node name="MCQSlot" type="VBoxContainer" parent="DialoguePanel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -112.5
-offset_top = -116.5
-offset_right = 112.5
-offset_bottom = 116.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="DialoguePanel/MCQSlot"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Answer A"
-
-[node name="Button2" type="Button" parent="DialoguePanel/MCQSlot"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Answer B"
-
-[node name="Button3" type="Button" parent="DialoguePanel/MCQSlot"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Answer C"
-
-[node name="OEQSlot" type="VBoxContainer" parent="DialoguePanel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -26.5
-offset_right = 200.0
-offset_bottom = 26.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQSlot"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Open ended question"
-
-[node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQSlot"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-disabled = true
-text = "Submit"
-
 [node name="StateMachine" type="Node" parent="DialoguePanel" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_g6k8r")
 starting_state = NodePath("Idle")
@@ -249,19 +144,153 @@ metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 script = ExtResource("11_tqiix")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="WaitMCQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("slot")]
+[node name="WaitMCQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("container", "slot")]
 script = ExtResource("12_e7oew")
-slot = NodePath("../../MCQSlot")
+container = NodePath("../../MCQContainer")
+slot = NodePath("../../MCQContainer/MCQSlot")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="WaitOEQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("slot", "input", "submit_button")]
+[node name="WaitOEQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("container", "slot", "input", "submit_button")]
 script = ExtResource("13_32hag")
-slot = NodePath("../../OEQSlot")
-input = NodePath("../../OEQSlot/OEInput")
-submit_button = NodePath("../../OEQSlot/OESubmitButton")
+container = NodePath("../../OEQContainer")
+slot = NodePath("../../OEQContainer/OEQSlot")
+input = NodePath("../../OEQContainer/OEQSlot/OEInput")
+submit_button = NodePath("../../OEQContainer/OEQSlot/OESubmitButton")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
 [node name="Idle" parent="DialoguePanel/StateMachine" instance=ExtResource("14_tqiix")]
+
+[node name="DarkLayer" parent="DialoguePanel" instance=ExtResource("6_8t03j")]
+visible = false
+
+[node name="DialogueBox" type="MarginContainer" parent="DialoguePanel"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -319.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(1920, 319)
+theme = ExtResource("10_e7oew")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="DialoguePanel/DialogueBox"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel/DialogueBox/Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -209.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/DialogueBox/Panel/MarginContainer"]
+custom_minimum_size = Vector2(0, 139)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameSlot" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Character Name"
+
+[node name="Control" type="Control" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextKey" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Next [E]"
+
+[node name="DialogueSlot" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/line_spacing = 32
+theme_override_font_sizes/font_size = 32
+text = "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet..."
+autowrap_mode = 3
+
+[node name="MCQContainer" type="MarginContainer" parent="DialoguePanel"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -496.0
+offset_top = -546.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 280
+
+[node name="MCQSlot" type="VBoxContainer" parent="DialoguePanel/MCQContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("10_e7oew")
+theme_override_constants/separation = 10
+
+[node name="Sample Answer Button 1" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot"]
+layout_mode = 2
+text = "Answer 1"
+
+[node name="Sample Answer Button 2" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot"]
+layout_mode = 2
+text = "Answer 2"
+
+[node name="Sample Answer Button 3" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot"]
+layout_mode = 2
+text = "Answer 3"
+
+[node name="OEQContainer" type="MarginContainer" parent="DialoguePanel"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -382.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 280
+
+[node name="OEQSlot" type="HBoxContainer" parent="DialoguePanel/OEQContainer"]
+layout_mode = 2
+theme = ExtResource("10_e7oew")
+theme_override_constants/separation = 10
+
+[node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQContainer/OEQSlot"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Open ended quest"
+placeholder_text = "..."
+max_length = 16
+expand_to_text_length = true
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+text_direction = 1
+
+[node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQContainer/OEQSlot"]
+layout_mode = 2
+disabled = true
+text = "ENTER"
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 visible = false
@@ -294,56 +323,97 @@ theme_override_constants/separation = 20
 
 [node name="Equipped" type="PanelContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("17_c35mf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped"]
-custom_minimum_size = Vector2(600, 230)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Equipped"
 
 [node name="EquippedSlots" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
-custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
 [node name="Storage" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]
 layout_mode = 2
 
-[node name="Menu" type="CanvasLayer" parent="."]
-visible = false
+[node name="Menu" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable_state")]
 script = ExtResource("10_8t03j")
+moveable_state = NodePath("../StateMachine/Moveable")
 
 [node name="DarkLayer" parent="Menu" instance=ExtResource("6_8t03j")]
 
-[node name="HoverMessage" type="Label" parent="Menu"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="ItemList" type="ItemList" parent="Menu"]
+visible = false
+custom_minimum_size = Vector2(200, 200)
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 540.0
+item_count = 4
+item_0/text = "ABC"
+item_1/text = "DEF"
+item_2/text = "GHI"
+item_3/text = "JKL"
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -271.0
-offset_top = -783.0
-offset_right = 271.0
-offset_bottom = -738.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "MENU OPENED"
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+theme = ExtResource("20_x7c3f")
 
-[node name="Button" type="Button" parent="Menu"]
-offset_left = 598.0
-offset_top = 392.0
-offset_right = 919.0
-offset_bottom = 467.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("21_bjvpn")
 theme_override_font_sizes/font_size = 48
-text = "Click me"
+text = "Menu"
+horizontal_alignment = 1
 
-[connection signal="text_changed" from="DialoguePanel/OEQSlot/OEInput" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_input_text_changed"]
-[connection signal="pressed" from="DialoguePanel/OEQSlot/OESubmitButton" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_submit_button_pressed"]
-[connection signal="pressed" from="Menu/Button" to="Menu" method="_on_button_pressed"]
+[node name="ControlsGuide" parent="Menu/CenterContainer/VBoxContainer" instance=ExtResource("22_bjvpn")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonResume" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="ButtonMainMenu" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="TabBar" type="TabBar" parent="Menu/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+current_tab = 0
+clip_tabs = false
+tab_count = 2
+tab_0/title = "Controls"
+tab_1/title = "Options"
+
+[node name="TabContainer" type="TabContainer" parent="Menu/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+clip_tabs = false
+
+[connection signal="text_changed" from="DialoguePanel/OEQContainer/OEQSlot/OEInput" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_input_text_changed"]
+[connection signal="pressed" from="DialoguePanel/OEQContainer/OEQSlot/OESubmitButton" to="DialoguePanel/StateMachine/WaitOEQ" method="_on_oe_submit_button_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/ButtonResume" to="Menu" method="_on_button_resume_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/ButtonMainMenu" to="Menu" method="_on_button_main_menu_pressed"]

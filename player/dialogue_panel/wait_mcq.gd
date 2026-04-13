@@ -1,15 +1,16 @@
 extends State
 
+@export var container: MarginContainer
 @export var slot: VBoxContainer
 
 func enter() -> void:
 	# print("DP.State.WaitMCQ")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	slot.visible = true
+	container.visible = true
 	parent.dark_layer.visible = true
 
 func exit() -> void:
-	slot.visible = false
+	container.visible = false
 	parent.dark_layer.visible = false
 
 func handle_mcq(option_text: String) -> void:

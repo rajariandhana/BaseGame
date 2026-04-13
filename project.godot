@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BaseGame"
-run/main_scene="uid://d3f2ekjqi1vut"
+run/main_scene="uid://dyqg5ud4qvsm6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ Utils="*res://utils.gd"
 Globals="*res://globals.gd"
 ItemDB="*res://items/item_db.gd"
 GameManager="*res://game_manager.gd"
+Scenes="*res://scenes.gd"
 
 [debug]
 
