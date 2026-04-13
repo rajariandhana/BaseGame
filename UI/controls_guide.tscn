@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://ygi2imxu6i2c"]
+
+[ext_resource type="Theme" uid="uid://soqhoeqybnli" path="res://UI/main_menu/menu_theme.tres" id="1_03eog"]
+[ext_resource type="FontFile" uid="uid://b3lcwlnhbh64a" path="res://UI/fonts/dogicapixelbold.ttf" id="2_vp3wo"]
+
+[node name="ControlsGuide" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_03eog")
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vp3wo")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[Tab]"
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[W]"
+
+[node name="Label4" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Move Forward"
+
+[node name="Label5" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[A]"
+
+[node name="Label6" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Strafe Left"
+
+[node name="Label7" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[S]"
+
+[node name="Label8" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Move Back"
+
+[node name="Label9" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[D]"
+
+[node name="Label10" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Strafe Rght"
+
+[node name="Label11" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[Space]"
+
+[node name="Label12" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Jump"
+
+[node name="Label13" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "[Esc]"
+
+[node name="Label14" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Menu"

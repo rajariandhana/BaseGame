@@ -41,5 +41,7 @@ Button/fonts/font = ExtResource("1_ptyj5")
 Button/styles/hover = SubResource("StyleBoxFlat_46oc6")
 Button/styles/normal = ExtResource("2_lk8tw")
 Button/styles/pressed = SubResource("StyleBoxFlat_0kbdb")
+GridContainer/constants/h_separation = 40
+GridContainer/constants/v_separation = 10
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_ptyj5")

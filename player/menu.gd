@@ -15,4 +15,4 @@ func _on_button_resume_pressed() -> void:
 	GameManager.get_player().state_machine.change_state(moveable_state)
 
 func _on_button_main_menu_pressed() -> void:
-	pass # Replace with function body.
+	GameManager.change_scene(Scenes.main_menu_scene)
