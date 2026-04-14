@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://5fcjqinr3kt1"]
+[gd_scene load_steps=7 format=3 uid="uid://5fcjqinr3kt1"]
 
 [ext_resource type="Texture2D" uid="uid://bm4unpabnqbii" path="res://checkboard.png" id="1_eus5j"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_823pn"]
 [ext_resource type="PackedScene" uid="uid://btqomka4ree43" path="res://static_items/table.tscn" id="3_iss0w"]
+[ext_resource type="PackedScene" uid="uid://dvg4coog348lp" path="res://static_items/computer.tscn" id="4_yi3jx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_823pn"]
 albedo_color = Color(0.719814, 0.668477, 0.424855, 1)
@@ -38,5 +39,10 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
 [node name="Player" parent="." instance=ExtResource("2_823pn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.664175, 1, 1.19144)
 
-[node name="Table" parent="." instance=ExtResource("3_iss0w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386429, 0, -0.926821)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.11)
+
+[node name="Table" parent="Node3D" instance=ExtResource("3_iss0w")]
+
+[node name="Computer" parent="Node3D" instance=ExtResource("4_yi3jx")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 1, 0)
