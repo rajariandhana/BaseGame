@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://btqomka4ree43"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi1yj"]
+albedo_color = Color(0.580211, 0.37271, 0.18981, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ww3xq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oi1yj"]
+size = Vector3(2, 0.1, 1)
+
+[node name="Table" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.95, 0)
+material_override = SubResource("StandardMaterial3D_oi1yj")
+mesh = SubResource("BoxMesh_ww3xq")
+
+[node name="Stand" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.9, 0, 0, 0, 0.1, 0.95, 0.45, 0.45)
+material_override = SubResource("StandardMaterial3D_oi1yj")
+mesh = SubResource("BoxMesh_ww3xq")
+
+[node name="Stand2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.9, 0, 0, 0, 0.1, 0.95, 0.45, -0.45)
+material_override = SubResource("StandardMaterial3D_oi1yj")
+mesh = SubResource("BoxMesh_ww3xq")
+
+[node name="Stand3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.9, 0, 0, 0, 0.1, -0.95, 0.45, 0.45)
+material_override = SubResource("StandardMaterial3D_oi1yj")
+mesh = SubResource("BoxMesh_ww3xq")
+
+[node name="Stand4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.9, 0, 0, 0, 0.1, -0.95, 0.45, -0.45)
+material_override = SubResource("StandardMaterial3D_oi1yj")
+mesh = SubResource("BoxMesh_ww3xq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("BoxShape3D_oi1yj")

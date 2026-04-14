@@ -70,9 +70,9 @@ A "person" to talk to inherits `Talkable`. `Talkable` stores the dialogue lines 
 - lighting
 
 ## References:
-- https://www.youtube.com/watch?v=QKdyUBjzPmk
-- https://www.youtube.com/watch?v=NJJNWGD25rg
-- https://shaggydev.com/2023/10/08/godot-4-state-machines/
+- https://www.youtube.com/watch?v=NJJNWGD25rg (Player)
+- https://www.youtube.com/watch?v=QKdyUBjzPmk (Interaction and Ray Cast)
+- https://shaggydev.com/2023/10/08/godot-4-state-machines/ (State Machine)
 
 ## Riot Essay
 
