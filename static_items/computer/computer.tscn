@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvg4coog348lp"]
+[gd_scene load_steps=7 format=3 uid="uid://dvg4coog348lp"]
 
-[ext_resource type="PackedScene" uid="uid://btqomka4ree43" path="res://static_items/table.tscn" id="1_qro5i"]
+[ext_resource type="Script" uid="uid://dfurik6jcbftt" path="res://static_items/computer/computer.gd" id="1_grj0e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntlu6"]
 albedo_color = Color(0.63487, 0.62172, 0.62704, 1)
@@ -12,12 +12,11 @@ albedo_color = Color(0.63487, 0.62172, 0.62704, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8euhl"]
 albedo_color = Color(0.157388, 0.151262, 0.15375, 1)
 
-[node name="Computer" type="StaticBody3D"]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydsae"]
 
-[node name="TableReference" parent="." instance=ExtResource("1_qro5i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-visible = false
+[node name="Computer" type="StaticBody3D"]
+transform = Transform3D(1.3, 1.5697e-05, -1.19206e-05, -1.5697e-05, 1.3, 1.12387e-05, 1.19206e-05, -1.12387e-05, 1.3, 0, 0, 0)
+script = ExtResource("1_grj0e")
 
 [node name="Keyboard" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.025, 0, 0, 0, 0.1, 0, 0.015, 0.27)
@@ -57,3 +56,7 @@ mesh = SubResource("BoxMesh_v22hr")
 transform = Transform3D(0.15, 0, 0, 0, 0.14886, 0.0061515, 0, -0.0184545, 0.0496201, 0, 0.180715, -0.119909)
 material_override = SubResource("StandardMaterial3D_ntlu6")
 mesh = SubResource("BoxMesh_v22hr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.4, 0, 0, 0, 0.3, 0, 0.2, 0)
+shape = SubResource("BoxShape3D_ydsae")

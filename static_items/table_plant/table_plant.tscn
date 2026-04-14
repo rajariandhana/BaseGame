@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp3qqxkanibae"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vowy2"]
+albedo_color = Color(0.60752, 0.633651, 0.594552, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f7tjx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10n2k"]
+albedo_color = Color(0.473237, 0.296312, 0.121528, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmmi6"]
+albedo_color = Color(0.206478, 0.391045, 0.242253, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_juxre"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp2hv"]
+albedo_color = Color(0.63487, 0.62172, 0.62704, 1)
+
+[node name="TablePlant" type="StaticBody3D"]
+
+[node name="Pot" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.03, 0, 0, 0, 0.1, 0, 0.03, 0)
+material_override = SubResource("StandardMaterial3D_vowy2")
+mesh = SubResource("CylinderMesh_f7tjx")
+
+[node name="Branch" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.05, 0, 0, 0, 0.02, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_10n2k")
+mesh = SubResource("CylinderMesh_f7tjx")
+
+[node name="Leaf1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.46242e-06, 0.149768, 0.000274822)
+material_override = SubResource("StandardMaterial3D_xmmi6")
+mesh = SubResource("SphereMesh_juxre")
+
+[node name="Leaf2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.0355547, 0.16, 0.0258543)
+material_override = SubResource("StandardMaterial3D_xmmi6")
+mesh = SubResource("SphereMesh_juxre")
+
+[node name="Leaf3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.033228, 0.199811, 0.0126555)
+material_override = SubResource("StandardMaterial3D_xmmi6")
+mesh = SubResource("SphereMesh_juxre")
+
+[node name="Leaf4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.00806205, 0.177885, -0.0456888)
+material_override = SubResource("StandardMaterial3D_xmmi6")
+mesh = SubResource("SphereMesh_juxre")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.02, 0, 0, 0, 0.1, 0, 0.08, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_jp2hv")
+mesh = SubResource("CylinderMesh_f7tjx")
