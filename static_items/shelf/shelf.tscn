@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7wes43rvbm6w"]
+
+[ext_resource type="Script" uid="uid://b27twa3gw6eho" path="res://static_items/auto_collision.gd" id="1_k5wry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsjlv"]
+albedo_color = Color(0.60752, 0.633651, 0.594552, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k5wry"]
+
+[node name="Shelf" type="StaticBody3D"]
+script = ExtResource("1_k5wry")
+
+[node name="LeftWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 3, 0, 0, 0, 1, -0.95, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="RightWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 3, 0, 0, 0, 1, 0.95, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="BackWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 3, 0, 0, 0, 0.1, 0, 1.5, -0.45)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="Rack1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="Rack2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="Rack3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="Rack4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2.25, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")
+
+[node name="Rack5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2.95, 0)
+material_override = SubResource("StandardMaterial3D_dsjlv")
+mesh = SubResource("BoxMesh_k5wry")

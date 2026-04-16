@@ -4,6 +4,7 @@ var line_3: String
 func _ready() -> void:
 	super()
 	line_3 = get_line(3)
+	# interactions[Inputs.Keys.E] = "Turn On"
 
 func respond(index: int, answer: String) -> int:
 	print("index: ",index," answer: ",answer)

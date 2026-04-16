@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5fcjqinr3kt1"]
+[gd_scene load_steps=10 format=3 uid="uid://5fcjqinr3kt1"]
 
 [ext_resource type="Texture2D" uid="uid://bm4unpabnqbii" path="res://checkboard.png" id="1_eus5j"]
 [ext_resource type="PackedScene" uid="uid://cmepnq7pdcy3o" path="res://player/player.tscn" id="2_823pn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvg4coog348lp" path="res://static_items/computer/computer.tscn" id="4_yi3jx"]
 [ext_resource type="Resource" uid="uid://bn3vesggs1gi" path="res://static_items/computer/computer_0_0.tres" id="5_foxie"]
 [ext_resource type="PackedScene" uid="uid://bp3qqxkanibae" path="res://static_items/table_plant/table_plant.tscn" id="6_7d3si"]
+[ext_resource type="PackedScene" uid="uid://b7wes43rvbm6w" path="res://static_items/shelf/shelf.tscn" id="7_jum3j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_823pn"]
 albedo_color = Color(0.719814, 0.668477, 0.424855, 1)
@@ -41,14 +42,17 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
 [node name="Player" parent="." instance=ExtResource("2_823pn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.664175, 1, 1.19144)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Table" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.11)
 
-[node name="Table" parent="Node3D" instance=ExtResource("3_iss0w")]
+[node name="Table" parent="Table" instance=ExtResource("3_iss0w")]
 
-[node name="Computer" parent="Node3D" instance=ExtResource("4_yi3jx")]
+[node name="Computer" parent="Table" instance=ExtResource("4_yi3jx")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 1, 0)
 lines = ExtResource("5_foxie")
 
-[node name="TablePlant" parent="Node3D" instance=ExtResource("6_7d3si")]
+[node name="TablePlant" parent="Table" instance=ExtResource("6_7d3si")]
 transform = Transform3D(0.878066, 0, -0.478539, 0, 1, 0, 0.478539, 0, 0.878066, -0.403684, 1, 0.0927856)
+
+[node name="Shelf" parent="." instance=ExtResource("7_jum3j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.3445, 2.38419e-07, -0.390055)
