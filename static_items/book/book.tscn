@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dg18hgq52wnsm"]
+
+[ext_resource type="Script" uid="uid://bpv2oiqnx6p54" path="res://static_items/book/book.gd" id="1_jjbq7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c58m"]
+
+[node name="Book" type="StaticBody3D" unique_id=1786412718]
+script = ExtResource("1_jjbq7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=415032627]
+transform = Transform3D(0.1, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_4c58m")
