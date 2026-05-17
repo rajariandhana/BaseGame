@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bm6f10d6lcwh5" path="res://levels/level_0/shelf_1.gd" id="7_ysba5"]
 [ext_resource type="PackedScene" uid="uid://dg18hgq52wnsm" path="res://static_items/book/book.tscn" id="8_r5v0c"]
 [ext_resource type="PackedScene" uid="uid://7ugush7fenbn" path="res://world/wall/wall.tscn" id="10_bwblw"]
+[ext_resource type="PackedScene" uid="uid://bjlcd0hn1op06" path="res://world/floor/floor.tscn" id="11_ln5xo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_823pn"]
 albedo_color = Color(0.719814, 0.668477, 0.424855, 1)
@@ -80,7 +81,7 @@ environment = SubResource("Environment_823pn")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
 
 [node name="Player" parent="." unique_id=1269704160 instance=ExtResource("2_ysba5")]
-transform = Transform3D(0.71057844, 0, 0.703618, 0, 1, 0, -0.703618, 0, 0.71057844, 0.664175, 1, 1.19144)
+transform = Transform3D(0.93053263, 0, 0.3662089, 0, 1, 0, -0.3662089, 0, 0.93053263, -0.0065737367, 1, -0.020370126)
 
 [node name="Table" type="Node3D" parent="." unique_id=485270240]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.11)
@@ -146,5 +147,20 @@ libraries/ = SubResource("AnimationLibrary_ln5xo")
 [node name="Wall1" parent="." unique_id=1550062177 instance=ExtResource("10_bwblw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.1, 0, 3)
 
+[node name="Wall6" parent="." unique_id=185785126 instance=ExtResource("10_bwblw")]
+transform = Transform3D(-2.1855694e-08, 0, 1, 0, 0.3, 0, -0.5, 0, -4.371139e-08, -3.1, 2.8, 0.007)
+
 [node name="Wall2" parent="." unique_id=1244473027 instance=ExtResource("10_bwblw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.1, 0, -3)
+
+[node name="Wall3" parent="." unique_id=1171463954 instance=ExtResource("10_bwblw")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7)
+
+[node name="Wall4" parent="." unique_id=1116267008 instance=ExtResource("10_bwblw")]
+transform = Transform3D(-6.9938224e-08, 0, 1, 0, 1, 0, -1.6, 0, -4.371139e-08, 3.1, 0, 0)
+
+[node name="Wall5" parent="." unique_id=832008210 instance=ExtResource("10_bwblw")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.1)
+
+[node name="Roof1" parent="." unique_id=870088347 instance=ExtResource("11_ln5xo")]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 4, 0)
