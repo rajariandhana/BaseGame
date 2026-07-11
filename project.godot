@@ -8,17 +8,23 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="BaseGame"
 run/main_scene="uid://dyqg5ud4qvsm6"
-config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/bg_color=Color(0.23529412, 0.36078432, 0.45882353, 1)
+boot_splash/image="uid://cs0i1ds8ntby0"
+config/icon="uid://cs0i1ds8ntby0"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
 Utils="*res://utils.gd"
-Globals="*res://globals.gd"
 ItemDB="*res://items/item_db.gd"
 GameManager="*res://game_manager.gd"
 Scenes="*res://scenes.gd"

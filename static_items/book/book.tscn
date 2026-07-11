@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dg18hgq52wnsm"]
+
+[ext_resource type="Script" uid="uid://bpv2oiqnx6p54" path="res://static_items/book/book.gd" id="1_jjbq7"]
+[ext_resource type="Script" uid="uid://c7liaqyrqeo6g" path="res://static_items/book/book_visual.gd" id="2_vo51t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c58m"]
+
+[sub_resource type="Animation" id="Animation_jjbq7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vo51t"]
+resource_name = "pull"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8bfo8"]
+_data = {
+&"RESET": SubResource("Animation_jjbq7"),
+&"pull": SubResource("Animation_vo51t")
+}
+
+[node name="Book" type="StaticBody3D" unique_id=1786412718]
+script = ExtResource("1_jjbq7")
+
+[node name="Visual" type="StaticBody3D" parent="." unique_id=306748932]
+script = ExtResource("2_vo51t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual" unique_id=415032627]
+transform = Transform3D(0.1, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_4c58m")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=633341239]
+libraries/ = SubResource("AnimationLibrary_8bfo8")

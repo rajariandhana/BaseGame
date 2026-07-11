@@ -55,6 +55,11 @@ Inventory -> explicitly for Player,
 - introduce Economy
 - create auto template for scripts, reusable
 - dialogue state -> UI theme -> upload to itch.io
+- grey yellow colo scheme?
+- autoload player data? anytime equip/drop -> PlayerData.update() -> Player.inventory.update() maybe?
+## Level 0
+- shelf, 3 books -> pull all = reveal something?
+- UV flashlight -> reveal words in a wall
 
 ## Dialogue System - DialoguePanel, Talkable, DialogueLine
 A "person" to talk to inherits `Talkable`. `Talkable` stores the dialogue lines as array of `DialogueLine` in `DialogueLines`. A `DialogueLine` have a type (`DialogueType`) to distinguish if it is a normal text or a question. An option of answer can also be declared.
@@ -70,9 +75,9 @@ A "person" to talk to inherits `Talkable`. `Talkable` stores the dialogue lines 
 - lighting
 
 ## References:
-- https://www.youtube.com/watch?v=QKdyUBjzPmk
-- https://www.youtube.com/watch?v=NJJNWGD25rg
-- https://shaggydev.com/2023/10/08/godot-4-state-machines/
+- https://www.youtube.com/watch?v=NJJNWGD25rg (Player)
+- https://www.youtube.com/watch?v=QKdyUBjzPmk (Interaction and Ray Cast)
+- https://shaggydev.com/2023/10/08/godot-4-state-machines/ (State Machine)
 
 ## Riot Essay
 

@@ -36,3 +36,14 @@ func timeout(seconds: float) -> void:
 	# print("timeout_start")
 	await get_tree().create_timer(seconds).timeout
 	# print("timeout_end")
+
+func create_collision_from_mesh(node: Node, mesh_instance: MeshInstance3D) -> void:
+	if mesh_instance.mesh == null:
+		return
+
+	var collision_shape: CollisionShape3D = CollisionShape3D.new()
+	collision_shape.name = mesh_instance.name + "_Collision"
+	var shape: ConcavePolygonShape3D = mesh_instance.mesh.create_trimesh_shape()
+	collision_shape.shape = shape
+	collision_shape.transform = mesh_instance.transform
+	node.add_child(collision_shape)

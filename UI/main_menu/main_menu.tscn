@@ -60,5 +60,10 @@ text = "Room 0"
 layout_mode = 2
 text = "Doors"
 
+[node name="ButtonLevel0" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 0"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonRoom0" to="." method="_on_button_room_0_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonDoors" to="." method="_on_button_doors_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonLevel0" to="." method="_on_button_level_0_pressed"]
