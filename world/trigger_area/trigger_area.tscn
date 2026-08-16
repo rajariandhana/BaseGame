@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://gtj1abpsy76e"]
+
+[ext_resource type="Script" uid="uid://dplscsledf63x" path="res://world/trigger_area/trigger_area.gd" id="1_u8vj4"]
+
+[node name="TriggerArea" type="Area3D" unique_id=1483669972]
+collision_mask = 2
+script = ExtResource("1_u8vj4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=429712230]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+debug_color = Color(0.7372549, 0.4392157, 0.44705883, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

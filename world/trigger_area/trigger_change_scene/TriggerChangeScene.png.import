@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0i1ds8ntby0"
-path.s3tc="res://.godot/imported/icon.png-d44ad423496976af115f803f6386bc82.s3tc.ctex"
+uid="uid://op7obtykojef"
+path.s3tc="res://.godot/imported/TriggerChangeScene.png-32fe1314e4ff1b47c52343e112ae0840.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://UI/icon.png"
-dest_files=["res://.godot/imported/icon.png-d44ad423496976af115f803f6386bc82.s3tc.ctex"]
+source_file="res://world/trigger_area/trigger_change_scene/TriggerChangeScene.png"
+dest_files=["res://.godot/imported/TriggerChangeScene.png-32fe1314e4ff1b47c52343e112ae0840.s3tc.ctex"]
 
 [params]
 

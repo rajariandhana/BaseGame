@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cmepnq7pdcy3o"]
+[gd_scene format=3 uid="uid://cmepnq7pdcy3o"]
 
 [ext_resource type="Script" uid="uid://cdtub6od8b4ox" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bxknucvncojfk" path="res://player/inventory.gd" id="2_g1dw6"]
@@ -27,49 +27,49 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1975655470]
 collision_layer = 2
 script = ExtResource("1_4flbx")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=574528760 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_g6k8r")
 starting_state = NodePath("Moveable")
 
-[node name="Moveable" type="Node" parent="StateMachine" node_paths=PackedStringArray("inventory_open_state", "talking_state", "menu_open_state")]
+[node name="Moveable" type="Node" parent="StateMachine" unique_id=1075841863 node_paths=PackedStringArray("inventory_open_state", "talking_state", "menu_open_state")]
 script = ExtResource("6_g6k8r")
 inventory_open_state = NodePath("../InventoryOpen")
 talking_state = NodePath("../Talking")
 menu_open_state = NodePath("../MenuOpen")
 
-[node name="InventoryOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+[node name="InventoryOpen" type="Node" parent="StateMachine" unique_id=299535324 node_paths=PackedStringArray("moveable_state")]
 script = ExtResource("7_boad6")
 moveable_state = NodePath("../Moveable")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state", "dialogue_panel")]
+[node name="Talking" type="Node" parent="StateMachine" unique_id=495602063 node_paths=PackedStringArray("moveable_state", "dialogue_panel")]
 script = ExtResource("5_ebec5")
 moveable_state = NodePath("../Moveable")
 dialogue_panel = NodePath("../../DialoguePanel")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="MenuOpen" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveable_state")]
+[node name="MenuOpen" type="Node" parent="StateMachine" unique_id=1523145958 node_paths=PackedStringArray("moveable_state")]
 script = ExtResource("5_hg6s5")
 moveable_state = NodePath("../Moveable")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=699160186]
 mesh = SubResource("CapsuleMesh_sh265")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1292727081]
 shape = SubResource("CapsuleShape3D_4flbx")
 debug_fill = false
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2111177270]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 far = 1000.0
 
-[node name="InteractRay" type="RayCast3D" parent="Camera3D" node_paths=PackedStringArray("player", "moveable_state", "talking_state")]
+[node name="InteractRay" type="RayCast3D" parent="Camera3D" unique_id=1841791481 node_paths=PackedStringArray("player", "moveable_state", "talking_state")]
 target_position = Vector3(0, 0, -2)
 collision_mask = 7
 script = ExtResource("7_ebec5")
@@ -77,13 +77,13 @@ player = NodePath("../..")
 moveable_state = NodePath("../../StateMachine/Moveable")
 talking_state = NodePath("../../StateMachine/Talking")
 
-[node name="Hand" type="Node3D" parent="Camera3D"]
+[node name="Hand" type="Node3D" parent="Camera3D" unique_id=969138398]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, -1)
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1479426350]
 follow_viewport_enabled = true
 
-[node name="CrossHair" type="Label" parent="HUD"]
+[node name="CrossHair" type="Label" parent="HUD" unique_id=904924365]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -102,7 +102,7 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HoverMessage" type="Label" parent="HUD"]
+[node name="HoverMessage" type="Label" parent="HUD" unique_id=1200587870]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -121,7 +121,7 @@ text = "[HOVER MESSAGE]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialoguePanel" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable", "printing_state", "wait_next_state", "wait_mcq_state", "wait_oeq_state", "idle_state")]
+[node name="DialoguePanel" type="CanvasLayer" parent="." unique_id=427829805 node_paths=PackedStringArray("moveable", "printing_state", "wait_next_state", "wait_mcq_state", "wait_oeq_state", "idle_state")]
 visible = false
 script = ExtResource("4_yw30f")
 moveable = NodePath("../StateMachine/Moveable")
@@ -131,26 +131,26 @@ wait_mcq_state = NodePath("StateMachine/WaitMCQ")
 wait_oeq_state = NodePath("StateMachine/WaitOEQ")
 idle_state = NodePath("StateMachine/Idle")
 
-[node name="StateMachine" type="Node" parent="DialoguePanel" node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" type="Node" parent="DialoguePanel" unique_id=1163583150 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_g6k8r")
 starting_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://c6gxswkdyr7jq"
 
-[node name="Printing" type="Node" parent="DialoguePanel/StateMachine"]
+[node name="Printing" type="Node" parent="DialoguePanel/StateMachine" unique_id=1593918054]
 script = ExtResource("10_32hag")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="WaitNext" type="Node" parent="DialoguePanel/StateMachine"]
+[node name="WaitNext" type="Node" parent="DialoguePanel/StateMachine" unique_id=679073557]
 script = ExtResource("11_tqiix")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="WaitMCQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("container", "slot")]
+[node name="WaitMCQ" type="Node" parent="DialoguePanel/StateMachine" unique_id=1080798275 node_paths=PackedStringArray("container", "slot")]
 script = ExtResource("12_e7oew")
 container = NodePath("../../MCQContainer")
 slot = NodePath("../../MCQContainer/MCQSlot")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="WaitOEQ" type="Node" parent="DialoguePanel/StateMachine" node_paths=PackedStringArray("container", "slot", "input", "submit_button")]
+[node name="WaitOEQ" type="Node" parent="DialoguePanel/StateMachine" unique_id=1356256518 node_paths=PackedStringArray("container", "slot", "input", "submit_button")]
 script = ExtResource("13_32hag")
 container = NodePath("../../OEQContainer")
 slot = NodePath("../../OEQContainer/OEQSlot")
@@ -158,12 +158,12 @@ input = NodePath("../../OEQContainer/OEQSlot/OEInput")
 submit_button = NodePath("../../OEQContainer/OEQSlot/OESubmitButton")
 metadata/_custom_type_script = "uid://bnn16jvnv4hpm"
 
-[node name="Idle" parent="DialoguePanel/StateMachine" instance=ExtResource("14_tqiix")]
+[node name="Idle" parent="DialoguePanel/StateMachine" unique_id=1312219731 instance=ExtResource("14_tqiix")]
 
-[node name="DarkLayer" parent="DialoguePanel" instance=ExtResource("6_8t03j")]
+[node name="DarkLayer" parent="DialoguePanel" unique_id=291997803 instance=ExtResource("6_8t03j")]
 visible = false
 
-[node name="DialogueBox" type="MarginContainer" parent="DialoguePanel"]
+[node name="DialogueBox" type="MarginContainer" parent="DialoguePanel" unique_id=1927433493]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -178,10 +178,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="DialoguePanel/DialogueBox"]
+[node name="Panel" type="Panel" parent="DialoguePanel/DialogueBox" unique_id=540546483]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel/DialogueBox/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel/DialogueBox/Panel" unique_id=1150496699]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 12
@@ -196,30 +196,30 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/DialogueBox/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/DialogueBox/Panel/MarginContainer" unique_id=540299591]
 custom_minimum_size = Vector2(0, 139)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer" unique_id=1536925631]
 layout_mode = 2
 
-[node name="NameSlot" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NameSlot" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1288371450]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Character Name"
 
-[node name="Control" type="Control" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1313550370]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NextKey" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NextKey" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=348085623]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Next [E]"
 
-[node name="DialogueSlot" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer"]
+[node name="DialogueSlot" type="Label" parent="DialoguePanel/DialogueBox/Panel/MarginContainer/VBoxContainer" unique_id=1937710189]
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/line_spacing = 32
@@ -227,7 +227,7 @@ theme_override_font_sizes/font_size = 32
 text = "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet..."
 autowrap_mode = 3
 
-[node name="MCQContainer" type="MarginContainer" parent="DialoguePanel"]
+[node name="MCQContainer" type="MarginContainer" parent="DialoguePanel" unique_id=1498634825]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -240,26 +240,26 @@ grow_vertical = 0
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 280
 
-[node name="MCQSlot" type="VBoxContainer" parent="DialoguePanel/MCQContainer"]
+[node name="MCQSlot" type="VBoxContainer" parent="DialoguePanel/MCQContainer" unique_id=558284620]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("10_e7oew")
 theme_override_constants/separation = 10
 
-[node name="Sample Answer Button 1" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot"]
+[node name="Sample Answer Button 1" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot" unique_id=185135963]
 layout_mode = 2
 text = "Answer 1"
 
-[node name="Sample Answer Button 2" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot"]
+[node name="Sample Answer Button 2" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot" unique_id=1322848625]
 layout_mode = 2
 text = "Answer 2"
 
-[node name="Sample Answer Button 3" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot"]
+[node name="Sample Answer Button 3" type="Button" parent="DialoguePanel/MCQContainer/MCQSlot" unique_id=418985923]
 layout_mode = 2
 text = "Answer 3"
 
-[node name="OEQContainer" type="MarginContainer" parent="DialoguePanel"]
+[node name="OEQContainer" type="MarginContainer" parent="DialoguePanel" unique_id=1232973070]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -271,12 +271,12 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 280
 
-[node name="OEQSlot" type="HBoxContainer" parent="DialoguePanel/OEQContainer"]
+[node name="OEQSlot" type="HBoxContainer" parent="DialoguePanel/OEQContainer" unique_id=1228506607]
 layout_mode = 2
 theme = ExtResource("10_e7oew")
 theme_override_constants/separation = 10
 
-[node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQContainer/OEQSlot"]
+[node name="OEInput" type="LineEdit" parent="DialoguePanel/OEQContainer/OEQSlot" unique_id=51448577]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Open ended quest"
@@ -287,18 +287,18 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 text_direction = 1
 
-[node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQContainer/OEQSlot"]
+[node name="OESubmitButton" type="Button" parent="DialoguePanel/OEQContainer/OEQSlot" unique_id=2082921879]
 layout_mode = 2
 disabled = true
 text = "ENTER"
 
-[node name="Inventory" type="CanvasLayer" parent="."]
+[node name="Inventory" type="CanvasLayer" parent="." unique_id=861001099]
 visible = false
 script = ExtResource("2_g1dw6")
 
-[node name="DarkLayer" parent="Inventory" instance=ExtResource("6_8t03j")]
+[node name="DarkLayer" parent="Inventory" unique_id=106358207 instance=ExtResource("6_8t03j")]
 
-[node name="CenterContainer" type="CenterContainer" parent="Inventory"]
+[node name="CenterContainer" type="CenterContainer" parent="Inventory" unique_id=479729570]
 custom_minimum_size = Vector2(640, 1080)
 anchors_preset = 11
 anchor_left = 1.0
@@ -308,7 +308,7 @@ offset_left = -71.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer" unique_id=975983794]
 custom_minimum_size = Vector2(640, 520)
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -316,43 +316,43 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer" unique_id=1438869175]
 custom_minimum_size = Vector2(600, 890)
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Equipped" type="PanelContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer"]
+[node name="Equipped" type="PanelContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" unique_id=1113866568]
 layout_mode = 2
 theme = ExtResource("17_c35mf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped" unique_id=2111904008]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer" unique_id=457368953]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer/MarginContainer" unique_id=1993299765]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Equipped"
 
-[node name="EquippedSlots" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer"]
+[node name="EquippedSlots" type="VBoxContainer" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer/Equipped/VBoxContainer" unique_id=1280314119]
 layout_mode = 2
 
-[node name="Storage" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_rkbax")]
+[node name="Storage" parent="Inventory/CenterContainer/MarginContainer/VBoxContainer" unique_id=651411442 instance=ExtResource("2_rkbax")]
 layout_mode = 2
 
-[node name="Menu" type="CanvasLayer" parent="." node_paths=PackedStringArray("moveable_state")]
+[node name="Menu" type="CanvasLayer" parent="." unique_id=30980371 node_paths=PackedStringArray("moveable_state")]
 script = ExtResource("10_8t03j")
 moveable_state = NodePath("../StateMachine/Moveable")
 
-[node name="DarkLayer" parent="Menu" instance=ExtResource("6_8t03j")]
+[node name="DarkLayer" parent="Menu" unique_id=733280579 instance=ExtResource("6_8t03j")]
 
-[node name="ItemList" type="ItemList" parent="Menu"]
+[node name="ItemList" type="ItemList" parent="Menu" unique_id=1030770734]
 visible = false
 custom_minimum_size = Vector2(200, 200)
 offset_left = 960.0
@@ -365,7 +365,7 @@ item_1/text = "DEF"
 item_2/text = "GHI"
 item_3/text = "JKL"
 
-[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+[node name="CenterContainer" type="CenterContainer" parent="Menu" unique_id=1426090909]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -373,33 +373,33 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("20_x7c3f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer" unique_id=1354967098]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer" unique_id=1695656267]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("21_bjvpn")
 theme_override_font_sizes/font_size = 48
 text = "Menu"
 horizontal_alignment = 1
 
-[node name="ControlsGuide" parent="Menu/CenterContainer/VBoxContainer" instance=ExtResource("22_bjvpn")]
+[node name="ControlsGuide" parent="Menu/CenterContainer/VBoxContainer" unique_id=420684927 instance=ExtResource("22_bjvpn")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer" unique_id=63675343]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ButtonResume" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="ButtonResume" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer" unique_id=1072926945]
 layout_mode = 2
 text = "Resume"
 
-[node name="ButtonMainMenu" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="ButtonMainMenu" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer" unique_id=1308851354]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="TabBar" type="TabBar" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="TabBar" type="TabBar" parent="Menu/CenterContainer/VBoxContainer" unique_id=1637323850]
 visible = false
 layout_mode = 2
 current_tab = 0
@@ -408,7 +408,7 @@ tab_count = 2
 tab_0/title = "Controls"
 tab_1/title = "Options"
 
-[node name="TabContainer" type="TabContainer" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="Menu/CenterContainer/VBoxContainer" unique_id=144552500]
 visible = false
 layout_mode = 2
 clip_tabs = false
