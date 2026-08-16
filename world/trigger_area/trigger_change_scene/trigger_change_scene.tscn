@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cmnpct24il7il"]
+
+[ext_resource type="PackedScene" uid="uid://gtj1abpsy76e" path="res://world/trigger_area/trigger_area.tscn" id="1_r0o25"]
+[ext_resource type="Script" uid="uid://bl8upx6l8lu38" path="res://world/trigger_area/trigger_change_scene/trigger_change_scene.gd" id="2_13jsx"]
+[ext_resource type="Texture2D" uid="uid://op7obtykojef" path="res://world/trigger_area/trigger_change_scene/TriggerChangeScene.png" id="3_5srpe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5srpe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5srpe"]
+albedo_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5eyih"]
+
+[node name="TriggerChangeScene" unique_id=1483669972 instance=ExtResource("1_r0o25")]
+script = ExtResource("2_13jsx")
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=429712230]
+transform = Transform3D(2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_5srpe")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="1" unique_id=572801626]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.01, 0)
+texture = ExtResource("3_5srpe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=556709240]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1.5, 0, 1, -6.556708e-08, 0, 1.5, -0.5)
+material_override = SubResource("StandardMaterial3D_5srpe")
+mesh = SubResource("PlaneMesh_5eyih")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="3" unique_id=1006902057]
+transform = Transform3D(-2.1855694e-08, 1, -6.556708e-08, 0, -4.371139e-08, -1.5, -0.5, -4.371139e-08, 2.8660283e-15, -0.98, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_5srpe")
+mesh = SubResource("PlaneMesh_5eyih")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="4" unique_id=2081274505]
+transform = Transform3D(-2.1855694e-08, -1, 6.556708e-08, 0, -4.371139e-08, -1.5, 0.5, -4.371139e-08, 2.8660283e-15, 0.98, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_5srpe")
+mesh = SubResource("PlaneMesh_5eyih")

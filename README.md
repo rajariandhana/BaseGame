@@ -74,28 +74,16 @@ A "person" to talk to inherits `Talkable`. `Talkable` stores the dialogue lines 
 - smooth animation
 - lighting
 
+## Player States
+ray should be independent
+
+## TriggerArea
+`TriggerArea` is an `Area3D` on Collision Mask 2 that detects `Player` entering the area. It has an empty `CollisionShape3D` child. Create a new inherited scene, fill the collision, and extend the script (can be saved on the level's directory). Define security gates and actions taken when a player enters through `handle()` which takes the entering `Player`.
+
+### TriggerChangeScene
+Implements `TriggerArea` and serves as a way to change scene when a player enters. It is a red carpet like zone inspired from the Pokémon games on generation 4. `TriggerChangeScene.handle()` is not implemented meaning it can do anything and not change scenes specifically, it only acts as a wrapper with the graphics.
+
 ## References:
 - https://www.youtube.com/watch?v=NJJNWGD25rg (Player)
 - https://www.youtube.com/watch?v=QKdyUBjzPmk (Interaction and Ray Cast)
 - https://shaggydev.com/2023/10/08/godot-4-state-machines/ (State Machine)
-
-## Riot Essay
-
-### In your own words, why are you interested in working at Riot Games?*
-From my experience when creating games, I realize that I cannot do it alone. There are so many aspects in a game other than the code like the graphics, story, music, physics simulation. As someone with programming background it is just impossible to master everything. I'm interested in working at Riot Games because it offers me a chance to meet and collaborate with other talented people who shares the same passion for creating games.
-
-According to past Riot employees testimony, Riot Games has created a work culture that allows their developers to output their potentials by giving trust, support, and top tier resources. By trusting their developers, Riot had created high quality games that can keep players engaged and having the best time. I am excited to work in an environtment like this, where I can fully contribute and keep growing as a developer.
-
-### In your own words, why do you want to pursue this role professionally?*
-I started by creating small games only for me and my friends to play, then I got the chance to work voluntarily in an organization. The games we made eventually reached over 1000 players, which raises problem in optimizing certain aspects of the game. We were afraid that some players would left because it was too uncomfortable for them to play. This experience made me interested to learn more about how to design and maintain games that scales for millions of players worldwide in order to keep players feeling joy and having fun.
-
-The career path of a game developer has a wide variety of roles, game designer, level designer, systems designer, and such. I like to see the roles as different "levels" in a game with their own set of challanges that require different skills. Being a game developer gives me flexibility of trying different things, find what I like and dislike, what I'm best at, while still in an environnment that excites me.
-
-Last year I participated in my first game jam organized by a YouTuber. At the event I teamed up with someone new that I've never met in real life. As an introvert I never thought could happen. We managed to finish a game that we like. Although our game were nowhere close to join the top games, it made me get out of my comfort zone and thrive.
-
-Ultimately, I want to pursue this career profesionally because I enjoy both the creative and technical challange it has, it pushes me beyond my comfort zone, and gives joy to other people.
-
-should I add game jam to resume projects?
-
-## Player States
-ray should be independent
